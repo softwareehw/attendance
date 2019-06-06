@@ -1,0 +1,47 @@
+package mapper;
+
+import java.sql.ResultSet;
+import java.sql.SQLException;
+import java.util.Date;
+
+import org.springframework.jdbc.core.RowMapper;
+
+
+import bean.ApplicationForLeave;
+/**
+ *@author 29226
+ *@注释 : 实现RowMapper接口，返回applicationForEW对象
+*/
+public class ApplicationForLeaveRowMapper implements RowMapper<ApplicationForLeave> {
+
+	@Override
+	public ApplicationForLeave mapRow(ResultSet rs, int rowNum) throws SQLException {
+		// TODO Auto-generated method stub
+	    boolean state = rs.getBoolean("state");
+		//开始时间
+		Date startTime = rs.getDate("start_time"); 
+		//结束时间
+		Date endTime = rs.getDate("end_time");
+		//申请人id
+		int applicatdPerson = rs.getInt("applicated_person");
+		//批准人id
+		int certificatedPerson = rs.getInt("certificate_person");
+		//是否销假
+		boolean isReportBack = rs.getBoolean("is_report_back");
+		//销假结束日期
+	    Date reportBackTime = rs.getDate("report_back_time");
+	
+		
+		ApplicationForLeave applicationForLeave = new ApplicationForLeave();
+		applicationForLeave.setState(state);
+		applicationForLeave.setStartTime(startTime);
+		applicationForLeave.setEndTime(endTime);
+		applicationForLeave.setApplicatdPerson(applicatdPerson);
+		applicationForLeave.setCertificatedPerson(certificatedPerson);
+		applicationForLeave.setReportBackTime(reportBackTime);
+		applicationForLeave.setReportBack(isReportBack);
+		
+		return applicationForLeave;
+	}
+
+}
