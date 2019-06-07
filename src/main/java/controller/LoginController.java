@@ -55,17 +55,22 @@ public class LoginController {
         	if(employeeDao.findEmployeeByUserId(loginuser.getId()).isEmpty()) {
         		Manager manager = managerDao.findManagerByUserId(loginuser.getId()).get(0);
         		session.setAttribute("manager", manager);
+        		ans.put("Manager", new JSONObject(manager));
+        		ans.put("status", 1);
         	}else {
         		Employee employee = employeeDao.findEmployeeByUserId(loginuser.getId()).get(0);
         		if(employee.isManager()!=false){
             		session.setAttribute("master", employee);
+            		ans.put("Master", new JSONObject(employee));
+            		ans.put("status", 2);
             	}else{
             		session.setAttribute("employee", employee);
+            		ans.put("employee", new JSONObject(employee));
+            		ans.put("status", 3);
             	}
         	}
         		
         }	
-    	ans.put("status", 1);
         return ans.toString();
     }
 	
