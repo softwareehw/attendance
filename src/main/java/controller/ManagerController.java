@@ -65,7 +65,7 @@ public class ManagerController {
 //    @RequestMapping("/list/{id}")
 //    @Post
     
-    
+    //修改员工信息
     @PostMapping("/update/employee")
     public String modifyEm(@RequestBody Employee e) {
     	managerService.modifyEm(e);
@@ -76,11 +76,11 @@ public class ManagerController {
     //获取所有部门的信息
     @PostMapping("/sectorAll")
     public List<Sector> getAllSector(){
-		
     	return managerService.getAllSector();
     	
     }
     
+    //获取所有员工
 	@RequestMapping("/employeeAll")
 	public int employeeAll(){
 		return 20;
