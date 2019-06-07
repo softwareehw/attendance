@@ -28,9 +28,11 @@ public class ManagerIntercepter implements HandlerInterceptor {
 HttpSession session = request.getSession();
 		
 		if(session.getAttribute("manager") != null){
+		
 			return true;
 		}else{
-			response.sendRedirect("/error/authority");
+			//使用转发的方法
+			response.sendRedirect("/error/manager");
             return false;
 		}
 	}

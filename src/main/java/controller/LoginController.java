@@ -45,6 +45,7 @@ public class LoginController {
 
 		JSONObject ans=new JSONObject();
 		ans.put("status", 0);
+		
     	if(userDao.searchUserByIdAndPasswd(user).isEmpty()) return ans.toString();
     	else {
     		User loginuser = userDao.searchUserByIdAndPasswd(user).get(0);

@@ -9,7 +9,7 @@ public class InterceptorConfig extends WebMvcConfigurerAdapter  {
 	
 	 @Override
 	    public void addInterceptors(InterceptorRegistry registry) {
-	        registry.addInterceptor(new LoginIntercepter()).addPathPatterns("/**").excludePathPatterns("/login/**", "/register");
+	        registry.addInterceptor(new LoginIntercepter()).addPathPatterns("/**").excludePathPatterns("/login/**", "/register","/hello");
 	        registry.addInterceptor(new ManagerIntercepter()).addPathPatterns("/manager/**");
 	        registry.addInterceptor(new MasterIntercepter()).addPathPatterns("/master/**");
 	        
