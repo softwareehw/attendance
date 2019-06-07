@@ -5,7 +5,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.context.annotation.ComponentScan;
 
 @SpringBootApplication
-@ComponentScan(basePackages = {"bean","controller","service","dao","daoimpl","serviceimpl","mapper","intercepter"})
+@ComponentScan(basePackages = {"bean","controller","service","dao","daoimpl","serviceimpl","mapper"})
 
 public class Demo2Application {
 
