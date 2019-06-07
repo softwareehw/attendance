@@ -27,12 +27,11 @@ public class SectorDaoImpl implements SectorDao {
 
             @Override
             public Sector mapRow(ResultSet rs, int rowNum) throws SQLException {
-            
             	Sector sector=new Sector();
             	sector.setSectorId(rs.getInt("sector_id"));
             	sector.setSectorName(rs.getString("sector_name"));
             	sector.setSectorPeopleNumber(rs.getInt("sector_people_number"));
-            
+            	sector.setDescription(rs.getString("sector_description"));
                 return sector;
             }
 

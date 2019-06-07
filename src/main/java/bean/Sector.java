@@ -6,6 +6,14 @@ public class Sector {
 	private String sectorName;
 	//部门人数
 	private int sectorPeopleNumber;
+	//部门信息
+	private String description;
+	public String getDescription() {
+		return description;
+	}
+	public void setDescription(String description) {
+		this.description = description;
+	}
 	public int getSectorId() {
 		return sectorId;
 	}
