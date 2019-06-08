@@ -35,4 +35,29 @@ public class SectorDaoImpl implements SectorDao {
 		return (List<Sector>)jdbcTemplate.query(sql, new Object[] {i},new SectorRowMapper(){});
 	}
 
+
+	@Override
+	public int AddSector(Sector s) {
+		String sql = "INSERT INTO SECTOR (sector_id,sector_name.sector_people_number,sector_description) VALUE(?,?,?,?)";
+		int i = jdbcTemplate.update(sql,s.getSectorId(),s.getSectorName(),s.getSectorPeopleNumber(),s.getSectorDescription());
+		return i;
+	}
+
+
+	@Override
+	public int ModifySector(Sector s) {
+		String sql = "UPDATE SECTOR SET SECTOR_NAME=?,SECTOR_PEOPLE_NUMBER=?,SECTOR_DESCRIPTION=? WHERE SECTOR_ID= "+s.getSectorId();
+		int i = jdbcTemplate.update(sql,new Object[]{s.getSectorName(),s.getSectorPeopleNumber(),s.getSectorDescription()});
+		
+		return i;
+	}
+
+
+	@Override
+	public int DeleteSector(int sectorId) {
+		String sql = "DELETE FROM SECTOR WHERE SECTOR_ID=?";
+		int i = jdbcTemplate.update(sql,new Object[]{sectorId});
+		return i;
+	}
+
 }
