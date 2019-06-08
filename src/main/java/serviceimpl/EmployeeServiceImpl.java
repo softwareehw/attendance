@@ -125,13 +125,13 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public int attendanceDown(int userId) {
 		// TODO Auto-generated method stub
-		return attendanceRecordDao.attendanceDown(userId);
+		return attendanceRecordDAo.attendanceDown(userId);
 	}
 
 	@Override
 	public List<AttendanceRecord> attendanceFindById(int userId) {
 		// TODO Auto-generated method stub
-		return attendanceRecordDao.attendanceFindById(userId);
+		return attendanceRecordDAo.attendanceFindById(userId);
 	}
 
 	@Override
