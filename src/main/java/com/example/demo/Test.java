@@ -11,8 +11,10 @@ public class Test {
 		ans.add("789");
 		System.out.println(ans.toString());
 	}
-	
-	public static int ddsdsd(){
-		return 101;
-	}
+
+	/**
+	 *@author 29226
+	 *@注释 
+*/
+
 }
