@@ -11,6 +11,7 @@ import org.springframework.stereotype.Repository;
 
 import bean.Sector;
 import dao.SectorDao;
+import mapper.SectorRowMapper;
 
 @Repository
 public class SectorDaoImpl implements SectorDao {
@@ -23,19 +24,15 @@ public class SectorDaoImpl implements SectorDao {
 	public List<Sector> getAllSector() {
 		String sql = "SELECT * FROM sector";
 		
-        return (List<Sector>) jdbcTemplate.query(sql, new RowMapper<Sector>(){
+        return (List<Sector>) jdbcTemplate.query(sql, new SectorRowMapper(){});
+	}
 
-            @Override
-            public Sector mapRow(ResultSet rs, int rowNum) throws SQLException {
-            	Sector sector=new Sector();
-            	sector.setSectorId(rs.getInt("sector_id"));
-            	sector.setSectorName(rs.getString("sector_name"));
-            	sector.setSectorPeopleNumber(rs.getInt("sector_people_number"));
-            	sector.setDescription(rs.getString("sector_description"));
-                return sector;
-            }
 
-        });
+	@Override
+	public List<Sector> FindSectorById(int i) {
+		String sql = "SELECT * FROM SECTOR WHERE SECTOR_ID = ?";
+		
+		return (List<Sector>)jdbcTemplate.query(sql, new Object[] {i},new SectorRowMapper(){});
 	}
 
 }
