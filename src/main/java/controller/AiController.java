@@ -14,4 +14,10 @@ public class AiController {
 	public String Attend(){
 		return null;
 	}
+	
+	
+	@RequestMapping(value="attendance111",method=RequestMethod.POST)
+	public String Attend1(){
+		return null;
+	}
 }

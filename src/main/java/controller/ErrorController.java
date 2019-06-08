@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("/error")
 public class ErrorController {
 	
+	
 	@RequestMapping("/notmaster")
 	public String ErrorMaster(){
 		return "you are not master";
