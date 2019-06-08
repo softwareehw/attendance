@@ -35,7 +35,7 @@ import face.search.FaceSearch;
 import service.EmployeeService;
 
 //部署到服务器上的时候请一定使用 @CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true") 才能和前端正常交互
-@CrossOrigin(origins = "*", maxAge = 3600,allowCredentials="true")
+@CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true")
 @RestController
 @RequestMapping("/api/v1/employees")
 public class EmployeeController {
@@ -143,27 +143,27 @@ public class EmployeeController {
 	 *
 	 */
 	//上班打卡识别
-	@PostMapping(value="/ai/photo/identify",consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
-	public String identifyP(@RequestParam("image") MultipartFile image) throws Exception{
-		
-		
-			logger.info("接受图片");
-			logger.info("开始识别");
-			//return FaceSearch.search(path);
-			String user_id = FaceSearch.search(image);
-			JSONObject ans=new JSONObject();
-			ans.put("state", 0);
-			
-			if(!user_id.equals("false")) {
-				int userId = Integer.parseInt(user_id);
-				return employeeService.attendance(userId);
-			}
-			else {
-				ans.put("error_message", "识别失败，不匹配");
-				return ans.toString();
-			}
-			
-	}
+//	@PostMapping(value="/ai/photo/identify",consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
+//	public String identifyP(@RequestParam("image") MultipartFile image) throws Exception{
+//		
+//		
+//			logger.info("接受图片");
+//			logger.info("开始识别");
+//			//return FaceSearch.search(path);
+//			String user_id = FaceSearch.search(image);
+//			JSONObject ans=new JSONObject();
+//			ans.put("state", 0);
+//			
+//			if(!user_id.equals("false")) {
+//				int userId = Integer.parseInt(user_id);
+//				return employeeService.attendance(userId);
+//			}
+//			else {
+//				ans.put("error_message", "识别失败，不匹配");
+//				return ans.toString();
+//			}
+//			
+//	}
 	
 	
 //	/**
