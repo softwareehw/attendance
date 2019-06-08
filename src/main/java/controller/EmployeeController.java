@@ -72,13 +72,13 @@ public class EmployeeController {
 	public String updateEmployee(HttpServletRequest request,@RequestBody Employee e){
 		logger.info("修改员工信息");
 		JSONObject ans=new JSONObject();
-		ans.put("status", 1);
+		ans.put("state", 1);
 		if(employeeService.updateEmployee(e)==1) {
 			return ans.toString();
 		}
 		else {
 			ans.put("error_message","不存在这个员工");
-			ans.put("status", 0);
+			ans.put("state", 0);
 			return ans.toString();
 			
 		}
@@ -93,7 +93,7 @@ public class EmployeeController {
     public String getEmployeeById(@PathVariable int employeeId){
 		logger.info("从数据库中根据员工id="+employeeId+",读取Employee信息");
 		JSONObject ans=new JSONObject();
-		ans.put("status", 0);
+		ans.put("state", 0);
 		if(employeeService.employeeFindById(employeeId).isEmpty()) {
 			ans.put("error_message","不存在这个员工");
 			return ans.toString();
@@ -144,20 +144,27 @@ public class EmployeeController {
 	 */
 	//上班打卡识别
 	@PostMapping(value="/ai/photo/identify",consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
-	public int identifyP(@RequestParam("image") MultipartFile image) throws Exception{
+	public String identifyP(@RequestParam("image") MultipartFile image) throws Exception{
+		
 		
 			logger.info("接受图片");
 			logger.info("开始识别");
 			//return FaceSearch.search(path);
 			String user_id = FaceSearch.search(image);
+			JSONObject ans=new JSONObject();
+			ans.put("state", 0);
 			
 			if(!user_id.equals("false")) {
 				int userId = Integer.parseInt(user_id);
 				return employeeService.attendance(userId);
 			}
+			else {
+				ans.put("error_message", "识别失败，不匹配");
+				return ans.toString();
+			}
 			
-	   return 0;
 	}
+	
 	
 //	/**
 //	 *@param    一张图片
