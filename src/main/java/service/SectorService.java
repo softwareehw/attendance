@@ -12,4 +12,6 @@ public interface SectorService {
 	public Boolean setIsMasterById(int id, boolean isM);
 	
 	public String findAllSector();
+	
+	public String findSectorById(int sectorId);
 }

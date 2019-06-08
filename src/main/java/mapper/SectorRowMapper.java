@@ -14,18 +14,18 @@ public class SectorRowMapper implements RowMapper<Sector> {
 		int sectorId = rs.getInt("sector_id");
 		String sectorName = rs.getString("sector_name");
 		int sectorPeopleNumber = rs.getInt("sector_people_number");
-		String sectorDiscription = rs.getString("sector_discription");
+		String sectorDescription = rs.getString("sector_description");
 		
 		Sector sector = new Sector();
 		sector.setSectorId(sectorId);
 		sector.setSectorName(sectorName);
 		sector.setSectorPeopleNumber(sectorPeopleNumber);
-		sector.setSectorDescription(sectorDiscription);
+		sector.setSectorDescription(sectorDescription);
 		
 		
 		
 		
-		return null;
+		return sector;
 	}
 
 }
