@@ -9,8 +9,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Service;
 
+import bean.Employee;
 import bean.User;
 import dao.UserDao;
+import mapper.UserRowMapper;
 
 @Service
 public class UserDaoImpl implements UserDao {
@@ -26,6 +28,7 @@ public class UserDaoImpl implements UserDao {
 		String passward = user.getPassword();
 		
 		String sql = "SELECT * FROM user WHERE ID="+id+" AND PASSWARD="+passward;
+		
         return (List<User>) jdbcTemplate.query(sql, new RowMapper<User>(){
 
             @Override
@@ -40,6 +43,19 @@ public class UserDaoImpl implements UserDao {
 
         });
 		
+	}
+
+	@Override
+	public int ModifyUser(User user) {
+		String sql = "UPDATE USER SET PASSWORD="+user.getPassword()+", DEGREE="+user.getDegree()+" WHERE ID="+user.getId();
+		int i = jdbcTemplate.update(sql);
+		return i;
+	}
+
+	@Override
+	public List<User> findUserById(int id) {
+		String sql="SELECT * FROM USER WHERE ID="+id;
+		return (List<User>)jdbcTemplate.query(sql, new UserRowMapper());
 	}
 
 }

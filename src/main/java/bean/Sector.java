@@ -7,12 +7,12 @@ public class Sector {
 	//部门人数
 	private int sectorPeopleNumber;
 	//部门信息
-	private String description;
-	public String getDescription() {
-		return description;
+	private String sectorDescription;
+	public String getSectorDescription() {
+		return sectorDescription;
 	}
-	public void setDescription(String description) {
-		this.description = description;
+	public void setSectorDescription(String description) {
+		this.sectorDescription = description;
 	}
 	public int getSectorId() {
 		return sectorId;
