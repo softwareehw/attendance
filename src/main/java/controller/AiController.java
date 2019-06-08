@@ -1,6 +1,5 @@
 package controller;
 
-import org.hibernate.validator.internal.util.logging.Log_.logger;
 import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
