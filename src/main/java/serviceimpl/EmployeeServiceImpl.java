@@ -132,4 +132,10 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return applicationForLeaveDao.applicationForLeaveFindById(applicatedPerson);
 	}
 
+	@Override
+	public int updateEmployee(Employee e) {
+		// TODO Auto-generated method stub
+		return employeeDao.updateEmployee(e);
+	}
+
 }
