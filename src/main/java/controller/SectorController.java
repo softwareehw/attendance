@@ -18,7 +18,7 @@ public class SectorController {
 	@Autowired
 	SectorService sectorService;
 	
-	@RequestMapping(value="/",method=RequestMethod.GET)
+	@RequestMapping(value="",method=RequestMethod.GET)
 	public String LookForAllSectors(){
 		
 		return sectorService.findAllSector();
