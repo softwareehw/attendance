@@ -1,5 +1,6 @@
 package daoimpl;
 
+import java.io.Serializable;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.Calendar;
@@ -23,7 +24,7 @@ import mapper.EmployeeRowMapper;
 import mapper.AttendanceRecordRowMapper;
 
 @Repository
-public class EmployeeDaoImpl implements EmployeeDao {
+public class EmployeeDaoImpl implements EmployeeDao,Serializable {
 	@Autowired
     private JdbcTemplate jdbcTemplate;
 	
@@ -223,6 +224,15 @@ public class EmployeeDaoImpl implements EmployeeDao {
 		jdbcTemplate.update(sql, e.getSectorId(),e.isManager(),e.getName(),e.getAge(),e.getSalary(),e.isSex(),e.getPhoneNumber(),timett,e.getEmployeeId());//,e.getName(),e.getAge(),e.getSalary(),e.isSex(),e.getPhoneNumber(),e.getEmployeeId());
 		System.out.println("success!");
 		return null;
+	}
+
+	@Override
+	public int updateEmployee(Employee e) {
+		// TODO Auto-generated method stub
+		String sql = "update employee set sector_id= ?,is_manager= ?,name= ?,age=?,salary=?,sex=?,phone_number=?,enroll_time=?" + 
+				" where employee_id = ?";
+		return jdbcTemplate.update(sql,new Object[] {e.getSectorId(),e.isManager(),e.getName(),e.getAge()
+				,e.getSalary(),e.isSex(),e.getPhoneNumber(),e.getEnrollTime(),e.getEmployeeId()});
 	}
 
 

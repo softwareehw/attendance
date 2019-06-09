@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -33,7 +34,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Autowired 
 	private ApplicationForEWDao applicationForEWDao ;
 	@Autowired 
-	private AttendanceRecordDao attendanceRecordDAo;
+	private AttendanceRecordDao attendanceRecordDao;
 
 
 	@Override
@@ -86,10 +87,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public int attendance(int userId) {
+	public String attendance(int userId) {
 		// TODO Auto-generated method stub
 		String sql = "select * from attendance_record where employeeid = ? and to_days(start_time) = to_days(?)";
 		String sql1 = "select * from attendance_record where employeeid = ? and to_days(start_time) = to_days(?) and is_complete = ?";
+		JSONObject ans=new JSONObject();
+		
 		List<AttendanceRecord> result = new ArrayList<AttendanceRecord>();
 		List<AttendanceRecord> result1 = new ArrayList<AttendanceRecord>();
 	    result = jdbcTemplate.query(sql,new Object[] {userId,new Date()},new AttendanceRecordRowMapper() {
@@ -99,25 +102,36 @@ public class EmployeeServiceImpl implements EmployeeService {
 	    	
 	    });
 	    if(result.isEmpty()) {
-		return attendanceRecordDAo.attendance(userId);
+	    attendanceRecordDao.attendance(userId);
+	    ans.put("status", 1);
+		ans.put("id", userId);
+		ans.put("message", "上班打卡成功");
+		return ans.toString();
 	    }else if(!result1.isEmpty()) {
-	    	return attendanceRecordDAo.attendanceDown(userId);
+	    	attendanceRecordDao.attendanceDown(userId);
+	    	ans.put("state", 1);
+	    	ans.put("id", userId);
+			ans.put("message", "下班打卡成功");
+	    	return ans.toString();
 	    }else{
-	    	return -1;
+	    	ans.put("state", 0);
+	    	ans.put("error_message", "超出打卡次数");
+	    	return ans.toString();
 	    }
+	}  
 	    
-	}
+	
 
 	@Override
 	public int attendanceDown(int userId) {
 		// TODO Auto-generated method stub
-		return attendanceRecordDAo.attendanceDown(userId);
+		return attendanceRecordDao.attendanceDown(userId);
 	}
 
 	@Override
 	public List<AttendanceRecord> attendanceFindById(int userId) {
 		// TODO Auto-generated method stub
-		return attendanceRecordDAo.attendanceFindById(userId);
+		return attendanceRecordDao.attendanceFindById(userId);
 	}
 
 	@Override
@@ -130,6 +144,12 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public List<ApplicationForLeave> applicationForLeaveFindById(int applicatedPerson) {
 		// TODO Auto-generated method stub
 		return applicationForLeaveDao.applicationForLeaveFindById(applicatedPerson);
+	}
+
+	@Override
+	public int updateEmployee(Employee e) {
+		// TODO Auto-generated method stub
+		return employeeDao.updateEmployee(e);
 	}
 
 }

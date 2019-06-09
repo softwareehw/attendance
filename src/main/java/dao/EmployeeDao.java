@@ -71,6 +71,14 @@ public interface EmployeeDao {
 	
 	public int deleteEmployee(int employeeId);
 	
+	/**
+	 *@param   员工类
+	 *@return  修改行数
+	 *
+	 */
+	
+	public int updateEmployee(Employee e);
+	
 //	/**
 //	 *@param   员工Id
 //	 *@return

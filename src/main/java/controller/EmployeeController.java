@@ -8,6 +8,8 @@ import java.util.List;
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.tomcat.util.http.fileupload.IOUtils;
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -18,9 +20,11 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.multipart.MultipartFile;
+
 
 import bean.ApplicationForEW;
 import bean.ApplicationForLeave;
@@ -33,7 +37,7 @@ import service.EmployeeService;
 //部署到服务器上的时候请一定使用 @CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true") 才能和前端正常交互
 @CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true")
 @RestController
-@RequestMapping("/employee")
+@RequestMapping("/api/v1/employees")
 public class EmployeeController {
     private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
 
@@ -64,11 +68,44 @@ public class EmployeeController {
 		return employeeService.deleteApplication(applicatedId);
 	}
 	
+	@RequestMapping(value="/{employeeId}",method=RequestMethod.PUT)
+	public String updateEmployee(HttpServletRequest request,@RequestBody Employee e){
+		logger.info("修改员工信息");
+		JSONObject ans=new JSONObject();
+		ans.put("state", 1);
+		if(employeeService.updateEmployee(e)==1) {
+			return ans.toString();
+		}
+		else {
+			ans.put("error_message","不存在这个员工");
+			ans.put("state", 0);
+			return ans.toString();
+			
+		}
+    }
 	
-	@RequestMapping("/employeeinfo/{employeeId}")
-    public List<Employee> getEmployeeById(@PathVariable int employeeId){
+	/**
+	 *@param     员工id
+	 *@return    员工信息
+	 *
+	 */
+	@RequestMapping("/{employeeId}")
+    public String getEmployeeById(@PathVariable int employeeId){
 		logger.info("从数据库中根据员工id="+employeeId+",读取Employee信息");
-    	return employeeService.employeeFindById(employeeId);
+		JSONObject ans=new JSONObject();
+		ans.put("state", 0);
+		if(employeeService.employeeFindById(employeeId).isEmpty()) {
+			ans.put("error_message","不存在这个员工");
+			return ans.toString();
+		}
+		else {
+			List<Employee> employee = employeeService.employeeFindById(employeeId);
+			JSONArray jay = new JSONArray(employee);
+			return jay.toString();
+			
+			
+		}
+    	
     }
 	
 	@RequestMapping("/attendanceinfo/{userId}")
@@ -107,20 +144,27 @@ public class EmployeeController {
 	 */
 	//上班打卡识别
 	@PostMapping(value="/ai/photo/identify",consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
-	public int identifyP(@RequestParam("image") MultipartFile image) throws Exception{
+	public String identifyP(@RequestParam("image") MultipartFile image) throws Exception{
+		
 		
 			logger.info("接受图片");
 			logger.info("开始识别");
 			//return FaceSearch.search(path);
 			String user_id = FaceSearch.search(image);
+			JSONObject ans=new JSONObject();
+			ans.put("state", 0);
 			
 			if(!user_id.equals("false")) {
 				int userId = Integer.parseInt(user_id);
 				return employeeService.attendance(userId);
 			}
+			else {
+				ans.put("error_message", "识别失败，不匹配");
+				return ans.toString();
+			}
 			
-	   return 0;
 	}
+	
 	
 //	/**
 //	 *@param    一张图片

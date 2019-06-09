@@ -80,7 +80,7 @@ public interface EmployeeService {
 	 *
 	 */
 	
-	public int attendance (int userId);
+	public String attendance (int userId);
 	
 	/**
 	 *@param      员工id
@@ -117,5 +117,11 @@ public interface EmployeeService {
 	 *
 	 */
 	
-
+	
+	/**
+	 *@param    员工类
+	 *@return   修改行数
+	 *
+	 */
+    public int updateEmployee (Employee e);
 }

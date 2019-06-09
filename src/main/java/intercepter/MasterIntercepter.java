@@ -30,7 +30,8 @@ public class MasterIntercepter implements HandlerInterceptor {
 		if(session.getAttribute("master") != null){
 			return true;
 		}else{
-			response.sendRedirect("/error/authority");
+			//request.getRequestDispatcher("/error/master").forward(request, response);
+			response.sendRedirect("/error/master");
             return false;
 		}
 		

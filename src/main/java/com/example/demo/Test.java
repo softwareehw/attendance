@@ -11,4 +11,8 @@ public class Test {
 		ans.add("789");
 		System.out.println(ans.toString());
 	}
+	
+	public static int ddsdsd(){
+		return 101;
+	}
 }

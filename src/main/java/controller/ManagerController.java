@@ -28,6 +28,11 @@ public class ManagerController {
     @Autowired
     private ManagerService managerService;
     
+    @RequestMapping("/test")
+    public String Test(){
+    	return "you are manager";
+    }
+    
     //获取所有经理的的信息
     @RequestMapping ("/list")
     public List<Manager> getStus(String id){

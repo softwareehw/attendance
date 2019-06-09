@@ -39,8 +39,10 @@ public class MasterController {
 //		else return  "/error";
 //	}
 	
-	
-	
+	@RequestMapping("/test")
+	public String Test(){
+		return "you are master";
+	}
 	
 	@RequestMapping("/findAllLeavePerson")
 	public List<ApplicationForLeave> findAllLeavePerson(){
