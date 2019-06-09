@@ -6,6 +6,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Map;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,6 +19,7 @@ import dao.ApplicationForEWDao;
 import dao.ApplicationForLeaveDao;
 import dao.AttendanceRecordDao;
 import dao.EmployeeDao;
+import dao.SectorDao;
 import mapper.AttendanceRecordRowMapper;
 import mapper.EmployeeRowMapper;
 import service.EmployeeService;
@@ -35,6 +37,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private ApplicationForEWDao applicationForEWDao ;
 	@Autowired 
 	private AttendanceRecordDao attendanceRecordDao;
+	@Autowired
+	private SectorDao sectorDao;
 
 
 	@Override
@@ -42,11 +46,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 		// TODO Auto-generated method stub
 		return applicationForLeaveDao.addApplicateLeave(EmployeeId);
 	}
-
+    
+	//添加加班申请
 	@Override
-	public int applicateEW(ApplicationForEW applica) {
+	public String applicateEW(ApplicationForEW applica) {
 		// TODO Auto-generated method stub
-		return applicationForEWDao.addApplicateEW(applica);
+		JSONObject ans = new JSONObject();
+		if(applicationForEWDao.addApplicateEW(applica)==1) {
+			ans.put("state", 1);
+			return ans.toString();
+		}
+		ans.put("state", 0);
+		ans.put("error_message", "不符合要求");
+		return ans.toString();
 	}
 
 	@Override
@@ -151,5 +163,41 @@ public class EmployeeServiceImpl implements EmployeeService {
 		// TODO Auto-generated method stub
 		return employeeDao.updateEmployee(e);
 	}
+
+	@Override
+	public String employeeInfoBySectorId(int sectorId) {
+		// TODO Auto-generated method stub
+		
+		List<Employee> employee = sectorDao.employeeInfoBySectorId(sectorId);
+		JSONArray jay = new JSONArray(employee);
+		return jay.toString();
+	}
+
+
+
+	@Override
+	public String updateEmployeeInfoApplicationForEW( int applicatedId) {
+		// TODO Auto-generated method stub
+		JSONObject ans = new JSONObject();
+		List<ApplicationForEW> applicationForEW = applicationForEWDao.updateEmployeeInfoApplicationForEW(applicatedId);
+		JSONArray jay = new JSONArray(applicationForEW);
+		if(!applicationForEW.isEmpty()) {
+			return jay.toString();
+		}else {
+			
+			ans.put("state", 0);
+			ans.put("errormessage", "已经批准，不可修改");
+			return ans.toString();
+		}
+		
+	}
+
+	@Override
+	public String getUncheckApplicationForEW(int sectorId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
+
 
 }

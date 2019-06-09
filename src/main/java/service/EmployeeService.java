@@ -17,7 +17,7 @@ public interface EmployeeService {
 	 *@return 数据库修改行数
 	 *
 	 */
-	public int applicateEW(ApplicationForEW applica);
+	public String applicateEW(ApplicationForEW applica);
 	
 	/**
 	 *@param     申请加班号
@@ -124,4 +124,27 @@ public interface EmployeeService {
 	 *
 	 */
     public int updateEmployee (Employee e);
+    
+    /**
+	 *@param   sectorId
+	 *@return  员工信息
+	 * 
+	 */
+    
+    public String employeeInfoBySectorId(int sectorId);
+    
+    /**
+	 *@param     sectorID
+	 *@return    未批准申请加班表
+	 *
+	 */
+    public String getUncheckApplicationForEW(int sectorId);
+
+    /**
+	 *@param     申请人id
+	 *@return    
+	 *
+	 */
+	
+	public String updateEmployeeInfoApplicationForEW( int applicatedId);
 }
