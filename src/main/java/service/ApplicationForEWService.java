@@ -30,4 +30,11 @@ public interface ApplicationForEWService {
 	 */
 	
 	public int deleteApplication(int applicatedId);
+	
+	/**
+	 *@param   部门id
+	 *@return  本部门未审核请假加班表
+	 *
+	 */
+	public String getUncheckApplicationForEW(int sectorId);
 }

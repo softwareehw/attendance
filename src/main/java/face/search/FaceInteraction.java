@@ -13,7 +13,7 @@ import org.json.JSONObject;
 
 public class FaceInteraction {
 	  //录入照片入库
-	  public static boolean add(String path,int employee_id) {
+	  public static String add(String path,int employee_id) {
 	        // 请求url
 	        String url = "https://aip.baidubce.com/rest/2.0/face/v3/faceset/user/add";
 	        byte[] bytes1 = null;
@@ -42,18 +42,26 @@ public class FaceInteraction {
 
 	            // 注意这里仅为了简化编码每一次请求都去获取access_token，线上环境access_token有过期时间， 客户端可自行缓存，过期后重新获取。
 	            String accessToken = AuthService.getAuth();
-
+                
 	            String result = HttpUtil.post(url, accessToken, "application/json", param);
+	            JSONObject ans = new JSONObject();
 	            JSONObject jsonObject = new JSONObject(result);
 	            if(jsonObject.getInt("error_code")==0) {
-	            	return true;
+	            	
+	    			ans.put("state", 1);
+	            	return ans.toString();
 	            }
 	            else {
-	            	return false;
+	            	ans.put("state", "0");
+	            	ans.put("error_meaasge", "识别失败，请重新上传");
+	            	return ans.toString();
 	            }
 	        } catch (Exception e) {
 	            e.printStackTrace();
-	            return false;
+	            JSONObject ans = null;
+				ans.put("state", "0");
+            	ans.put("error_meaasge", "识别失败，请重新上传");
+	            return ans.toString();
 	        }
 	        
 	   }

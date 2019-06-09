@@ -1,12 +1,17 @@
 package serviceimpl;
 
 import java.util.Calendar;
+import java.util.Date;
+
 import dao.ApplicationForLeaveDao;
 import java.util.List;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import bean.ApplicationForEW;
 import bean.ApplicationForLeave;
 import bean.Employee;
 import bean.Manager;
@@ -78,6 +83,51 @@ public class ManagerServiceImpl implements ManagerService{
 		// TODO Auto-generated method stub
 		
 		return appplicationForLeaveDao.applicationForLeaveFindAll();
+	}
+
+	@Override
+	public String getUncheckApplicationForEW(int sectorId) {
+		// TODO Auto-generated method stub
+		if(!applicationForEWDao.getUncheckApplicationForEW(sectorId).isEmpty()) {
+			List<ApplicationForEW> list = applicationForEWDao.getUncheckApplicationForEW(sectorId);
+			JSONArray jay = new JSONArray(list);
+			return jay.toString();
+		}
+		JSONObject ans = new JSONObject();
+		ans.put("state", 0);
+		ans.put("errormessage", "没有未批准的申请加班表或没有这个部门");
+		return ans.toString();
+	}
+
+	@Override
+	public String getEmployeeInfoApplicationForEW(int employeeId) {
+		// TODO Auto-generated method stub
+		if(!applicationForEWDao.getEmployeeInfoApplicationForEW(employeeId).isEmpty()) {
+			List<ApplicationForEW> list = applicationForEWDao.getEmployeeInfoApplicationForEW(employeeId);
+			JSONArray jay = new JSONArray(list);
+			return jay.toString();
+		}
+		JSONObject ans = new JSONObject();
+		ans.put("state", 0);
+		ans.put("errormessage", "没有这个员工");
+		return ans.toString();
+	}
+
+	@Override
+	public String addAllApplicationForEW(ApplicationForEW date) {
+		// TODO Auto-generated method stub
+		JSONObject ans = new JSONObject();
+		if(applicationForEWDao.addAllApplicationForEW(date) >= 0) {
+			
+			ans.put("state", "1");
+			ans.put("message", "发布成功");
+			return ans.toString();
+		}else {
+			
+		ans.put("state", "0");
+		ans.put("error_message", "发布失败,请重新发布");
+		return ans.toString();
+		}
 	}
 
 

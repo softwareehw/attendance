@@ -34,4 +34,10 @@ public class ApplicationForEWServiceImpl implements ApplicationForEWService {
 		return 0;
 	}
 
+	@Override
+	public String getUncheckApplicationForEW(int sectorId) {
+		// TODO Auto-generated method stub
+		return null;
+	}
+
 }
