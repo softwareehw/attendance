@@ -1,0 +1,2013 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+<meta charset="utf-8">
+<title>ATTENDANCE接口文档-ApiPost</title>
+<meta http-equiv="X-UA-Compatible" content="IE=Edge">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="keywords" content="接口文档,ApiPost">
+<meta name="description" content="本文档由可直接生成文档的API调试、管理工具ApiPost生成">
+<!--自适应声明部分-->
+<meta name="applicable-device" content="pc" />
+<link rel="shortcut icon" href="https://console.apipost.cn/favicon.ico">
+<link rel="stylesheet" type="text/css" href="https://img.cdn.apipost.cn/statics/bootstrap.css">
+<link rel="stylesheet" type="text/css" href="https://img.cdn.apipost.cn/statics/build-in/font-awesome/css/font-awesome.min.css">
+<link rel="stylesheet" type="text/css" href="https://img.cdn.apipost.cn/statics/build-in/bootstrap/css/document.css?v=2152">
+<link rel="stylesheet" type="text/css" href="https://img.cdn.apipost.cn/statics/build-in/bootstrap/css/markdown.css?v=1326">
+<link rel="stylesheet" type="text/css" href="https://img.cdn.apipost.cn/statics/build-in/nprogress-0.2.0/nprogress.css">
+<script type="text/javascript" src="https://img.cdn.apipost.cn/statics/build-in/jquery/jquery.min.js"></script>
+<script type="text/javascript" src="https://img.cdn.apipost.cn/statics/build-in/clipboard.js-master/clipboard.min.js"></script>
+<script type="text/javascript" src="https://img.cdn.apipost.cn/statics/build-in/nprogress-0.2.0/nprogress.js"></script>
+<script type="text/javascript" src="https://img.cdn.apipost.cn/statics/build-in/bootstrap/js/bootstrap.js"></script>
+<script language="javascript">
+	$(function(){
+		let _left_menus = [{"folder_id":"3400","name":"Manager","sort":"8","menu":[{"apiid":"30200","name":"\u4fee\u6539\u67d0\u7ecf\u7406\u4fe1\u606f","sort":"0"}]},{"folder_id":"3405","name":"Employee","sort":"7","menu":[{"apiid":"30213","name":"\u67e5\u770b\u67d0\u5458\u5de5\u4fe1\u606f","sort":"0"},{"apiid":"30182","name":"\u4fee\u6539\u67d0\u5458\u5de5\u4fe1\u606f","sort":"1"},{"apiid":"30171","name":"\u83b7\u53d6\u67d0\u90e8\u95e8\u7684\u6240\u6709\u5458\u5de5\u4fe1\u606f","sort":"2"}]},{"folder_id":"3409","name":"sectors","sort":"3","menu":[{"apiid":"30170","name":"\u67e5\u770b\u6240\u6709\u90e8\u95e8\u4fe1\u606f","sort":"0"},{"apiid":"30243","name":"\u67e5\u770b\u67d0\u90e8\u95e8\u4fe1\u606f","sort":"1"},{"apiid":"30214","name":"\u589e\u52a0\u4e00\u4e2a\u90e8\u95e8","sort":"2"},{"apiid":"30181","name":"\u4fee\u6539\u67d0\u90e8\u95e8\u7684\u4fe1\u606f","sort":"3"},{"apiid":"30250","name":"\u5220\u9664\u67d0\u90e8\u95e8","sort":"4"}]},{"folder_id":"3410","name":"workA","sort":"4","menu":[{"apiid":"30233","name":"\u53d1\u5e03\u67d0\u90e8\u95e8\u6240\u6709\u5458\u5de5\u7684\u5de5\u4f5c\u5b89\u6392","sort":"0"},{"apiid":"30235","name":"\u67e5\u770b\u67d0\u5458\u5de5\u7684\u6240\u6709\u5de5\u4f5c\u5b89\u6392","sort":"1"},{"apiid":"30239","name":"\u589e\u52a0\u67d0\u5458\u5de5\u7684\u5de5\u4f5c\u5b89\u6392","sort":"2"},{"apiid":"30237","name":"\u5220\u9664\u67d0\u5458\u5de5\u7684\u67d0\u5de5\u4f5c\u5b89\u6392","sort":"3"}]},{"folder_id":"3411","name":"leaves","sort":"5","menu":[{"apiid":"30241","name":"\u83b7\u53d6\u67d0\u90e8\u6240\u6709\u672a\u5ba1\u6838\u7684\u8bf7\u5047\u7533\u8bf7","sort":"0"},{"apiid":"30224","name":"\u67e5\u770b\u67d0\u5458\u5de5\u7684\u6240\u6709\u8bf7\u5047\u7533\u8bf7","sort":"1"},{"apiid":"30225","name":"\u521b\u5efa\u4e00\u4e2a\u8bf7\u5047\u7533\u8bf7","sort":"2"},{"apiid":"30226","name":"\u4fee\u6539\u8bf7\u5047","sort":"3"},{"apiid":"30227","name":"\u5220\u9664\u8bf7\u5047\u7533\u8bf7","sort":"4"}]},{"folder_id":"3412","name":"ai","sort":"2","menu":[{"apiid":"30228","name":"\u5458\u5de5\u6253\u5361","sort":"0"},{"apiid":"30230","name":"\u83b7\u53d6\u67d0\u5458\u5de5\u5f55\u5165\u7684\u6240\u6709\u7167\u7247\uff1f","sort":"1"},{"apiid":"30229","name":"\u589e\u52a0\u67d0\u5458\u5de5\u7684\u7167\u7247","sort":"2"},{"apiid":"30231","name":"\u5220\u9664\u67d0\u5458\u5de5\u67d0\u7167\u7247\uff1f","sort":"3"}]},{"folder_id":"3413","name":"EWs","sort":"6","menu":[{"apiid":"30202","name":"\u53d1\u5e03\u5168\u5458\u52a0\u73ed","sort":"0"},{"apiid":"30242","name":"\u83b7\u53d6\u67d0\u90e8\u6240\u6709\u672a\u5ba1\u6838\u7684\u52a0\u73ed\u7533\u8bf7","sort":"1"},{"apiid":"30220","name":"\u67e5\u770b\u67d0\u5458\u5de5\u7684\u6240\u6709\u52a0\u73ed\u7533\u8bf7","sort":"2"},{"apiid":"30219","name":"\u521b\u5efa\u52a0\u73ed\u7533\u8bf7","sort":"3"},{"apiid":"30222","name":"\u4fee\u6539\u67d0\u52a0\u73ed\u7533\u8bf7","sort":"4"},{"apiid":"30223","name":"\u5220\u9664\u67d0\u52a0\u73ed\u7533\u8bf7","sort":"5"}]},{"folder_id":"3414","name":"\u7528\u6237","sort":"1","menu":[{"apiid":"30218","name":"\u589e\u52a0\u4e00\u4e2a\u8d26\u6237?","sort":"0"},{"apiid":"30217","name":"\u4fee\u6539\u8d26\u6237\u4fe1\u606f","sort":"1"},{"apiid":"30187","name":"\u767b\u9646","sort":"2"}]}];
+		let _init_apiid = 30241;
+
+		//排序
+		_left_menus.sort(function(a, b){
+			return a.sort - b.sort;
+		});
+
+		if(window.location.hash){
+			let _hash_apiid = parseInt(window.location.hash.substr(1));
+			_init_apiid = _hash_apiid ? _hash_apiid : _init_apiid;
+		}
+
+		//收缩文档页面左侧菜单
+        let _is_pull = 0;
+        $('.document-pull-left').click(function(){
+            _is_pull = !_is_pull;
+
+            if(_is_pull){
+                $(".book-summary").css("left","-300px");
+                $(".book-body").css("left","0");
+            }else{
+                $(".book-summary").css("left","0");
+                $(".book-body").css("left","300px");
+            }
+        });
+
+        //文档上一页
+        $('.navigation-prev').click(function(){
+        	// let _length = $('.load-api-btn').length;
+        	let _index = Math.max($('.load-api-btn').index($('.load-api-btn.active')) - 1, 0);
+        	let _apiid = parseInt($('.load-api-btn').eq(_index).attr('data-id'));
+
+        	_load_document(_apiid);
+        });
+
+        //文档下一页 
+        $('.navigation-next').click(function(){
+        	let _length = $('.load-api-btn').length;
+        	let _index = Math.min($('.load-api-btn').index($('.load-api-btn.active')) + 1, _length - 1);
+        	let _apiid = parseInt($('.load-api-btn').eq(_index).attr('data-id'));
+
+        	_load_document(_apiid);
+        });
+
+		//分享文档地址 
+        $(".export-document-link-btn").click(function() {
+            $(this).attr('data-clipboard-text', 'https://console.apipost.cn/doc/9546');
+            let _clipboard = new ClipboardJS('.export-document-link-btn');
+            _clipboard.on('success', function(e) {
+                alert('文档地址复制成功，您可以转发给您的小伙伴啦~');
+                e.clearSelection();
+                return true;
+            });
+
+            _clipboard.on('error', function(e) {
+                alert('复制失败，请重试');
+                return false;
+            });
+        });
+
+		//加载左侧菜单
+		_load_menu();
+		$('.api-search-word').on('input change', function(){
+			_load_menu();
+		});
+
+		$('.document-summary').on('click', '.load-api-btn', function(){
+			let _this = this;
+			let _apiid = parseInt($(_this).attr('data-id'));
+			_load_document(_apiid);
+		}).on('click', 'a[data-type="category"]', function(){
+			$(this).next('.articles').toggle();
+
+			if($(this).children('.fa').eq(0).hasClass('fa-folder-open-o')){
+				$(this).children('.fa').eq(0).addClass('fa-folder-o').removeClass('fa-folder-open-o');
+			}else{
+				$(this).children('.fa').eq(0).addClass('fa-folder-open-o').removeClass('fa-folder-o');
+			}
+		});
+
+		//加载右侧文档
+		_load_document(_init_apiid);
+
+		//私有函数
+		//加载右侧文档函数
+		function _load_document(_apiid){
+			NProgress.start();
+			$('.chapter').removeClass('active');
+			$('.chapter[data-id="'+_apiid+'"]').addClass('active');
+			$('.page-wrapper').addClass('hide');
+			$('.page-wrapper[tabindex="'+_apiid+'"]').removeClass('hide');
+			$('.load-api-btn').removeClass('active');
+			$('.load-api-btn[data-id="'+_apiid+'"]').addClass('active');
+
+			//隐藏空的元素
+			$('.document-block-div').each(function(){
+				let _this = this;
+				let _length = $(_this).find('tbody').eq(0).children().length;
+				// console.log(_length);
+				if(!_length){
+					$(_this).hide();
+				}
+			});
+
+			window.location.hash='#' + _apiid;
+			NProgress.done();
+		}
+
+		//加载左侧菜单函数
+        function _load_menu(){
+        	let _keyword = $.trim($('.api-search-word').val());
+
+        	//左侧渲染
+	        $('.document-summary').empty();
+	        for(let _x in _left_menus){
+	            let _html = '<li class="chapter">';
+	            	_html += '   <a href="javascript:;" data-type="category" data-id="' + _left_menus[_x].folder_id + '"><i class="fa fa-folder-open-o" aria-hidden="true"></i><strong>' + _left_menus[_x].name + '</strong></a>';
+	                _html += '   <ul class="articles">';
+
+	                _left_menus[_x].menu.sort(function(a, b){
+	                	return a.sort - b.sort;
+	                });
+	                
+		            for(let _l in _left_menus[_x].menu){
+		            	if(_left_menus[_x].menu[_l].name.indexOf(_keyword) > -1 || _keyword == ''){
+		            		_html += '<li class="chapter ' + (parseInt(_left_menus[_x].menu[_l].apiid) == _init_apiid ? 'active':'') + '" data-id="' + _left_menus[_x].menu[_l].apiid + '"><a class="load-api-btn" href="#' + _left_menus[_x].menu[_l].apiid + '" data-type="api" data-id="' + _left_menus[_x].menu[_l].apiid + '"><i class="fa fa-file-text-o" aria-hidden="true"></i>' + _left_menus[_x].menu[_l].name + ' </a> </li>';
+		            	}
+		            }
+		            _html += '   </ul>';
+		            _html += '</li>';
+
+	            $('.document-summary').append(_html);
+	        }
+        }
+	});
+</script>
+<style type="text/css">
+	/*common.css*/
+	*{-webkit-box-sizing:border-box;-moz-box-sizing:border-box;box-sizing:border-box;-webkit-overflow-scrolling:touch;-webkit-tap-highlight-color:transparent;-webkit-text-size-adjust:none;-webkit-touch-callout:none;-webkit-font-smoothing:antialiased;font-family:..., "PingFangSC-Regular", "sans-serif", "Hiragino Sans GB", "Microsoft YaHei","WenQuanYi Micro Hei", sans-serif;font-size: .9rem!important ;  outline: none!important;}
+	html{outline: none!important;}
+	body{background:#f5f7fa}
+	a{text-decoration: none}
+	a:hover{text-decoration: none}
+	img{border:0;}
+	a:focus,button:focus{box-shadow: none!important;}
+
+	/*共用按钮*/
+	/*橙色*/
+	.btn-orange{ background-color: #ff5722!important; border-color: #ff5722!important;color:#fff;}
+	.btn-orange:hover{background-color: #f76b40!important;color:#fff;}
+
+	/*灰色*/
+	.btn-gray{background-color: #e9ecef!important;color: #6c757d!important;}
+	.btn-gray:hover{background-color: #dee2e6!important;color: #6c757d!important;}
+
+	/*弹窗*/
+	.modal.show .modal-dialog{top:180px!important;}
+	.modal-title{font-size: 1.05rem!important}
+	.modal-header {display: -ms-flexbox;display: flex;-ms-flex-align: start;align-items: flex-start;-ms-flex-pack: justify;justify-content: space-between;background-color: #353644;padding: 10px 20px;color: #fff;border-top-left-radius: 0!important;border-top-right-radius: 0!important;}
+	button.close{font-size: 18px!important; color: #fff!important}
+	.modal-mm{max-width: 400px}
+	.modal-body .alert-warning {width: 100%;
+	}
+	/*图标 /*/
+	.fa{margin-right:8px}
+</style>
+</head>
+<body>
+<div class="book">
+  	<div class="book-summary">
+    	<div id="book-search-input" role="search">
+      		<input type="text" class="api-search-word" placeholder="输入关键词搜索文档">
+      	</div>
+    	<nav>
+      		<ul class="summary document-summary"></ul>
+    	</nav>
+  	</div>
+  	<div class="book-body">
+    	<div class="no-apis"></div>
+    	<div class="body-inner">
+	      	<div class="book-header">
+		        <div class="dropdown">
+		          	<a class="btn pull-left document-pull-left" href="javascript:;">&nbsp;
+		            	<i class="fa fa-align-justify"></i></a>
+		          	<a class="btn" href="https://console.apipost.cn/doc/createHtml/9546" target="_blank">
+		            	<i class="fa fa-html5" aria-hidden="true"></i>导出HTMl</a>
+		            	<!-- <a class="dropdown-item export-md-btn" href="javascript:;"><i class="fa fa-file-code-o" aria-hidden="true"></i>导出MD</a> -->
+		            <a class="btn export-btn" href="https://console.apipost.cn/doc/createMD/9546" target="_blank">
+		            	<i class="fa fa-file-code-o" aria-hidden="true"></i>导出MarkDown</a>
+		          	<a class="btn export-btn" href="https://console.apipost.cn/doc/createDocx/9546" target="_blank">
+		            	<i class="fa fa-file-word-o" aria-hidden="true"></i>导出Doc</a>
+		            <a class="btn export-btn" href="https://console.apipost.cn/doc/createPdf/9546" target="_blank">
+		            	<i class="fa fa-file-pdf-o" aria-hidden="true"></i>导出Pdf</a>
+		          	<a class="btn export-document-link-btn" href="javascript:;">
+		            	<i class="fa fa-external-link" aria-hidden="true"></i>复制文档地址</a>
+		        </div>
+		        <h1><!-- ATTENDANCE接口文档 --></h1>
+	    	</div>
+	    		    	<div class="page-wrapper hide" tabindex="30241" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>获取某部所有未审核的请假申请</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/leaves/uncheck/sectors/{sectorId}</code>
+	            		<h4>请求方式</h4>
+	            		<code>GET</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>multipart/form-data</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            			            		<div class="document-block-div request_body-div">
+		            		<h4>请求Body参数</h4>
+		            		<table>
+		              			<thead>
+		                			<tr>
+			                  			<th>参数</th>
+			                  			<th>示例值</th>
+			                  			<th>参数描述</th>
+			                  		</tr>
+		              			</thead>
+		              			<tbody>
+		              						              						              						              			</tbody>
+		            		</table>
+		            	</div>
+	            								
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>[
+    {
+        "applicatedId":100,   //申请编号，！！！！数据库没有这个属性！！！
+        "applicatdPerson":121,//申请人id  数据库居然拿申请人id做了主键！！！
+        "certificatedPerson",118, //批准人id
+        "startTime":"1970-01-01 06:00:00",
+        "endTime":"1970-01-01 22:00:00",
+        "state":0, //是否批准 0待审 1批准 2驳回
+        "isReportBack":0, //是否销假 0未，1消
+        "reportBackTime":"1970-01-02 06:00:00" //销假时间
+    },
+        {
+        "applicatedId":111,   //申请编号，！！！！数据库没有这个属性！！！
+        "applicatdPerson":143,//申请人id  数据库居然拿申请人id做了主键！！！
+        "certificatedPerson",118, //批准人id
+        "startTime":"1970-01-01 06:00:00",
+        "endTime":"1970-01-01 22:00:00",
+        "state":0, //是否批准 0待审 1批准 2驳回
+        "isReportBack":0, //是否销假 0未，1消
+        "reportBackTime":"1970-01-02 06:00:00" //销假时间
+    },
+    {
+        "applicatedId":112,   //申请编号，！！！！数据库没有这个属性！！！
+        "applicatdPerson":123,//申请人id  数据库居然拿申请人id做了主键！！！
+        "certificatedPerson",118, //批准人id
+        "startTime":"1970-01-01 06:00:00",
+        "endTime":"1970-01-01 22:00:00",
+        "state":0, //是否批准 0待审 1批准 2驳回
+        "isReportBack":0, //是否销假 0未，1消
+        "reportBackTime":"1970-01-02 06:00:00" //销假时间
+    }
+]</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			            		<h4>失败响应示例</h4>
+	            		<pre><code>{
+    "state": 0,
+    "error_message": "出错原因"
+}</code></pre>
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30233" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>发布某部门所有员工的工作安排</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/workA/sectors/{sectorId}</code>
+	            		<h4>请求方式</h4>
+	            		<code>POST</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>application/json</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            		<h4>请求Body参数</h4>
+	            		<pre class="language-javascript"><code class="lang-json">{
+    "startTime": "XXXXXX",
+    "endTime": "XXXXXXXX"
+}</code></pre>
+	            			            		
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>{
+    "state": 1
+}</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			            		<h4>失败响应示例</h4>
+	            		<pre><code>{
+    "state": 0,
+    "error_message": "错误原因"
+}</code></pre>
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30228" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>员工打卡</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/ai/attendance</code>
+	            		<h4>请求方式</h4>
+	            		<code>POST</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>multipart/form-data</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            			            		<div class="document-block-div request_body-div">
+		            		<h4>请求Body参数</h4>
+		            		<table>
+		              			<thead>
+		                			<tr>
+			                  			<th>参数</th>
+			                  			<th>示例值</th>
+			                  			<th>参数描述</th>
+			                  		</tr>
+		              			</thead>
+		              			<tbody>
+		              						              						              				<tr>
+			                  			<th>image</th>
+			                  			<td>无示例值</td>
+			                  			<td>无描述</td>
+			                  		</tr>
+			                  				              						              			</tbody>
+		            		</table>
+		            	</div>
+	            								
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>{
+    "state": 1,
+    "employeeId": 123
+}</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			            		<h4>失败响应示例</h4>
+	            		<pre><code>{
+    "state": 0,
+    "error_message": "失败原因"
+}</code></pre>
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30218" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>增加一个账户?</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/users</code>
+	            		<h4>请求方式</h4>
+	            		<code>POST</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>application/json</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            		<h4>请求Body参数</h4>
+	            		<pre class="language-javascript"><code class="lang-json">{
+    "position":"manager/employee",
+    
+}</code></pre>
+	            			            		<div>
+	            			我没想好该怎么增加一个账户，后面一起讨论下	            		</div>
+	            			            		
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30213" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>查看某员工信息</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/employees/{employeeId}</code>
+	            		<h4>请求方式</h4>
+	            		<code>GET</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>multipart/form-data</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            			            		<div class="document-block-div request_body-div">
+		            		<h4>请求Body参数</h4>
+		            		<table>
+		              			<thead>
+		                			<tr>
+			                  			<th>参数</th>
+			                  			<th>示例值</th>
+			                  			<th>参数描述</th>
+			                  		</tr>
+		              			</thead>
+		              			<tbody>
+		              						              						              						              			</tbody>
+		            		</table>
+		            	</div>
+	            								
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>{
+    "employeeId": 4,
+    "sectorId": 126,
+    "master": null,
+    "name": "张和",
+    "age": 26,
+    "salary": 3000,
+    "sex": true,
+    "phoneNumber": 1234567,
+    "enrollTime": "1970-01-01",
+    "userId": 0,
+    "manager": true
+}</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			            		<h4>失败响应示例</h4>
+	            		<pre><code>{
+    "state": 0,
+    "error_message": "不存在这个员工"
+}</code></pre>
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30202" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>发布全员加班</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/EWs</code>
+	            		<h4>请求方式</h4>
+	            		<code>POST</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>application/json</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            		<h4>请求Body参数</h4>
+	            		<pre class="language-javascript"><code class="lang-json">{
+    "startTime": "1970-01-01 06:00:00",
+    "endTime": "1970-01-01 22:00:00"
+}</code></pre>
+	            			            		
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>{
+    "state": 1
+}</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			            		<h4>失败响应示例</h4>
+	            		<pre><code>{
+    "state": 0,
+    "error_message": 1
+}</code></pre>
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30200" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>修改某经理信息</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/managers/{managerId}</code>
+	            		<h4>请求方式</h4>
+	            		<code>PUT</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>application/json</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            		<h4>请求Body参数</h4>
+	            		<pre class="language-javascript"><code class="lang-json">{
+		"name": "王鑫雨",
+		"age": 26,
+		"salary": 30000,
+		"sex": true,
+		"phoneNumber": 1234567,
+		"enrollTime": "1970-01-01",
+		"userId": 0,
+}</code></pre>
+	            			            		
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30170" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>查看所有部门信息</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/sectors</code>
+	            		<h4>请求方式</h4>
+	            		<code>GET</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>multipart/form-data</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            			            		<div class="document-block-div request_header-div">
+		            		<h4>请求自定义Header</h4>
+		            		<table>
+		              			<thead>
+		                			<tr>
+			                  			<th>参数</th>
+			                  			<th>示例值</th>
+			                  			<th>参数描述</th>
+			                  		</tr>
+		              			</thead>
+		              			<tbody>
+		              						              						              						              			</tbody>
+		            		</table>
+		            	</div>
+	            		
+	            		<!-- 开始 request_body -->
+	            			            			            		<div class="document-block-div request_body-div">
+		            		<h4>请求Body参数</h4>
+		            		<table>
+		              			<thead>
+		                			<tr>
+			                  			<th>参数</th>
+			                  			<th>示例值</th>
+			                  			<th>参数描述</th>
+			                  		</tr>
+		              			</thead>
+		              			<tbody>
+		              						              						              						              			</tbody>
+		            		</table>
+		            	</div>
+	            								
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>[
+    {
+        "sectorId": 123,
+        "sectorName": "海尔",
+        "sectorPeopleNumber": 10,
+        "description": "这是一个拍过爆红全国的动画片的影视巨头，拥有着市值100亿￥。",
+        "masterId": 1
+    },
+    {
+        "sectorId": 124,
+        "sectorName": "阿里",
+        "sectorPeopleNumber": 5,
+        "description": "这是一个让万千少女喊爸爸的部门，每年这个部门都会在11.11日那天举行宗教仪式，祭拜他们的马云爸爸。"
+    },
+    {
+        "sectorId": 125,
+        "sectorName": "腾讯",
+        "sectorPeopleNumber": 7,
+        "description": "这是一个让万千少男喊爸爸的部门，他的产品让少男们如痴如醉。",
+        "masterId": 8
+    },
+    {
+        "sectorId": 126,
+        "sectorName": "百度",
+        "sectorPeopleNumber": 3,
+        "description": "这是一个现在不知道凉没凉的公司。",
+        "masterId": 4
+    },
+    {
+        "sectorId": 127,
+        "sectorName": "华为",
+        "sectorPeopleNumber": 9,
+        "description": "这是一个站在5G潮头的部门，加入我们，日日996，每隔一段时间举行杀死程序员祭天仪式，在这里你会体会到无限的荣誉（if you can live long）",
+        "masterId": 5
+    }
+]</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30243" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>查看某部门信息</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/sectors/{sectorId}</code>
+	            		<h4>请求方式</h4>
+	            		<code>GET</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>multipart/form-data</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            			            		<div class="document-block-div request_body-div">
+		            		<h4>请求Body参数</h4>
+		            		<table>
+		              			<thead>
+		                			<tr>
+			                  			<th>参数</th>
+			                  			<th>示例值</th>
+			                  			<th>参数描述</th>
+			                  		</tr>
+		              			</thead>
+		              			<tbody>
+		              						              						              						              			</tbody>
+		            		</table>
+		            	</div>
+	            								
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>{
+	"sectorId": 127,
+	"sectorName": "菊花厂",
+	"sectorPeopleNumber": 9,
+	"description": "这是一个站在5G潮头的部门，加入我们，日日996，每隔一段时间举行杀死程序员祭天仪式，在这里你会体会到无限的荣誉（if you can live long）"
+	"masterId":5
+}</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			            		<h4>失败响应示例</h4>
+	            		<pre><code>{
+    "state": 0,
+    "error_message": "出错原因"
+}</code></pre>
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30242" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>获取某部所有未审核的加班申请</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/EWs/uncheck/sectors/{sectorId}</code>
+	            		<h4>请求方式</h4>
+	            		<code>GET</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>multipart/form-data</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            			            		<div class="document-block-div request_body-div">
+		            		<h4>请求Body参数</h4>
+		            		<table>
+		              			<thead>
+		                			<tr>
+			                  			<th>参数</th>
+			                  			<th>示例值</th>
+			                  			<th>参数描述</th>
+			                  		</tr>
+		              			</thead>
+		              			<tbody>
+		              						              						              						              			</tbody>
+		            		</table>
+		            	</div>
+	            								
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>[
+    {
+        "applicatedId":189, //申请单号
+        "applicatedPerson":4,  //申请人员工号
+        "startTime":"1970-01-01 06:00:00",
+        "endTime":"1970-01-01 22:00:00",
+        "state":0  //0待审核，1批准，2驳回
+    },
+    {
+    "applicatedId":190, //申请单号
+    "applicatedPerson":9,  //申请人员工号
+    "startTime":"1970-01-01 06:00:00",
+    "endTime":"1970-01-01 22:00:00",
+    "state":0  //0待审核，1批准，2驳回
+    },
+    {
+    "applicatedId":199, //申请单号
+    "applicatedPerson":1,  //申请人员工号
+    "startTime":"1970-01-01 06:00:00",
+    "endTime":"1970-01-01 22:00:00",
+    "state":0  //0待审核，1批准，2驳回
+    },
+    {
+    "applicatedId":109, //申请单号
+    "applicatedPerson":4,  //申请人员工号
+    "startTime":"1970-01-01 06:00:00",
+    "endTime":"1970-01-01 22:00:00",
+    "state":0  //0待审核，1批准，2驳回
+    }
+
+]</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			            		<h4>失败响应示例</h4>
+	            		<pre><code>{
+    "state": 0,
+    "error_message": "出错原因"
+}</code></pre>
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30235" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>查看某员工的所有工作安排</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/workA/employees/{employeeId}</code>
+	            		<h4>请求方式</h4>
+	            		<code>GET</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>multipart/form-data</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            			            		<div class="document-block-div request_body-div">
+		            		<h4>请求Body参数</h4>
+		            		<table>
+		              			<thead>
+		                			<tr>
+			                  			<th>参数</th>
+			                  			<th>示例值</th>
+			                  			<th>参数描述</th>
+			                  		</tr>
+		              			</thead>
+		              			<tbody>
+		              						              						              						              			</tbody>
+		            		</table>
+		            	</div>
+	            								
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>[
+    {
+        "startTime": "XXXX",
+        "endTime": "XXXX"
+    },
+    {
+        "startTime": "XXXX",
+        "endTime": "XXXX"
+    },
+    {
+        "startTime": "XXXX",
+        "endTime": "XXXX"
+    },
+    {
+        "startTime": "XXXX",
+        "endTime": "XXXX"
+    }
+]</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			            		<h4>失败响应示例</h4>
+	            		<pre><code>{
+    "state": 0,
+    "error_message": "错误原因"
+}</code></pre>
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30230" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>获取某员工录入的所有照片？</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/ai/photos/employee/{employeeId}</code>
+	            		<h4>请求方式</h4>
+	            		<code>GET</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>multipart/form-data</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            			            		<div class="document-block-div request_body-div">
+		            		<h4>请求Body参数</h4>
+		            		<table>
+		              			<thead>
+		                			<tr>
+			                  			<th>参数</th>
+			                  			<th>示例值</th>
+			                  			<th>参数描述</th>
+			                  		</tr>
+		              			</thead>
+		              			<tbody>
+		              						              						              						              			</tbody>
+		            		</table>
+		            	</div>
+	            								
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30224" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>查看某员工的所有请假申请</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/leaves/employees/{employeeId}</code>
+	            		<h4>请求方式</h4>
+	            		<code>GET</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>multipart/form-data</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            			            		<div class="document-block-div request_body-div">
+		            		<h4>请求Body参数</h4>
+		            		<table>
+		              			<thead>
+		                			<tr>
+			                  			<th>参数</th>
+			                  			<th>示例值</th>
+			                  			<th>参数描述</th>
+			                  		</tr>
+		              			</thead>
+		              			<tbody>
+		              						              						              						              			</tbody>
+		            		</table>
+		            	</div>
+	            								
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>[
+    {
+        "applicatedId":100,   //申请编号，！！！！数据库没有这个属性！！！
+        "applicatdPerson":123,//申请人id  数据库居然拿申请人id做了主键！！！
+        "certificatedPerson",118, //批准人id
+        "startTime":"1970-01-01 06:00:00",
+        "endTime":"1970-01-01 22:00:00",
+        "state":0, //是否批准 0待审 1批准 2驳回
+        "isReportBack":0, //是否销假 0未，1消
+        "reportBackTime":"1970-01-02 06:00:00" //销假时间
+    },
+        {
+        "applicatedId":101,   //申请编号，！！！！数据库没有这个属性！！！
+        "applicatdPerson":123,//申请人id  数据库居然拿申请人id做了主键！！！
+        "certificatedPerson",118, //批准人id
+        "startTime":"1970-01-01 06:00:00",
+        "endTime":"1970-01-01 22:00:00",
+        "state":0, //是否批准 0待审 1批准 2驳回
+        "isReportBack":0, //是否销假 0未，1消
+        "reportBackTime":"1970-01-02 06:00:00" //销假时间
+    },
+        {
+        "applicatedId":102,   //申请编号，！！！！数据库没有这个属性！！！
+        "applicatdPerson":123,//申请人id  数据库居然拿申请人id做了主键！！！
+        "certificatedPerson",118, //批准人id
+        "startTime":"1970-01-01 06:00:00",
+        "endTime":"1970-01-01 22:00:00",
+        "state":0, //是否批准 0待审 1批准 2驳回
+        "isReportBack":0, //是否销假 0未，1消
+        "reportBackTime":"1970-01-02 06:00:00" //销假时间
+    }
+]</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30217" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>修改账户信息</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/users/{userId}</code>
+	            		<h4>请求方式</h4>
+	            		<code>PUT</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>application/json</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            		<h4>请求Body参数</h4>
+	            		<pre class="language-javascript"><code class="lang-json">{
+    "id":1000, //禁止修改
+    "password":123,
+    "degree":0 //禁止在此处修改
+}</code></pre>
+	            			            		<div>
+	            			问题：<br />
+degree是否还有存在的意义?<br />
+	            		</div>
+	            			            		
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>{
+    "state": 1
+}</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			            		<h4>失败响应示例</h4>
+	            		<pre><code>{
+    "state": 0,
+    "error_message": "出错原因"
+}</code></pre>
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30182" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>修改某员工信息</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/employees/{employeeId}</code>
+	            		<h4>请求方式</h4>
+	            		<code>PUT</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>application/json</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            		<h4>请求Body参数</h4>
+	            		<pre class="language-javascript"><code class="lang-json">{
+    "employeeId": 4,
+    "sectorId": 126,
+    "master": null,
+    "name": "张和",
+    "age": 26,
+    "salary": 3000,
+    "sex": true,
+    "phoneNumber": 1234567,
+    "enrollTime": "1970-01-01",
+    "userId": 0,
+    "manager": true
+}</code></pre>
+	            			            		<div>
+	            			修改employeeId为4的员工信息	            		</div>
+	            			            		
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>{
+    "state": 1
+}</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			            		<h4>失败响应示例</h4>
+	            		<pre><code>{
+    "state": 0,
+    "error_message": "不存在这个员工"
+}</code></pre>
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30239" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>增加某员工的工作安排</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/workA/employees/{employeeId}</code>
+	            		<h4>请求方式</h4>
+	            		<code>POST</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>application/json</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            		<h4>请求Body参数</h4>
+	            		<pre class="language-javascript"><code class="lang-json">{
+    "startTime": "XXXX",
+    "endTime": "XXXX"
+}</code></pre>
+	            			            		
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30229" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>增加某员工的照片</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/ai/photos/employees/{employeeId}</code>
+	            		<h4>请求方式</h4>
+	            		<code>POST</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>multipart/form-data</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            			            		<div class="document-block-div request_body-div">
+		            		<h4>请求Body参数</h4>
+		            		<table>
+		              			<thead>
+		                			<tr>
+			                  			<th>参数</th>
+			                  			<th>示例值</th>
+			                  			<th>参数描述</th>
+			                  		</tr>
+		              			</thead>
+		              			<tbody>
+		              						              						              				<tr>
+			                  			<th>image</th>
+			                  			<td>无示例值</td>
+			                  			<td>无描述</td>
+			                  		</tr>
+			                  				              						              			</tbody>
+		            		</table>
+		            	</div>
+	            								
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>{
+    "state": 1
+}</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			            		<h4>失败响应示例</h4>
+	            		<pre><code>{
+    "state": 0,
+    "error_message": "失败原因"
+}</code></pre>
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30225" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>创建一个请假申请</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/employees/leaves</code>
+	            		<h4>请求方式</h4>
+	            		<code>POST</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>application/json</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            		<h4>请求Body参数</h4>
+	            		<pre class="language-javascript"><code class="lang-json">{
+    "applicatdPerson":123,//申请人id  数据库居然拿申请人id做了主键！！！一定要改！！！
+    "startTime":"1970-01-01 06:00:00",
+    "endTime":"1970-01-01 22:00:00",
+}</code></pre>
+	            			            		<div>
+	            			申请人id  数据库居然拿申请人id做了主键！！！一定要改！！！<br />
+需要加一个自增的applicatedId作为这张表的主键！！！	            		</div>
+	            			            		
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>{
+    "state": 1
+}</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			            		<h4>失败响应示例</h4>
+	            		<pre><code>{
+    "state": 0,
+    "error_message": "出错原因"
+}</code></pre>
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30220" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>查看某员工的所有加班申请</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/EWs/employees/{employeeId}</code>
+	            		<h4>请求方式</h4>
+	            		<code>GET</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>multipart/form-data</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            			            		<div class="document-block-div request_body-div">
+		            		<h4>请求Body参数</h4>
+		            		<table>
+		              			<thead>
+		                			<tr>
+			                  			<th>参数</th>
+			                  			<th>示例值</th>
+			                  			<th>参数描述</th>
+			                  		</tr>
+		              			</thead>
+		              			<tbody>
+		              						              						              						              			</tbody>
+		            		</table>
+		            	</div>
+	            								
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>[
+    {
+        "applicatedId":189, //申请单号
+        "applicatedPerson":4,  //申请人员工号
+        "startTime":"1970-01-01 06:00:00",
+        "endTime":"1970-01-01 22:00:00",
+        "state":0  //0待审核，1批准，2驳回
+    },
+    {
+    "applicatedId":190, //申请单号
+    "applicatedPerson":4,  //申请人员工号
+    "startTime":"1970-01-01 06:00:00",
+    "endTime":"1970-01-01 22:00:00",
+    "state":0  //0待审核，1批准，2驳回
+    },
+    {
+    "applicatedId":199, //申请单号
+    "applicatedPerson":4,  //申请人员工号
+    "startTime":"1970-01-01 06:00:00",
+    "endTime":"1970-01-01 22:00:00",
+    "state":0  //0待审核，1批准，2驳回
+    },
+    {
+    "applicatedId":109, //申请单号
+    "applicatedPerson":4,  //申请人员工号
+    "startTime":"1970-01-01 06:00:00",
+    "endTime":"1970-01-01 22:00:00",
+    "state":0  //0待审核，1批准，2驳回
+    }
+
+]</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			            		<h4>失败响应示例</h4>
+	            		<pre><code>{
+    "state": 0,
+    "error_message": "出错原因"
+}</code></pre>
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30214" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>增加一个部门</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/sectors</code>
+	            		<h4>请求方式</h4>
+	            		<code>POST</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>application/json</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            		<h4>请求Body参数</h4>
+	            		<pre class="language-javascript"><code class="lang-json">{
+	"sectorName": "养老部",
+	"sectorPeopleNumber": 0,
+	"description": "这是一个让程序员们养老的部门。",
+}</code></pre>
+	            			            		<div>
+	            			新创建的部门没有主管,没有人<br />
+后期通过其他慢慢添加	            		</div>
+	            			            		
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>{
+    "state": 1
+}</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			            		<h4>失败响应示例</h4>
+	            		<pre><code>{
+    "state": 0,
+    "error_message": "出错原因"
+}</code></pre>
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30187" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>登陆</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/users/login</code>
+	            		<h4>请求方式</h4>
+	            		<code>POST</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>application/json</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            		<h4>请求Body参数</h4>
+	            		<pre class="language-javascript"><code class="lang-json">{
+    "id": "1007",
+    "password": "7"
+}</code></pre>
+	            			            		
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>{
+    "Manager": {
+        "phoneNumber": 123,
+        "enrollTime": "2019-05-08",
+        "sex": false,
+        "name": "总经理",
+        "id": 0,
+        "salary": 10000,
+        "userId": 0,
+        "age": 35
+    },
+    "state": 1
+}</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			            		<h4>失败响应示例</h4>
+	            		<pre><code>{
+    "state": 0,
+    "error_message": "账户密码错误"
+}</code></pre>
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30171" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>获取某部门的所有员工信息</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/employees/sectors/{sectorId}</code>
+	            		<h4>请求方式</h4>
+	            		<code>GET</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>multipart/form-data</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            			            		<div class="document-block-div request_body-div">
+		            		<h4>请求Body参数</h4>
+		            		<table>
+		              			<thead>
+		                			<tr>
+			                  			<th>参数</th>
+			                  			<th>示例值</th>
+			                  			<th>参数描述</th>
+			                  		</tr>
+		              			</thead>
+		              			<tbody>
+		              						              						              						              			</tbody>
+		            		</table>
+		            	</div>
+	            								
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            			            		<div class="document-block-div response_body-div">
+		            		<h4>响应参数</h4>
+		            		<table>
+		              			<thead>
+		                			<tr>
+			                  			<th>参数</th>
+			                  			<th colspan="2">参数描述</th>
+			                  		</tr>
+		              			</thead>
+		              			<tbody>
+		              						              						              				<tr>
+			                  			<th style="text-indent: 0em">{sectorId}</th>
+			                  			<td colspan="2">某部门的Id</td>
+			                  		</tr>
+			                  				              						              			</tbody>
+		            		</table>
+		            	</div>
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>[
+    {
+        "employeeId": 4,
+        "sectorId": 126,
+        "master": null,
+        "name": "张和",
+        "age": 26,
+        "salary": 3000,
+        "sex": true,
+        "phoneNumber": 1234567,
+        "enrollTime": "1970-01-01",
+        "userId": 0,
+        "manager": true
+    },
+    {
+        "employeeId": 7,
+        "sectorId": 126,
+        "master": null,
+        "name": "蔡徐坤",
+        "age": 26,
+        "salary": 2550,
+        "sex": true,
+        "phoneNumber": 456789,
+        "enrollTime": "2019-06-06",
+        "userId": 0,
+        "manager": false
+    }
+]</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30237" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>删除某员工的某工作安排</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/workA/employees/{employeeId}</code>
+	            		<h4>请求方式</h4>
+	            		<code>DELETE</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>application/json</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            		<h4>请求Body参数</h4>
+	            		<pre class="language-javascript"><code class="lang-json">{
+    "startTime": "XXXX",
+    "endTime": "XXXX"
+}</code></pre>
+	            			            		
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>{
+    "state": 1
+}</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			            		<h4>失败响应示例</h4>
+	            		<pre><code>{
+    "state": 0,
+    "error_message": "错误原因"
+}</code></pre>
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30231" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>删除某员工某照片？</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>未填写</code>
+	            		<h4>请求方式</h4>
+	            		<code>DELETE</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>multipart/form-data</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            			            		<div class="document-block-div request_body-div">
+		            		<h4>请求Body参数</h4>
+		            		<table>
+		              			<thead>
+		                			<tr>
+			                  			<th>参数</th>
+			                  			<th>示例值</th>
+			                  			<th>参数描述</th>
+			                  		</tr>
+		              			</thead>
+		              			<tbody>
+		              						              						              						              			</tbody>
+		            		</table>
+		            	</div>
+	            								
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30226" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>修改请假</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/leaves/{applicatedId}</code>
+	            		<h4>请求方式</h4>
+	            		<code>PUT</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>application/json</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            		<h4>请求Body参数</h4>
+	            		<pre class="language-javascript"><code class="lang-json">{
+    "startTime":"1970-01-01 06:00:00",
+    "endTime":"1970-01-01 22:00:00",
+}</code></pre>
+	            			            		<div>
+	            			{applicatedId}:已有的请假申请的编号	            		</div>
+	            			            		
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>{
+    "state": 1
+}</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			            		<h4>失败响应示例</h4>
+	            		<pre><code>{
+    "state": 0,
+    "error_message": "出错原因"
+}</code></pre>
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30219" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>创建加班申请</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/EWs/employees/{employeeId}</code>
+	            		<h4>请求方式</h4>
+	            		<code>POST</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>application/json</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            		<h4>请求Body参数</h4>
+	            		<pre class="language-javascript"><code class="lang-json">{
+    "applicatedPerson": 1,
+    "startTime": "1970-01-01 06:00:00",
+    "endTime": "1970-01-01 22:00:00"
+}</code></pre>
+	            			            		<div>
+	            			applicatedPerson:是申请员工的员工号	            		</div>
+	            			            		
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>{
+    "state": 1
+}</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			            		<h4>失败响应示例</h4>
+	            		<pre><code>{
+    "state": 0,
+    "error_message": "出错原因"
+}</code></pre>
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30181" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>修改某部门的信息</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/sectors/{sectorId}</code>
+	            		<h4>请求方式</h4>
+	            		<code>PUT</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>application/json</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            		<h4>请求Body参数</h4>
+	            		<pre class="language-javascript"><code class="lang-json">{
+	"sectorId": 127,
+	"sectorName": "菊花厂",
+	"sectorPeopleNumber": 9,
+	"description": "这是一个站在5G潮头的部门，加入我们，日日996，每隔一段时间举行杀死程序员祭天仪式，在这里你会体会到无限的荣誉（if you can live long）"
+	"masterId":5
+}</code></pre>
+	            			            		<div>
+	            			将菊花厂部门的主管设置为员工id为5的那个员工<br />
+（注意要取消掉之前的主管哦，如果有）	            		</div>
+	            			            		
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>{
+    "state": 1
+}</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			            		<h4>失败响应示例</h4>
+	            		<pre><code>{
+    "state": 0,
+    "error_message": "不存在这个部门"
+}</code></pre>
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30250" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>删除某部门</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/sectors/{sectorId}</code>
+	            		<h4>请求方式</h4>
+	            		<code>DELETE</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>multipart/form-data</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            			            		<div class="document-block-div request_body-div">
+		            		<h4>请求Body参数</h4>
+		            		<table>
+		              			<thead>
+		                			<tr>
+			                  			<th>参数</th>
+			                  			<th>示例值</th>
+			                  			<th>参数描述</th>
+			                  		</tr>
+		              			</thead>
+		              			<tbody>
+		              						              						              						              			</tbody>
+		            		</table>
+		            	</div>
+	            								
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>{
+	"state": 1
+}
+//只有在这个部门人数为0的时候前端才能发起该操作</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			            		<h4>失败响应示例</h4>
+	            		<pre><code>{
+    "state": 0,
+    "error_message": "不存在这个部门"
+}</code></pre>
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30227" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>删除请假申请</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/leaves/{applicatedId}</code>
+	            		<h4>请求方式</h4>
+	            		<code>DELETE</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>multipart/form-data</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            			            		<div class="document-block-div request_body-div">
+		            		<h4>请求Body参数</h4>
+		            		<table>
+		              			<thead>
+		                			<tr>
+			                  			<th>参数</th>
+			                  			<th>示例值</th>
+			                  			<th>参数描述</th>
+			                  		</tr>
+		              			</thead>
+		              			<tbody>
+		              						              						              						              			</tbody>
+		            		</table>
+		            	</div>
+	            								
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>{
+    "state": 1
+}</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			            		<h4>失败响应示例</h4>
+	            		<pre><code>{
+    "state": 0,
+    "error_message": "出错原因"
+}</code></pre>
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30222" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>修改某加班申请</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/EWs/{applicatedId}</code>
+	            		<h4>请求方式</h4>
+	            		<code>PUT</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>application/json</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            		<h4>请求Body参数</h4>
+	            		<pre class="language-javascript"><code class="lang-json">{
+    "startTime": "1970-01-01 06:00:00",
+    "endTime": "1970-01-01 22:00:00"
+}</code></pre>
+	            			            		
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		    	<div class="page-wrapper hide" tabindex="30223" role="main">
+	        	<div class="page-inner">
+	          		<section class="markdown-section">
+	            		<h1><i class="fa fa-link" aria-hidden="true"></i>删除某加班申请</h1>
+	            			            		<h4>接口URL</h4>
+	            		<code>http://39.105.38.34:8080/api/v1/EWs/{applicatedId}</code>
+	            		<h4>请求方式</h4>
+	            		<code>DELETE</code>
+	            		<h4>请求 Content-Type</h4>
+	            		<code>multipart/form-data</code>
+
+	            		<!-- 开始 request_all_header -->
+	            		
+	            		<!-- 开始 request_header -->
+	            		
+	            		<!-- 开始 request_body -->
+	            			            			            		<div class="document-block-div request_body-div">
+		            		<h4>请求Body参数</h4>
+		            		<table>
+		              			<thead>
+		                			<tr>
+			                  			<th>参数</th>
+			                  			<th>示例值</th>
+			                  			<th>参数描述</th>
+			                  		</tr>
+		              			</thead>
+		              			<tbody>
+		              						              						              						              			</tbody>
+		            		</table>
+		            	</div>
+	            								
+						<!-- 开始 request_Query -->
+	            		
+	            		<!-- 开始 response_header -->
+	            		
+	            		<!-- 开始 response_cookie -->
+	            		
+	            		<!-- 开始 response_body -->
+	            		
+	            		<!-- 开始 response_body_text_ishide -->
+	            			            		<h4>成功响应示例</h4>
+	            		<pre><code>{
+    "state": 1
+}</code></pre>
+	            		
+	            		<!-- 开始 response_body_error_text -->
+	            			            		<h4>失败响应示例</h4>
+	            		<pre><code>{
+    "state": 0,
+    "error_message": "错误原因"
+}</code></pre>
+	            			          		</section>
+	        	</div>
+	      	</div>
+	      		      	<footer>
+	      		本文档由<a href="https://www.apipost.cn/?fr=doc" target="_blank">APIPOST接口调试与管理工具</a>生成
+	      	</footer>
+	    </div>
+	    <a href="javascript:;" class="navigation navigation-prev">
+	      	<i class="fa fa-angle-left" aria-hidden="true"></i>
+	    </a>
+	    <a href="javascript:;" class="navigation navigation-next" style="margin-right: 17px;">
+	      	<i class="fa fa-angle-right" aria-hidden="true"></i>
+	    </a>
+	</div>
+</div>
+<!-- 百度统计 -->
+<script>
+	var _hmt = _hmt || [];
+	(function() {
+	  var hm = document.createElement("script");
+	  hm.src = "https://hm.baidu.com/hm.js?a046ce178828e393614822a297b8d296";
+	  var s = document.getElementsByTagName("script")[0]; 
+	  s.parentNode.insertBefore(hm, s);
+	})();
+</script>
+<span style="display: none;"><script type="text/javascript" src="https://s23.cnzz.com/z_stat.php?id=1276797738&web_id=1276797738"></script></span>
+</body>
+</html>
