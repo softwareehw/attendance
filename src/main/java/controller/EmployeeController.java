@@ -44,11 +44,11 @@ public class EmployeeController {
 	@Autowired
 	private EmployeeService employeeService;
 	
-	@RequestMapping("/add")
-	public int addAppicateForEW(@RequestBody ApplicationForEW e) {
-		return employeeService.applicateEW(e);
-		
-	}
+//	@RequestMapping("/add")
+//	public int addAppicateForEW(@RequestBody ApplicationForEW e) {
+//		return employeeService.applicateEW(e);
+//		
+//	}
 	
 	@RequestMapping("/appEWfind/{applicatedPerson}")
 	public List<ApplicationForEW> findByIdApplicationForEW(@PathVariable  int applicatedPerson) {
@@ -69,7 +69,7 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value="/{employeeId}",method=RequestMethod.PUT)
-	public String updateEmployee(HttpServletRequest request,@RequestBody Employee e){
+	public String updateEmployee( @PathVariable Employee e){
 		logger.info("修改员工信息");
 		JSONObject ans=new JSONObject();
 		ans.put("state", 1);
@@ -107,6 +107,12 @@ public class EmployeeController {
 		}
     	
     }
+	@RequestMapping("/sectors/{sectorId}")
+    public String employeeInfoBySectorId(@PathVariable int sectorId){
+		logger.info("从数据库中根据sectorId="+sectorId+",读取员工信息");
+    	return employeeService.employeeInfoBySectorId(sectorId);
+    }
+	
 	
 	@RequestMapping("/attendanceinfo/{userId}")
     public List<AttendanceRecord> getAttendanceById(@PathVariable int userId){
@@ -195,24 +201,24 @@ public class EmployeeController {
 //	}
 	
 	//录入照片入库
-	@PostMapping(value="/ai/{id}/photo/add" , consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
-	public boolean add(@RequestParam("image") MultipartFile image,@PathVariable int id) throws Exception {
-		try {
-			logger.info("接受图片");
-			//保存文件
-			FileOutputStream fos=new FileOutputStream("target/"+image.getOriginalFilename());
-			IOUtils.copy(image.getInputStream(), fos);
-			fos.close();
-			String path="target/"+image.getOriginalFilename();
-			//录入图片
-			logger.info("录入图片");
-			return FaceInteraction.add(path, id);
-		}
-		catch (Exception e){
-			e.printStackTrace();
-			return false;
-		}
-	}
+//	@PostMapping(value="/ai/{id}/photo/add" , consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
+//	public boolean add(@RequestParam("image") MultipartFile image,@PathVariable int id) throws Exception {
+//		try {
+//			logger.info("接受图片");
+//			//保存文件
+//			FileOutputStream fos=new FileOutputStream("target/"+image.getOriginalFilename());
+//			IOUtils.copy(image.getInputStream(), fos);
+//			fos.close();
+//			String path="target/"+image.getOriginalFilename();
+//			//录入图片
+//			logger.info("录入图片");
+//			return FaceInteraction.add(path, id);
+//		}
+//		catch (Exception e){
+//			e.printStackTrace();
+//			return false;
+//		}
+//	}
 	
 	
 	//人脸更新

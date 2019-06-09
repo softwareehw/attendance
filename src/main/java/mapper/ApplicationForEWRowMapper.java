@@ -19,15 +19,15 @@ public class ApplicationForEWRowMapper implements RowMapper<ApplicationForEW> {
 		// TODO Auto-generated method stub
 		int applicatedId = rs.getInt("applicated_id");
 		int applicatedPerson = rs.getInt("applicated_person");
-		Date startTime = rs.getDate("start_time");
-		Date endTime = rs.getDate("end_time");
+		Date date = rs.getDate("date");
+		int sectorId = rs.getInt("sectorid");
 		int state = rs.getInt("state");
 		
 		ApplicationForEW applicationForEW = new ApplicationForEW();
 		applicationForEW.setApplicatedId(applicatedId);
 		applicationForEW.setApplicatedPerson(applicatedPerson);
-		applicationForEW.setStartTime(startTime);
-		applicationForEW.setEndTime(endTime);
+		applicationForEW.setDate(date);
+		applicationForEW.setSectorId(sectorId);
 		applicationForEW.setState(state);
 		
 		return applicationForEW;

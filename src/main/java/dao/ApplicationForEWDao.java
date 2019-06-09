@@ -1,7 +1,10 @@
 package dao;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
+
+import org.springframework.web.bind.annotation.PathVariable;
 
 import bean.ApplicationForEW;
 
@@ -38,4 +41,35 @@ public interface ApplicationForEWDao {
 	public int addApplicateEW(ApplicationForEW applica);
 	
 	public Boolean announceEW(Calendar start, Calendar end);
+	
+	/**
+	 *@param   部门ID
+	 *@return  未审核申请加班
+	 *
+	 */
+	
+	public List<ApplicationForEW> getUncheckApplicationForEW( int sectorId);
+	/**
+	 *@param    员工ID
+	 *@return   所有申请加班表
+	 *
+	 */
+	
+	public List<ApplicationForEW> getEmployeeInfoApplicationForEW(int employeeId);
+	
+	/**
+	 *@param    员工id，日期
+	 *@return   加班申请表
+	 *
+	 */
+	public List<ApplicationForEW> updateEmployeeInfoApplicationForEW(int applicated);
+	
+	/**
+	 * 发布全员加班
+	 *@param
+	 *@return
+	 *
+	 */
+
+	public int addAllApplicationForEW(ApplicationForEW date);
 }

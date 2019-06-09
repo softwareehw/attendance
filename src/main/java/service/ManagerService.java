@@ -1,9 +1,11 @@
 package service;
 
 import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 import org.springframework.stereotype.Service;
 
+import bean.ApplicationForEW;
 import bean.ApplicationForLeave;
 import bean.Employee;
 import bean.Manager;
@@ -35,5 +37,27 @@ public interface ManagerService{
 	 *
 	 */
 	public List<ApplicationForLeave> applicationForLeaveFindAll();
+	
+	/**
+	 *@param   部门id
+	 *@return  本部门未审核请假加班表
+	 *
+	 */
+	public String getUncheckApplicationForEW(int sectorId);
+	
+	/**
+	 *@param   员工id
+	 *@return  员工全部加班申请
+	 *
+	 */
+	public String getEmployeeInfoApplicationForEW(int employeeId);
+	
+	/**      
+	 *      发布全员加班
+	 *@param
+	 *@return 
+	 *
+	 */
+	public String addAllApplicationForEW(ApplicationForEW date);
 
 }

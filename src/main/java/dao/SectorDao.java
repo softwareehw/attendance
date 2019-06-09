@@ -2,6 +2,7 @@ package dao;
 
 import java.util.List;
 
+import bean.Employee;
 import bean.Sector;
 
 public interface SectorDao {
@@ -32,5 +33,11 @@ public interface SectorDao {
 	 */
 	public int DeleteSector(int sectorId);
 	
+	/**
+	 *@param    sectorId 
+	 *@return   所有员工信息
+	 *
+	 */
 	
+	public List<Employee> employeeInfoBySectorId(int sectorId);
 }
