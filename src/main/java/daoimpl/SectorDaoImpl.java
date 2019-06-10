@@ -9,8 +9,10 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
 import org.springframework.stereotype.Repository;
 
+import bean.Employee;
 import bean.Sector;
 import dao.SectorDao;
+import mapper.EmployeeRowMapper;
 import mapper.SectorRowMapper;
 
 @Repository
@@ -58,6 +60,17 @@ public class SectorDaoImpl implements SectorDao {
 		String sql = "DELETE FROM SECTOR WHERE SECTOR_ID=?";
 		int i = jdbcTemplate.update(sql,new Object[]{sectorId});
 		return i;
+	}
+
+
+	@Override
+	public List<Employee> employeeInfoBySectorId(int sectorId) {
+		// TODO Auto-generated method stub
+		String sql = "select * from employee where sector_id = ?";
+		
+		return (List<Employee>) jdbcTemplate.query(sql, new Object[] {sectorId},new EmployeeRowMapper() {
+			
+		});
 	}
 
 }

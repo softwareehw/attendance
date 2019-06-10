@@ -7,6 +7,7 @@ import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
 import java.util.Comparator;
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +21,7 @@ import bean.Employee;
 import bean.WorkArrangement;
 import dao.ApplicationForEWDao;
 import mapper.ApplicationForEWRowMapper;
+import mapper.EmployeeRowMapper;
 
 //用到的函数		
 
@@ -96,10 +98,10 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 	@Override
 	public int addApplicateEW(ApplicationForEW applica) {
 		// TODO Auto-generated method stub
-		String sql = "insert into application_for_ew(applicated_person,start_time,end_time,state) "
+		String sql = "insert into application_for_ew(applicated_person,date,sectorid,state) "
 				+ "values(?,?,?,?)";
-		return jdbcTemplate.update(sql,applica.getApplicatedPerson(),applica.getStartTime(),applica.getEndTime(),applica.getState());
-		
+		return jdbcTemplate.update(sql,applica.getApplicatedPerson(),applica.getDate(),applica.getSectorId(),0);
+		  
 	}
 
 	@Override
@@ -258,6 +260,50 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 			
 		}
 		return null;
+	}
+	@Override
+	public List<ApplicationForEW> getUncheckApplicationForEW(int sectorId) {
+		// TODO Auto-generated method stub
+		String sql = "select * from application_for_ew where sectorid = ?";
+		
+		return (List<ApplicationForEW>)jdbcTemplate.query(sql, new Object[] {sectorId},new ApplicationForEWRowMapper() {
+			
+		});
+	}
+	@Override
+	public List<ApplicationForEW> getEmployeeInfoApplicationForEW(int employeeId) {
+		// TODO Auto-generated method stub
+		String sql = "select * from application_for_ew where applicated_person = ?";
+        return (List<ApplicationForEW>)jdbcTemplate.query(sql, new Object[] {employeeId},new ApplicationForEWRowMapper() {
+			
+		});
+		
+	}
+	@Override
+	public List<ApplicationForEW> updateEmployeeInfoApplicationForEW( int applicatedId) {
+		// TODO Auto-generated method stub
+		String sql = "select * from application_for_ew where applicated_id = ? and state = 0";
+		return (List<ApplicationForEW>)jdbcTemplate.query(sql, new Object[] {applicatedId},new ApplicationForEWRowMapper() {
+			
+		});
+		
+	}
+	@Override
+	public int addAllApplicationForEW(ApplicationForEW date) {
+		// TODO Auto-generated method stub
+		int sum = 0;
+		String sql = "select employee_id from employee";
+		
+		List<Employee>  flag = jdbcTemplate.query(sql,new EmployeeRowMapper() {
+			
+		});
+		
+		for(int i = 0;i < flag.size();i++) {
+			String sql1 = "insert into application_for_ew(applicated_person,date,state) value(?,?,?)";
+			int result = jdbcTemplate.update(sql1,new Object[] {flag.get(i),date.getDate(),1});
+			sum = sum + result;
+		}
+		return sum;
 	}
 
 }

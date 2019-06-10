@@ -6,26 +6,27 @@ public class ApplicationForEW {
 	
 	private int applicatedId; //申请单号
 	private int applicatedPerson;
-	private Date startTime;
-	private Date endTime;
+	private Date date;
 	private int state; //0待审，1为批准，2为驳回
+	private int sectorId;
 	public int getApplicatedId() {
 		return applicatedId;
 	}
 	public void setApplicatedId(int i) {
 		this.applicatedId = i;
 	}
-	public Date getStartTime() {
-		return startTime;
+
+	public Date getDate() {
+		return date;
 	}
-	public void setStartTime(Date startTime) {
-		this.startTime = startTime;
+	public void setDate(Date date) {
+		this.date = date;
 	}
-	public Date getEndTime() {
-		return endTime;
+	public int getSectorId() {
+		return sectorId;
 	}
-	public void setEndTime(Date endTime) {
-		this.endTime = endTime;
+	public void setSectorId(int sectorId) {
+		this.sectorId = sectorId;
 	}
 	public int getState() {
 		return state;
