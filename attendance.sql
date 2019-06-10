@@ -2,15 +2,15 @@
 Navicat MySQL Data Transfer
 
 Source Server         : root
-Source Server Version : 50010
-Source Host           : localhost:3306
+Source Server Version : 50022
+Source Host           : 127.0.0.1:3306
 Source Database       : attendance
 
 Target Server Type    : MYSQL
-Target Server Version : 50010
+Target Server Version : 50022
 File Encoding         : 65001
 
-Date: 2019-06-07 20:07:27
+Date: 2019-06-10 09:20:36
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,23 +21,23 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `application_for_ew`;
 CREATE TABLE `application_for_ew` (
   `applicated_person` int(20) NOT NULL,
-  `start_time` datetime NOT NULL,
-  `end_time` datetime NOT NULL,
+  `date` date NOT NULL,
   `state` int(20) NOT NULL,
   `applicated_id` int(20) NOT NULL auto_increment,
+  `sectorId` int(20) NOT NULL,
   PRIMARY KEY  (`applicated_id`),
   KEY `applicaew` (`applicated_person`),
-  CONSTRAINT `applicaew` FOREIGN KEY (`applicated_person`) REFERENCES `employee` (`employee_id`)
+  KEY `dsa` (`sectorId`),
+  CONSTRAINT `applicaew` FOREIGN KEY (`applicated_person`) REFERENCES `employee` (`employee_id`),
+  CONSTRAINT `dsa` FOREIGN KEY (`sectorid`) REFERENCES `sector` (`sector_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of application_for_ew
 -- ----------------------------
-INSERT INTO `application_for_ew` VALUES ('4', '2019-06-01 15:36:35', '2019-06-11 15:36:32', '0', '55');
-INSERT INTO `application_for_ew` VALUES ('1', '2019-05-01 12:54:30', '2019-05-02 12:54:39', '1', '100');
-INSERT INTO `application_for_ew` VALUES ('2', '2019-05-01 08:27:44', '2019-05-09 08:27:48', '0', '101');
-INSERT INTO `application_for_ew` VALUES ('1', '2019-06-01 15:25:57', '2019-06-01 20:25:57', '0', '123456');
-INSERT INTO `application_for_ew` VALUES ('1', '2019-04-22 04:35:42', '2019-04-17 18:54:25', '0', '123457');
+INSERT INTO `application_for_ew` VALUES ('15', '2019-06-06', '0', '1', '123');
+INSERT INTO `application_for_ew` VALUES ('1', '2019-06-09', '0', '2', '123');
+INSERT INTO `application_for_ew` VALUES ('15', '2019-06-09', '1', '3', '123');
 
 -- ----------------------------
 -- Table structure for application_for_leave
@@ -80,6 +80,9 @@ CREATE TABLE `attendance_record` (
 INSERT INTO `attendance_record` VALUES ('2', '2019-06-20 14:24:47', '2019-06-04 19:18:09', '0');
 INSERT INTO `attendance_record` VALUES ('12', '2019-06-04 09:00:07', '2019-06-04 09:02:49', '1');
 INSERT INTO `attendance_record` VALUES ('12', '2019-06-04 09:03:37', '2019-06-04 09:04:02', '1');
+INSERT INTO `attendance_record` VALUES ('12', '2019-06-08 21:39:26', '2019-06-08 21:39:30', '1');
+INSERT INTO `attendance_record` VALUES ('12', '2019-06-09 09:28:09', null, '0');
+INSERT INTO `attendance_record` VALUES ('15', '2019-06-09 09:36:40', null, '0');
 
 -- ----------------------------
 -- Table structure for employee
@@ -108,11 +111,12 @@ CREATE TABLE `employee` (
 -- ----------------------------
 INSERT INTO `employee` VALUES ('1', '123', '1', '张天', '25', '2000', '0', '1234567891', '2019-05-06 16:04:51', '1000');
 INSERT INTO `employee` VALUES ('2', '124', '1', '志昂', '28', '3000', '0', '123456', '2018-08-24 16:24:55', '1001');
-INSERT INTO `employee` VALUES ('4', '126', '1', '张和', '26', '3000', '1', '1234567', '1970-01-01 08:00:00', '1002');
+INSERT INTO `employee` VALUES ('4', '126', '1', '??', '26', '3333', '1', '1234567', '1970-01-01 08:00:00', '1002');
 INSERT INTO `employee` VALUES ('5', '127', '1', '张和', '26', '3000', '1', '1234567', '1970-01-01 08:00:00', '1003');
 INSERT INTO `employee` VALUES ('7', '126', '0', '蔡徐坤', '26', '2550', '1', '456789', '2019-06-06 09:22:45', '1004');
 INSERT INTO `employee` VALUES ('8', '125', '1', 'pidan', '17', '1234', '1', '1565', '2019-05-29 16:05:03', '1005');
 INSERT INTO `employee` VALUES ('12', '127', '0', 'duff', '25', '4567', '0', '848613', '2019-06-04 14:25:47', '1006');
+INSERT INTO `employee` VALUES ('15', '124', '0', '弗雷克斯', '29', '1234', '1', '564987', '2019-01-09 09:36:20', '1003');
 
 -- ----------------------------
 -- Table structure for manager
