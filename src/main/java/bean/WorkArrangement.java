@@ -2,6 +2,8 @@ package bean;
 
 import java.util.Date;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 public class WorkArrangement {
 	//申请人
 	private int employeeId;
@@ -10,7 +12,9 @@ public class WorkArrangement {
 	//工作安排id
 	private int work_arrange_id;
 	
+	@JsonFormat( pattern="yyyy-MM-dd HH:mm:ss")
 	private Date startTime;
+	@JsonFormat( pattern="yyyy-MM-dd HH:mm:ss")
 	private Date endTime;
 	
 	

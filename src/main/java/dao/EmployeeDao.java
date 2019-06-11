@@ -3,11 +3,14 @@ package dao;
 import java.util.Date;
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import bean.ApplicationForEW;
 import bean.ApplicationForLeave;
 import bean.AttendanceRecord;
 import bean.Employee;
 
+@Repository
 public interface EmployeeDao {
 
 //	/**

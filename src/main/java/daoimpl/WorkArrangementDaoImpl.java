@@ -20,15 +20,14 @@ public class WorkArrangementDaoImpl implements WorkArrangementDao {
 	@Override
 	public int AddWorkArrangement(WorkArrangement wa) {
 		String sql = "INSERT INTO WORK_ARRANGEMENT(employee_id,arrange_person,"
-				+ "morning_start_time,morning_end_time,afternoon_start_time,"
-				+ "afternoon_end_time,evening_start_time,evening_end_time) VALUES(?,?,?,?,?,?,?,?)";
-		int i = jdbcTemplate.update(sql,new Object[]{wa.getEmployeeId(),wa.getArrangePerson(),wa.getMorningStartTime(),wa.getMorningEndTime(),wa.getAfternoonStartTime(),wa.getAfternoonEndTime(),wa.getEveningStartTime(),wa.getEveningEndTime()});
+				+ "start_time,end_time) VALUES(?,?,?,?)";
+		int i = jdbcTemplate.update(sql,new Object[]{wa.getEmployeeId(),wa.getArrangePerson(),wa.getStartTime(),wa.getEndTime()});
 		return i;
 	}
 
 	@Override
 	public List<WorkArrangement> findWorkArrangementByEId(int employeeId) {
-		String sql = "SELECT * FROM WORK_ARRANGEMENT WHERE WORK_ARRANGE_ID="+employeeId ;
+		String sql = "SELECT * FROM WORK_ARRANGEMENT WHERE EMPLOYEE_ID="+employeeId ;
 		List<WorkArrangement> l = jdbcTemplate.query(sql, new WorkArrangementRowMapper());
 		return l;
 	}
