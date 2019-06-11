@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50022
 File Encoding         : 65001
 
-Date: 2019-06-10 09:20:36
+Date: 2019-06-11 14:41:09
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -20,41 +20,47 @@ SET FOREIGN_KEY_CHECKS=0;
 -- ----------------------------
 DROP TABLE IF EXISTS `application_for_ew`;
 CREATE TABLE `application_for_ew` (
-  `applicated_person` int(20) NOT NULL,
-  `date` date NOT NULL,
-  `state` int(20) NOT NULL,
-  `applicated_id` int(20) NOT NULL auto_increment,
-  `sectorId` int(20) NOT NULL,
-  PRIMARY KEY  (`applicated_id`),
-  KEY `applicaew` (`applicated_person`),
-  KEY `dsa` (`sectorId`),
-  CONSTRAINT `applicaew` FOREIGN KEY (`applicated_person`) REFERENCES `employee` (`employee_id`),
-  CONSTRAINT `dsa` FOREIGN KEY (`sectorid`) REFERENCES `sector` (`sector_id`)
+  `applicated_id` int(20) NOT NULL,
+  `morning_start_time` datetime NOT NULL,
+  `morning_end_time` datetime NOT NULL,
+  `afternoon_start_time` datetime NOT NULL,
+  `afternoon_end_time` datetime NOT NULL,
+  `evening_start_time` datetime NOT NULL,
+  `evening-end_time` datetime NOT NULL,
+  `ew_state` int(11) NOT NULL,
+  `ew_id` int(20) NOT NULL auto_increment,
+  `ratify_id` int(20) NOT NULL,
+  PRIMARY KEY  (`ew_id`),
+  KEY `asf` (`applicated_id`),
+  KEY `asd` (`ratify_id`),
+  CONSTRAINT `asd` FOREIGN KEY (`ratify_id`) REFERENCES `employee` (`employee_id`),
+  CONSTRAINT `asf` FOREIGN KEY (`applicated_id`) REFERENCES `employee` (`employee_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of application_for_ew
 -- ----------------------------
-INSERT INTO `application_for_ew` VALUES ('15', '2019-06-06', '0', '1', '123');
-INSERT INTO `application_for_ew` VALUES ('1', '2019-06-09', '0', '2', '123');
-INSERT INTO `application_for_ew` VALUES ('15', '2019-06-09', '1', '3', '123');
 
 -- ----------------------------
 -- Table structure for application_for_leave
 -- ----------------------------
 DROP TABLE IF EXISTS `application_for_leave`;
 CREATE TABLE `application_for_leave` (
-  `state` int(20) NOT NULL,
+  `leave_id` int(20) NOT NULL auto_increment,
+  `state` int(1) NOT NULL,
   `start_time` datetime NOT NULL,
   `end_time` datetime NOT NULL,
-  `applicated_person` int(20) NOT NULL,
-  `certificate_person` int(20) NOT NULL,
-  `is_report_back` tinyint(20) NOT NULL,
-  `report_back_time` datetime NOT NULL,
-  PRIMARY KEY  (`applicated_person`),
-  KEY `certificate` (`certificate_person`),
-  CONSTRAINT `application` FOREIGN KEY (`applicated_person`) REFERENCES `employee` (`employee_id`),
-  CONSTRAINT `certificate` FOREIGN KEY (`certificate_person`) REFERENCES `employee` (`employee_id`)
+  `applicated_person` int(11) NOT NULL,
+  `ratified_person` int(11) NOT NULL,
+  `is_report_back` tinyint(4) NOT NULL,
+  `report_back_time` datetime default NULL,
+  `leave_reason` varchar(255) NOT NULL,
+  `reject_reason` varchar(255) NOT NULL,
+  PRIMARY KEY  (`leave_id`),
+  KEY `fdsa` (`applicated_person`),
+  KEY `das` (`ratified_person`),
+  CONSTRAINT `das` FOREIGN KEY (`ratified_person`) REFERENCES `employee` (`employee_id`),
+  CONSTRAINT `fdsa` FOREIGN KEY (`applicated_person`) REFERENCES `employee` (`employee_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
@@ -100,8 +106,8 @@ CREATE TABLE `employee` (
   `enroll_time` datetime NOT NULL,
   `user_id` int(20) NOT NULL,
   PRIMARY KEY  (`employee_id`),
-  KEY `embese` (`sector_id`),
   KEY `saascas` (`user_id`),
+  KEY `em` USING BTREE (`sector_id`),
   CONSTRAINT `saas` FOREIGN KEY (`sector_id`) REFERENCES `sector` (`sector_id`),
   CONSTRAINT `saascas` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='InnoDB free: 10240 kB; (`user_id`) REFER `attendance/user`(`';
@@ -189,11 +195,15 @@ INSERT INTO `user` VALUES ('1007', '7', '0');
 -- ----------------------------
 DROP TABLE IF EXISTS `work_arrangement`;
 CREATE TABLE `work_arrangement` (
-  `start_time` datetime NOT NULL,
-  `end_time` datetime NOT NULL,
   `employee_id` int(20) NOT NULL,
   `arrange_person` int(20) NOT NULL,
-  `work_arrange_id` int(20) NOT NULL,
+  `work_arrange_id` int(20) NOT NULL auto_increment,
+  `morning_start_time` datetime NOT NULL,
+  `morning_end_time` datetime NOT NULL,
+  `afternoon_start_time` datetime NOT NULL,
+  `afternoon_end_time` datetime NOT NULL,
+  `evening_start_time` datetime NOT NULL,
+  `evening_end_time` datetime NOT NULL,
   PRIMARY KEY  (`work_arrange_id`),
   KEY `arranged` (`employee_id`),
   KEY `arrange` (`arrange_person`),
