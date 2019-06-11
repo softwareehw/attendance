@@ -23,4 +23,8 @@ public interface ManagerDao {
 	   public List<Manager> findManagerByUserId(int userId);
 	   
 //	   public List<ApplicationForLeave> applicationForLeaveFindAll();
+	   
+	   public int ModifyManager(Manager manager);
+	   
+	   public List<Manager> findManagerByManagerId(int managerId);
 }
