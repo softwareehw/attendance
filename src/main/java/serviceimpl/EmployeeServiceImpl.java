@@ -43,8 +43,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public int applicateLeave(int EmployeeId) {
-		// TODO Auto-generated method stub
-		return applicationForLeaveDao.addApplicationForLeave(EmployeeId);
+//		// TODO Auto-generated method stub
+//		return applicationForLeaveDao.addApplicationForLeave(EmployeeId);
+		return 1;
 	}
     
 	//添加加班申请

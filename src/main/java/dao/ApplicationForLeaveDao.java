@@ -14,20 +14,19 @@ public interface ApplicationForLeaveDao {
 	public int addApplicationForLeave (ApplicationForLeave applicationForLeave);
 	
 	
+
 	/**
-	 *@param    请假员工ID
-	 *@return   所有请假表
+	 *@param  
+	 *@return 一张请假表，同时数据库添加一张请假表
 	 *
 	 */
 	public List<ApplicationForLeave> applicationForLeaveFindById (int applicatedPerson);
 	
 	/**
-	 *@param  员工ID
-	 *@return 一张请假表，同时数据库添加一张请假表
+	 *@param    请假员工ID
+	 *@return   所有请假表
 	 *
 	 */
-	
-	
 	public List<ApplicationForLeave> applicationForLeaveFindAll();
 	
 	
@@ -38,7 +37,7 @@ public interface ApplicationForLeaveDao {
 	 */
 	public List<ApplicationForLeave> findLeavePersonInMyDepartment(int departmentId);
 	
-	//根据部门id查处所有未审核的请假表
 	
+	//根据部门id查处所有未审核的请假表
 	public List<ApplicationForLeave> findApplicationForleaveBySectorId(int sectorId);
 }

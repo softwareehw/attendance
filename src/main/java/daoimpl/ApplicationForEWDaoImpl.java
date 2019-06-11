@@ -302,7 +302,7 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 		
 		for(int i = 0;i < flag.size();i++) {
 			String sql1 = "insert into application_for_ew(applicated_person,date,state) value(?,?,?)";
-			int result = jdbcTemplate.update(sql1,new Object[] {flag.get(i),date.getDate(),1});
+			int result = jdbcTemplate.update(sql1,new Object[] {flag.get(i),date.getStartTime(),1});
 			sum = sum + result;
 		}
 		return sum;
