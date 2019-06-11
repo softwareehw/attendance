@@ -13,12 +13,12 @@ public interface ApplicationForLeaveDao {
 	 */
 	public int addApplicationForLeave (ApplicationForLeave applicationForLeave);
 	
+	
 	/**
 	 *@param    请假员工ID
 	 *@return   所有请假表
 	 *
 	 */
-	
 	public List<ApplicationForLeave> applicationForLeaveFindById (int applicatedPerson);
 	
 	/**
@@ -29,6 +29,8 @@ public interface ApplicationForLeaveDao {
 	
 	
 	public List<ApplicationForLeave> applicationForLeaveFindAll();
+	
+	
 	
 	/**
 	 * 查找本部门的请假员工

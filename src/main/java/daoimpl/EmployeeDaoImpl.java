@@ -49,24 +49,10 @@ public class EmployeeDaoImpl implements EmployeeDao,Serializable {
 		ID=String.valueOf(id);
 		String sql="SELECT * FROM employee WHERE sector_id="+ID;
 		
-		return (List<Employee>) jdbcTemplate.query(sql, new RowMapper<Employee>() {
-			@Override
-			public Employee mapRow(ResultSet rs, int rowNum) throws SQLException {
-				Employee employee = new Employee();
-				employee.setEmployeeId(rs.getInt("employee_id"));
-				employee.setSectorId(rs.getInt("sector_id"));
-				employee.setManager(rs.getBoolean("is_manager"));
-				employee.setName(rs.getString("name"));
-				employee.setAge(rs.getInt("age"));
-				employee.setSalary(rs.getInt("salary"));
-				employee.setSex(rs.getBoolean("sex"));
-				employee.setPhoneNumber(rs.getInt("phone_number"));
-				employee.setEnrollTime(rs.getDate("enroll_time"));
-				return employee;
-			}
-			
-		});
+		return (List<Employee>) jdbcTemplate.query(sql, new EmployeeRowMapper()) ;
 	}
+	
+	
 //
 //	@Override
 //	public int addApplicateLeave(int EmployeeId) {

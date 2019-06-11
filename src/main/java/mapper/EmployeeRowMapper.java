@@ -28,6 +28,7 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
 		boolean sex = rs.getBoolean("sex"); //1 is man,0 is woman
 		long phoneNumber = rs.getLong("phone_number");
 		Date enrollTime = rs.getDate("enroll_time");
+		int userId = rs.getInt("user_id");
 		
 		Employee employee = new Employee();
 		employee.setEmployeeId(employeeId);
@@ -39,7 +40,7 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
 		employee.setSex(sex);
 		employee.setSectorId(sectorId);
 		employee.setEnrollTime(enrollTime);
-		
+		employee.setUserId(userId);
 		
 		return employee;
 	}

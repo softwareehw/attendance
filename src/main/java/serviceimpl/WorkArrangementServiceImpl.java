@@ -7,7 +7,10 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import bean.Employee;
 import bean.WorkArrangement;
+import dao.EmployeeDao;
+import dao.SectorDao;
 import dao.WorkArrangementDao;
 import service.WorkArrangementService;
 
@@ -16,14 +19,23 @@ public class WorkArrangementServiceImpl implements WorkArrangementService {
 	
 	@Autowired 
 	WorkArrangementDao workarrangementDao;
+	@Autowired 
+	EmployeeDao employeeDao;
+	@Autowired 
+	SectorDao sectorDao;
 
 	@Override
 	public String AddWorkArrangement(WorkArrangement workarrangement) {
+		int i = workarrangementDao.AddWorkArrangement(workarrangement);
+		JSONObject json = new JSONObject();
+		if(i==1){
+			json.put("state", 1);
+		}else{
+			json.put("state", 0);
+			json.put("error_message", "添加工作安排失败");
+		}
 		
-		
-		
-		
-		return null;
+		return json.toString();
 	}
 
 	@Override
@@ -38,6 +50,25 @@ public class WorkArrangementServiceImpl implements WorkArrangementService {
 			json.put("state", "0");
 			return json.toString();
 		}
+	}
+
+	@Override
+	public String AddWAInSector(int sectorId, WorkArrangement workArrangement) {
+		WorkArrangement wa = workArrangement;
+		JSONObject json = new JSONObject();
+		List<Employee> employeeIdList ;
+	    employeeIdList = sectorDao.employeeInfoBySectorId(sectorId);
+		
+		for (Employee employee : employeeIdList) {
+			workArrangement.setEmployeeId(employee.getEmployeeId());
+			int i = workarrangementDao.AddWorkArrangement(workArrangement);
+			if(i==0){
+				json.put(String.valueOf(employee.getEmployeeId()), "error");
+			}else{
+				json.put(String.valueOf(employee.getEmployeeId()), "success");
+			}
+		}
+		return json.toString();
 	}
 
 }

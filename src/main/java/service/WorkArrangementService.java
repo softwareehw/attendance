@@ -18,5 +18,14 @@ public interface WorkArrangementService {
 	 * @return
 	 */
 	public String findWorkArrangementByEId(int employeeId);
+	
+	
+	/**
+	 * 增加一整个部门的工作安排
+	 * @param sectorId
+	 * @param workArrangement
+	 * @return
+	 */
+	public String AddWAInSector(int sectorId,WorkArrangement workArrangement);
 
 }
