@@ -18,17 +18,32 @@ public class ApplicationForEWRowMapper implements RowMapper<ApplicationForEW> {
 	public ApplicationForEW mapRow(ResultSet rs, int rowNum) throws SQLException {
 		// TODO Auto-generated method stub
 		int applicatedId = rs.getInt("applicated_id");
-		int applicatedPerson = rs.getInt("applicated_person");
-		Date date = rs.getDate("date");
-		int sectorId = rs.getInt("sectorid");
-		int state = rs.getInt("state");
+		Date morningStartTime = rs.getDate("morning_start_time");
+		Date morningEndTime = rs.getDate("morning_end_time");
+		Date afternoonStartTime = rs.getDate("afternoon_start_time");
+		Date afternoonEndTime = rs.getDate("afternoon_end_time");
+		Date eveningStartTime = rs.getDate("evening_start_time");
+		Date eveningEndTime = rs.getDate("evening_end_time");
+		int ewState = rs.getInt("ew_state");
+		int ewId = rs.getInt("ew_id");
+		int ratifyId = rs.getInt("ratify_id");
+		
 		
 		ApplicationForEW applicationForEW = new ApplicationForEW();
 		applicationForEW.setApplicatedId(applicatedId);
-		applicationForEW.setApplicatedPerson(applicatedPerson);
-		applicationForEW.setDate(date);
-		applicationForEW.setSectorId(sectorId);
-		applicationForEW.setState(state);
+		applicationForEW.setMorningStartTime(morningStartTime);
+		applicationForEW.setMorningEndTime(morningEndTime);
+		applicationForEW.setAfternoonStartTime(afternoonStartTime);
+		applicationForEW.setAfternoonEndTime(afternoonEndTime);
+		applicationForEW.setEveningStartTime(eveningStartTime);
+		applicationForEW.setEveningEndTime(eveningEndTime);
+		applicationForEW.setEwId(ewId);
+		applicationForEW.setEwState(ewState);
+		applicationForEW.setRatifyId(ratifyId);
+		
+		
+		
+		
 		
 		return applicationForEW;
 	}
