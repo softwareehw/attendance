@@ -35,7 +35,7 @@ import face.search.FaceSearch;
 import service.EmployeeService;
 
 //部署到服务器上的时候请一定使用 @CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true") 才能和前端正常交互
-@CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true")
+//@CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true")
 @RestController
 @RequestMapping("/api/v1/employees")
 public class EmployeeController {
@@ -68,20 +68,23 @@ public class EmployeeController {
 		return employeeService.deleteApplication(applicatedId);
 	}
 	
-	@RequestMapping(value="/{employeeId}",method=RequestMethod.PUT)
-	public String updateEmployee( @PathVariable Employee e){
-		logger.info("修改员工信息");
-		JSONObject ans=new JSONObject();
-		ans.put("state", 1);
-		if(employeeService.updateEmployee(e)==1) {
-			return ans.toString();
-		}
-		else {
-			ans.put("error_message","不存在这个员工");
-			ans.put("state", 0);
-			return ans.toString();
-			
-		}
+	@RequestMapping(value="/change",method=RequestMethod.POST)
+	public String updateEmployee( HttpServletRequest request,@RequestParam("name") String name,@RequestParam("employeeId") int employeeId){
+     System.out.println(employeeId);
+     System.out.println(name);
+		//		logger.info("修改员工信息");
+//		JSONObject ans=new JSONObject();
+//		ans.put("state", 1);
+//		if(employeeService.updateEmployee(e)==1) {
+//			return ans.toString();
+//		}
+//		else {
+//			ans.put("error_message","不存在这个员工");
+//			ans.put("state", 0);
+//			return ans.toString();
+//			
+//		}
+     return null;
     }
 	
 	/**

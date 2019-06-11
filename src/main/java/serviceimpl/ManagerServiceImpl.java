@@ -182,6 +182,22 @@ public class ManagerServiceImpl implements ManagerService{
 		
 	}
 
+	@Override
+	public String findApplicationForleaveBySectorId(int sectorId) {
+		// TODO Auto-generated method stub
+		List<ApplicationForLeave> list = appplicationForLeaveDao.findApplicationForleaveBySectorId(sectorId);
+		JSONObject ans = new JSONObject();
+		if(list.isEmpty()) {
+			ans.put("state", 0);
+			ans.put("errormessage", "没有未批准的请假申请表或没有这个部门");
+			return ans.toString();
+		}else{
+			JSONArray jay = new JSONArray(list);
+			return jay.toString();
+		}
+		
+	}
+
 
 	
 	

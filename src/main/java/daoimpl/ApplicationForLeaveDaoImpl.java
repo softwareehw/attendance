@@ -28,7 +28,7 @@ public class ApplicationForLeaveDaoImpl implements ApplicationForLeaveDao {
 				applicationForLeave.isReportBack(),applicationForLeave.getReportBackTime(),applicationForLeave.getLeaveReason());
 	}
  
-	//根据Id查出请假记录
+	//根据员工Id查出请假记录
 	@Override
 	public List<ApplicationForLeave> applicationForLeaveFindById(int applicatedPerson) {
 		// TODO Auto-generated method stub
@@ -71,6 +71,15 @@ public class ApplicationForLeaveDaoImpl implements ApplicationForLeaveDao {
 		
 		
        return (List<ApplicationForLeave>) jdbcTemplate.query(sql, new ApplicationForLeaveRowMapper() {
+			
+		});
+	}
+
+	@Override
+	public List<ApplicationForLeave> findApplicationForleaveBySectorId(int sectorId) {
+		// TODO Auto-generated method stub
+		String sql = "SELECT * FROM application_for_leave WHERE applicated_person IN(select employee_id from employee WHERE sector_id = ?) and state = 0";
+		return (List<ApplicationForLeave>) jdbcTemplate.query(sql, new Object[] {sectorId},new ApplicationForLeaveRowMapper() {
 			
 		});
 	}
