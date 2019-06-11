@@ -127,13 +127,13 @@ public class EmployeeController {
     }
 	
 	@RequestMapping("/employeeAdd")
-    public int addEmployee(@RequestBody Employee employee){
+    public String addEmployee(@RequestBody Employee employee){
 		logger.info("向数据库添加员工");
     	return employeeService.addEmployee(employee);
     }
 	
 	@RequestMapping("/deleteemployee/{employeeId}")
-    public int deleteEmployeeById(@PathVariable int employeeId){
+    public String deleteEmployeeById(@PathVariable int employeeId){
 		logger.info("从数据库中根据员工id="+employeeId+",删除相应Employee信息");
     	return employeeService.deleteEmployee(employeeId);
     }

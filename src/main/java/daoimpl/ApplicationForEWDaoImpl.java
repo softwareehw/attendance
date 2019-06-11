@@ -65,6 +65,8 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 		
 		return list;
 	}
+	
+	//查看全部加班记录
 	@Override
 	public List<ApplicationForEW> findAll() {
 		// TODO Auto-generated method stub

@@ -26,7 +26,7 @@ public interface ApplicationForLeaveDao {
 	 *@return 一张请假表，同时数据库添加一张请假表
 	 *
 	 */
-	public int addApplicateLeave(int EmployeeId);
+	
 	
 	public List<ApplicationForLeave> applicationForLeaveFindAll();
 	

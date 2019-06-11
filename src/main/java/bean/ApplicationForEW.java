@@ -10,14 +10,10 @@ public class ApplicationForEW {
 	private int ewId;
 	private int ratifyId;
 	
-	private Date morningStartTime;
-	private Date morningEndTime;
+	private Date startTime;
+	private Date endTime;
 	
-	private Date afternoonStartTime;
-	private Date afternoonEndTime;
-	
-	private Date eveningStartTime;
-	private Date eveningEndTime;
+
 	public int getApplicatedId() {
 		return applicatedId;
 	}
@@ -42,42 +38,7 @@ public class ApplicationForEW {
 	public void setRatifyId(int ratifyId) {
 		this.ratifyId = ratifyId;
 	}
-	public Date getMorningStartTime() {
-		return morningStartTime;
-	}
-	public void setMorningStartTime(Date morningStartTime) {
-		this.morningStartTime = morningStartTime;
-	}
-	public Date getMorningEndTime() {
-		return morningEndTime;
-	}
-	public void setMorningEndTime(Date morningEndTime) {
-		this.morningEndTime = morningEndTime;
-	}
-	public Date getAfternoonStartTime() {
-		return afternoonStartTime;
-	}
-	public void setAfternoonStartTime(Date afternoonStartTime) {
-		this.afternoonStartTime = afternoonStartTime;
-	}
-	public Date getAfternoonEndTime() {
-		return afternoonEndTime;
-	}
-	public void setAfternoonEndTime(Date afternoonEndTime) {
-		this.afternoonEndTime = afternoonEndTime;
-	}
-	public Date getEveningStartTime() {
-		return eveningStartTime;
-	}
-	public void setEveningStartTime(Date eveningStartTime) {
-		this.eveningStartTime = eveningStartTime;
-	}
-	public Date getEveningEndTime() {
-		return eveningEndTime;
-	}
-	public void setEveningEndTime(Date eveningEndTime) {
-		this.eveningEndTime = eveningEndTime;
-	}
+
 	
 	
 }
