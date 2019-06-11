@@ -16,10 +16,12 @@ import bean.ApplicationForLeave;
 import bean.Employee;
 import bean.Manager;
 import bean.Sector;
+import bean.User;
 import dao.ApplicationForEWDao;
 import dao.EmployeeDao;
 import dao.ManagerDao;
 import dao.SectorDao;
+import dao.UserDao;
 import service.ManagerService;
 
 @Service
@@ -35,6 +37,8 @@ public class ManagerServiceImpl implements ManagerService{
 	private SectorDao sectorDao;
 	@Autowired
 	private ApplicationForLeaveDao appplicationForLeaveDao;
+	@Autowired
+	private UserDao userDao;
 
 
 	@Override
@@ -158,6 +162,24 @@ public class ManagerServiceImpl implements ManagerService{
 		else {
 			return null;
 		}
+	}
+
+	//添加user
+	@Override
+	public String addUser(User user) {
+		// TODO Auto-generated method stub
+		JSONObject json = new JSONObject();
+		int i = userDao.addUser(user);
+		if(i!=1){
+			json.put("status", 0);
+			json.put("error_message", "添加失败");
+			return json.toString();
+		}else{
+			json.put("status", 1);
+		}
+		//如果成功，返回
+		return json.toString();
+		
 	}
 
 

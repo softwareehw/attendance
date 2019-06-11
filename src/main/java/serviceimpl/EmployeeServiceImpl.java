@@ -44,7 +44,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public int applicateLeave(int EmployeeId) {
 		// TODO Auto-generated method stub
-		return applicationForLeaveDao.addApplicateLeave(EmployeeId);
+		return applicationForLeaveDao.addApplicationForLeave(EmployeeId);
 	}
     
 	//添加加班申请
@@ -87,47 +87,73 @@ public class EmployeeServiceImpl implements EmployeeService {
 	}
 
 	@Override
-	public int addEmployee(Employee employee) {
+	public String addEmployee(Employee employee) {
 		// TODO Auto-generated method stub
-		return employeeDao.addEmployee(employee);
+		JSONObject json = new JSONObject();
+		int i = employeeDao.addEmployee(employee);
+		if(i!=1){
+			json.put("status", 0);
+			json.put("error_message", "添加失败");
+			return json.toString();
+		}else{
+			json.put("status", 1);
+		}
+		//如果成功，返回
+		return json.toString();
+		
+		
 	}
 
 	@Override
-	public int deleteEmployee(int employeeId) {
+	public String deleteEmployee(int employeeId) {
 		// TODO Auto-generated method stub
-		return employeeDao.deleteEmployee(employeeId);
+		JSONObject json = new JSONObject();
+		int i = employeeDao.deleteEmployee(employeeId);
+		if(i!=1){
+			json.put("status", 0);
+			json.put("error_message", "删除失败");
+			return json.toString();
+		}else{
+			json.put("status", 1);
+		}
+		//如果成功，返回
+		return json.toString();
+		
+		
 	}
 
 	@Override
 	public String attendance(int userId) {
 		// TODO Auto-generated method stub
-		String sql = "select * from attendance_record where employeeid = ? and to_days(start_time) = to_days(?)";
+		String sql = "select * from attendance_record where employeeid = ? and to_days(start_time) = to_days(?) and is_complete = ?";
 		String sql1 = "select * from attendance_record where employeeid = ? and to_days(start_time) = to_days(?) and is_complete = ?";
 		JSONObject ans=new JSONObject();
 		
 		List<AttendanceRecord> result = new ArrayList<AttendanceRecord>();
 		List<AttendanceRecord> result1 = new ArrayList<AttendanceRecord>();
-	    result = jdbcTemplate.query(sql,new Object[] {userId,new Date()},new AttendanceRecordRowMapper() {
+	    result = jdbcTemplate.query(sql,new Object[] {userId,new Date(),0},new AttendanceRecordRowMapper() {
 	    	
 	    });
-	    result1 = jdbcTemplate.query(sql1,new Object[] {userId,new Date(),0},new AttendanceRecordRowMapper() {
+	    result1 = jdbcTemplate.query(sql1,new Object[] {userId,new Date(),1},new AttendanceRecordRowMapper() {
 	    	
 	    });
-	    if(result.isEmpty()) {
-	    attendanceRecordDao.attendance(userId);
-	    ans.put("status", 1);
-		ans.put("id", userId);
-		ans.put("message", "上班打卡成功");
-		return ans.toString();
-	    }else if(!result1.isEmpty()) {
+	    if(result1.size() < 5) {
+	        if(result.isEmpty()) {
+	          attendanceRecordDao.attendance(userId);
+	          ans.put("status", 1);
+		      ans.put("id", userId);
+		      ans.put("message", "上班打卡成功");
+		      return ans.toString();
+	    }else {
 	    	attendanceRecordDao.attendanceDown(userId);
 	    	ans.put("state", 1);
 	    	ans.put("id", userId);
 			ans.put("message", "下班打卡成功");
 	    	return ans.toString();
+	      }
 	    }else{
 	    	ans.put("state", 0);
-	    	ans.put("error_message", "超出打卡次数");
+	    	ans.put("alert", "超出打卡上限");
 	    	return ans.toString();
 	    }
 	}  

@@ -10,6 +10,7 @@ import bean.ApplicationForLeave;
 import bean.Employee;
 import bean.Manager;
 import bean.Sector;
+import bean.User;
 
 public interface ManagerService{
 	//查看所有经理（理论上只有一个）的信息
@@ -64,5 +65,7 @@ public interface ManagerService{
 	public String ModifyManager(Manager m);
 	
 	public Manager findManagerByManagerId(int managerId);
+	
+	public String addUser(User user);
 
 }

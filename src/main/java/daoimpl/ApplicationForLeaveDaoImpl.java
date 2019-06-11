@@ -16,16 +16,19 @@ public class ApplicationForLeaveDaoImpl implements ApplicationForLeaveDao {
 	@Autowired
     private JdbcTemplate jdbcTemplate;
 	
+	
+	//插入请假记录
 	@Override
 	public int addApplicationForLeave(ApplicationForLeave applicationForLeave) {
 		// TODO Auto-generated method stub
-		String sql = "insert into application_for_leave(state,start_time,end_time,applicated_person,certificate_person,is_report_back,report_back_time) values(?,?,?,?,?,?,?)";
+		String sql = "insert into application_for_leave(state,start_time,end_time,applicated_person,ratified_person,is_report_back,report_back_time,leave_reason) values(?,?,?,?,?,?,?,?)";
 		return jdbcTemplate.update(sql,applicationForLeave.isState(),applicationForLeave.getStartTime(),
 				applicationForLeave.getEndTime(),applicationForLeave.getApplicatdPerson(),
-				applicationForLeave.getCertificatedPerson(),
-				applicationForLeave.isReportBack(),applicationForLeave.getReportBackTime());
+				applicationForLeave.getRatifiedPerson(),
+				applicationForLeave.isReportBack(),applicationForLeave.getReportBackTime(),applicationForLeave.getLeaveReason());
 	}
-
+ 
+	//根据Id查出请假记录
 	@Override
 	public List<ApplicationForLeave> applicationForLeaveFindById(int applicatedPerson) {
 		// TODO Auto-generated method stub
@@ -35,13 +38,9 @@ public class ApplicationForLeaveDaoImpl implements ApplicationForLeaveDao {
 		});
 	}
 
+  
 
-	@Override
-	public int addApplicateLeave(int EmployeeId) {
-		// TODO Auto-generated method stub
-		return (Integer) null;
-	}
-
+    //查看全部请假记录
 	@Override
 	public List<ApplicationForLeave> applicationForLeaveFindAll() {
 		// TODO Auto-generated method stub

@@ -40,6 +40,8 @@ public interface ApplicationForEWDao {
 	 */
 	public int addApplicateEW(ApplicationForEW applica);
 	
+	
+	
 	public Boolean announceEW(Calendar start, Calendar end);
 	
 	/**

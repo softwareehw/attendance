@@ -134,7 +134,8 @@ public class EmployeeDaoImpl implements EmployeeDao,Serializable {
 			return jdbcTemplate.update(sql, employee.getSectorId(),employee.isManager(),employee.getName(),employee.getAge(),employee.getSalary(),employee.isSex(),employee.getPhoneNumber(),employee.getEnrollTime());
 			
 	}
-
+    
+	//删除员工
 	@Override
 	public int deleteEmployee(int employeeId) {
 		// TODO Auto-generated method stub

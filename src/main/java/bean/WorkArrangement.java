@@ -10,14 +10,10 @@ public class WorkArrangement {
 	//工作安排id
 	private int work_arrange_id;
 	
-	private Date morningStartTime;
-	private Date morningEndTime;
+	private Date startTime;
+	private Date endTime;
 	
-	private Date afternoonStartTime;
-	private Date afternoonEndTime;
 	
-	private Date eveningStartTime;
-	private Date eveningEndTime;
 	
 	public int getEmployeeId() {
 		return employeeId;
@@ -37,43 +33,6 @@ public class WorkArrangement {
 	public void setWork_arrange_id(int work_arrange_id) {
 		this.work_arrange_id = work_arrange_id;
 	}
-	public Date getMorningStartTime() {
-		return morningStartTime;
-	}
-	public void setMorningStartTime(Date morningStartTime) {
-		this.morningStartTime = morningStartTime;
-	}
-	public Date getMorningEndTime() {
-		return morningEndTime;
-	}
-	public void setMorningEndTime(Date morningEndTime) {
-		this.morningEndTime = morningEndTime;
-	}
-	public Date getAfternoonStartTime() {
-		return afternoonStartTime;
-	}
-	public void setAfternoonStartTime(Date afternoonStartTime) {
-		this.afternoonStartTime = afternoonStartTime;
-	}
-	public Date getAfternoonEndTime() {
-		return afternoonEndTime;
-	}
-	public void setAfternoonEndTime(Date afternoonEndTime) {
-		this.afternoonEndTime = afternoonEndTime;
-	}
-	public Date getEveningStartTime() {
-		return eveningStartTime;
-	}
-	public void setEveningStartTime(Date eveningStartTime) {
-		this.eveningStartTime = eveningStartTime;
-	}
-	public Date getEveningEndTime() {
-		return eveningEndTime;
-	}
-	public void setEveningEndTime(Date eveningEndTime) {
-		this.eveningEndTime = eveningEndTime;
-	}
-	
 	
 	
 }

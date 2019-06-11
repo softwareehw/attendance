@@ -57,5 +57,10 @@ public class UserDaoImpl implements UserDao {
 		String sql="SELECT * FROM USER WHERE ID="+id;
 		return (List<User>)jdbcTemplate.query(sql, new UserRowMapper());
 	}
-
+    
+	@Override
+	public int addUser(User user) {
+		String sql = "insert into user(id,password,degree) value(?,?,?)";
+		return jdbcTemplate.update(sql,user.getId(),user.getPassword(),user.getId());
+	}
 }

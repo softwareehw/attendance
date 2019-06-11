@@ -64,7 +64,7 @@ public interface EmployeeService {
 	 *
 	 */
 	
-	public int addEmployee(Employee employee);
+	public String addEmployee(Employee employee);
 	
 	/**
 	 *@param
@@ -72,7 +72,7 @@ public interface EmployeeService {
 	 *
 	 */
 	
-	public int deleteEmployee(int employeeId);
+	public String deleteEmployee(int employeeId);
 	
 	/**
 	 *@param   员工id

@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50022
 File Encoding         : 65001
 
-Date: 2019-06-11 14:41:09
+Date: 2019-06-11 19:40:13
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -21,12 +21,8 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `application_for_ew`;
 CREATE TABLE `application_for_ew` (
   `applicated_id` int(20) NOT NULL,
-  `morning_start_time` datetime NOT NULL,
-  `morning_end_time` datetime NOT NULL,
-  `afternoon_start_time` datetime NOT NULL,
-  `afternoon_end_time` datetime NOT NULL,
-  `evening_start_time` datetime NOT NULL,
-  `evening-end_time` datetime NOT NULL,
+  `start_time` datetime NOT NULL,
+  `end_time` datetime NOT NULL,
   `ew_state` int(11) NOT NULL,
   `ew_id` int(20) NOT NULL auto_increment,
   `ratify_id` int(20) NOT NULL,
@@ -55,7 +51,7 @@ CREATE TABLE `application_for_leave` (
   `is_report_back` tinyint(4) NOT NULL,
   `report_back_time` datetime default NULL,
   `leave_reason` varchar(255) NOT NULL,
-  `reject_reason` varchar(255) NOT NULL,
+  `reject_reason` varchar(255) default NULL,
   PRIMARY KEY  (`leave_id`),
   KEY `fdsa` (`applicated_person`),
   KEY `das` (`ratified_person`),
@@ -87,8 +83,12 @@ INSERT INTO `attendance_record` VALUES ('2', '2019-06-20 14:24:47', '2019-06-04 
 INSERT INTO `attendance_record` VALUES ('12', '2019-06-04 09:00:07', '2019-06-04 09:02:49', '1');
 INSERT INTO `attendance_record` VALUES ('12', '2019-06-04 09:03:37', '2019-06-04 09:04:02', '1');
 INSERT INTO `attendance_record` VALUES ('12', '2019-06-08 21:39:26', '2019-06-08 21:39:30', '1');
-INSERT INTO `attendance_record` VALUES ('12', '2019-06-09 09:28:09', null, '0');
-INSERT INTO `attendance_record` VALUES ('15', '2019-06-09 09:36:40', null, '0');
+INSERT INTO `attendance_record` VALUES ('12', '2019-06-09 09:28:09', '2019-06-11 19:17:53', '1');
+INSERT INTO `attendance_record` VALUES ('12', '2019-06-11 19:26:22', '2019-06-11 19:26:23', '1');
+INSERT INTO `attendance_record` VALUES ('12', '2019-06-11 19:26:24', '2019-06-11 19:26:26', '1');
+INSERT INTO `attendance_record` VALUES ('12', '2019-06-11 19:26:27', '2019-06-11 19:26:28', '1');
+INSERT INTO `attendance_record` VALUES ('12', '2019-06-11 19:26:29', '2019-06-11 19:26:31', '1');
+INSERT INTO `attendance_record` VALUES ('12', '2019-06-11 19:26:33', '2019-06-11 19:26:35', '1');
 
 -- ----------------------------
 -- Table structure for employee
@@ -173,7 +173,7 @@ INSERT INTO `sector` VALUES ('127', '华为', '9', '这是一个站在5G潮头�
 DROP TABLE IF EXISTS `user`;
 CREATE TABLE `user` (
   `id` int(20) NOT NULL auto_increment,
-  `passward` varchar(20) NOT NULL,
+  `password` varchar(20) NOT NULL,
   `degree` int(20) NOT NULL,
   PRIMARY KEY  (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
@@ -198,12 +198,8 @@ CREATE TABLE `work_arrangement` (
   `employee_id` int(20) NOT NULL,
   `arrange_person` int(20) NOT NULL,
   `work_arrange_id` int(20) NOT NULL auto_increment,
-  `morning_start_time` datetime NOT NULL,
-  `morning_end_time` datetime NOT NULL,
-  `afternoon_start_time` datetime NOT NULL,
-  `afternoon_end_time` datetime NOT NULL,
-  `evening_start_time` datetime NOT NULL,
-  `evening_end_time` datetime NOT NULL,
+  `start_time` datetime NOT NULL,
+  `end_time` datetime NOT NULL,
   PRIMARY KEY  (`work_arrange_id`),
   KEY `arranged` (`employee_id`),
   KEY `arrange` (`arrange_person`),
