@@ -66,10 +66,6 @@ public class ApplicationForLeaveDaoImpl implements ApplicationForLeaveDao {
 				+ "application_for_leave"
 				+ "where application_for_leave.applicated_person in"
 				+ " (SELECT EM.EMPLOYEE_ID FROM EMPLOYEE AS EM WHERE EM.SECTOR_ID = 123) ";
-		
-		
-		
-		
        return (List<ApplicationForLeave>) jdbcTemplate.query(sql, new ApplicationForLeaveRowMapper() {
 			
 		});
