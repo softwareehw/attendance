@@ -67,5 +67,8 @@ public interface ManagerService{
 	public Manager findManagerByManagerId(int managerId);
 	
 	public String addUser(User user);
+	
+	//请假根据sectorID
+	public String findApplicationForleaveBySectorId(int sectorId);
 
 }

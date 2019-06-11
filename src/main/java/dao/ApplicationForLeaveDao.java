@@ -35,4 +35,8 @@ public interface ApplicationForLeaveDao {
 	 * @return
 	 */
 	public List<ApplicationForLeave> findLeavePersonInMyDepartment(int departmentId);
+	
+	//根据部门id查处所有未审核的请假表
+	
+	public List<ApplicationForLeave> findApplicationForleaveBySectorId(int sectorId);
 }
