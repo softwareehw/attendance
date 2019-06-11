@@ -69,22 +69,21 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value="/change",method=RequestMethod.POST)
-	public String updateEmployee( HttpServletRequest request,@RequestParam("name") String name,@RequestParam("employeeId") int employeeId){
-     System.out.println(employeeId);
-     System.out.println(name);
-		//		logger.info("修改员工信息");
-//		JSONObject ans=new JSONObject();
-//		ans.put("state", 1);
-//		if(employeeService.updateEmployee(e)==1) {
-//			return ans.toString();
-//		}
-//		else {
-//			ans.put("error_message","不存在这个员工");
-//			ans.put("state", 0);
-//			return ans.toString();
-//			
-//		}
-     return null;
+	public String updateEmployee( HttpServletRequest request,@RequestBody Employee e){
+     
+	    logger.info("修改员工信息");
+		JSONObject ans=new JSONObject();
+		ans.put("state", 1);
+		if(employeeService.updateEmployee(e)==1) {
+			return ans.toString();
+		}
+		else {
+			ans.put("error_message","不存在这个员工");
+			ans.put("state", 0);
+			return ans.toString();
+			
+		}
+    
     }
 	
 	/**

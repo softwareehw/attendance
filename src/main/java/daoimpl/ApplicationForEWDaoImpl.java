@@ -100,9 +100,10 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 	@Override
 	public int addApplicateEW(ApplicationForEW applica) {
 		// TODO Auto-generated method stub
-		String sql = "insert into application_for_ew(applicated_person,date,sectorid,state) "
+		String sql = "insert into application_for_ew(applicated_id,start_time,end_time,ew_state,ratify_id) "
 				+ "values(?,?,?,?)";
-		return jdbcTemplate.update(sql,applica.getApplicatedPerson(),applica.getDate(),applica.getSectorId(),0);
+		return jdbcTemplate.update(sql,applica.getApplicatedId(),applica.getStartTime(),applica.getEndTime(),
+				0,applica.getRatifyId());
 		  
 	}
 
@@ -302,7 +303,7 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 		
 		for(int i = 0;i < flag.size();i++) {
 			String sql1 = "insert into application_for_ew(applicated_person,date,state) value(?,?,?)";
-			int result = jdbcTemplate.update(sql1,new Object[] {flag.get(i),date.getDate(),1});
+			int result = jdbcTemplate.update(sql1,new Object[] {flag.get(i),date.getStartTime(),1});
 			sum = sum + result;
 		}
 		return sum;
