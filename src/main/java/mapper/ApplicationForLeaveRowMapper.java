@@ -17,6 +17,8 @@ public class ApplicationForLeaveRowMapper implements RowMapper<ApplicationForLea
 	@Override
 	public ApplicationForLeave mapRow(ResultSet rs, int rowNum) throws SQLException {
 		// TODO Auto-generated method stub
+		int leaveId = rs.getInt("leave_id");
+		
 	    boolean state = rs.getBoolean("state");
 		//开始时间
 		Date startTime = rs.getDate("start_time"); 
@@ -25,21 +27,28 @@ public class ApplicationForLeaveRowMapper implements RowMapper<ApplicationForLea
 		//申请人id
 		int applicatdPerson = rs.getInt("applicated_person");
 		//批准人id
-		int certificatedPerson = rs.getInt("certificate_person");
+		int ratifiedPerson = rs.getInt("ratified_person");
 		//是否销假
 		boolean isReportBack = rs.getBoolean("is_report_back");
 		//销假结束日期
 	    Date reportBackTime = rs.getDate("report_back_time");
+	    
+	    String leaveReason = rs.getString("leave_reason");
+	    
+	    String rejectReason = rs.getString("reject_reason");
 	
 		
 		ApplicationForLeave applicationForLeave = new ApplicationForLeave();
+		applicationForLeave.setLeaveId(leaveId);
 		applicationForLeave.setState(state);
 		applicationForLeave.setStartTime(startTime);
 		applicationForLeave.setEndTime(endTime);
 		applicationForLeave.setApplicatdPerson(applicatdPerson);
-		applicationForLeave.setCertificatedPerson(certificatedPerson);
+		applicationForLeave.setRatifiedPerson(ratifiedPerson);
 		applicationForLeave.setReportBackTime(reportBackTime);
 		applicationForLeave.setReportBack(isReportBack);
+		applicationForLeave.setLeaveReason(leaveReason);
+		applicationForLeave.setRejectReason(rejectReason);
 		
 		return applicationForLeave;
 	}
