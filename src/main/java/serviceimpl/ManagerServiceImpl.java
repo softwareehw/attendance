@@ -36,6 +36,7 @@ public class ManagerServiceImpl implements ManagerService{
 	@Autowired
 	private ApplicationForLeaveDao appplicationForLeaveDao;
 
+
 	@Override
 	public List<Manager> getList() {
 		
@@ -127,6 +128,35 @@ public class ManagerServiceImpl implements ManagerService{
 		ans.put("state", "0");
 		ans.put("error_message", "发布失败,请重新发布");
 		return ans.toString();
+		}
+	}
+
+	@Override
+	public String ModifyManager(Manager m) {
+		JSONObject json = new JSONObject();
+		int i = managerDao.ModifyManager(m);
+	
+		//如果失败，返回
+		if(i!=1){
+			json.put("status", 0);
+			json.put("error_message", "修改经理信息失败");
+			return json.toString();
+		}else{
+			json.put("status", 1);
+		}
+		//如果成功，返回
+		return json.toString();
+	}
+
+	/**
+	 * 通过manager id查找经理
+	 */
+	@Override
+	public Manager findManagerByManagerId(int managerId) {
+		List<Manager> l = managerDao.findManagerByManagerId(managerId);
+		if(!l.isEmpty()) return l.get(0);
+		else {
+			return null;
 		}
 	}
 

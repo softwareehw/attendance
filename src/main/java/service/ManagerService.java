@@ -59,5 +59,10 @@ public interface ManagerService{
 	 *
 	 */
 	public String addAllApplicationForEW(ApplicationForEW date);
+	
+	
+	public String ModifyManager(Manager m);
+	
+	public Manager findManagerByManagerId(int managerId);
 
 }

@@ -23,6 +23,7 @@ import bean.Sector;
 import bean.WorkArrangement;
 import dao.ManagerDao;
 import mapper.ApplicationForLeaveRowMapper;
+import mapper.ManagerRowMapper;
 
 
 
@@ -351,6 +352,22 @@ public  class ManagerDaoImpl implements ManagerDao {
         });
 		
 	}
+
+
+		@Override
+		public int ModifyManager(Manager manager) {
+			String sql = "UPDATE MANAGER SET NAME=?,AGE=?,SALARY=?,SEX=?,ENROLL_TIME=?";
+			int i = jdbcTemplate.update(sql,new Object[]{manager.getName(),manager.getAge(),manager.getSalary(),manager.isSex(),manager.getEnrollTime()});
+			return i;
+		}
+
+
+		@Override
+		public List<Manager> findManagerByManagerId(int managerId) {
+			String sql = "SELECT * FROM MANAGER WHERE MANAGER_ID="+managerId;
+			
+			return ( List<Manager>)jdbcTemplate.query(sql, new ManagerRowMapper());
+		}
 
 
 //		@Override

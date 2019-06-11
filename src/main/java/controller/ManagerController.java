@@ -18,9 +18,9 @@ import bean.Manager;
 import bean.Sector;
 import service.ManagerService;
 //部署到服务器上的时候请一定使用 @CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true") 才能和前端正常交互
-@CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true")
+//@CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true")
 @RestController
-@RequestMapping("/manager")
+@RequestMapping("api/v1/managers")
 public class ManagerController {
 
     private static final Logger logger = LoggerFactory.getLogger(ManagerController.class);
@@ -90,6 +90,15 @@ public class ManagerController {
 	public int employeeAll(){
 		return 20;
 	}
+	
+	@RequestMapping(value="/{managerId}")
+	public String ModifyManager(@PathVariable int managerId){
+		Manager m = managerService.findManagerByManagerId(managerId);
+		String s  = managerService.ModifyManager(m);
+		return s;
+	}
+	
+	
     
 }
  
