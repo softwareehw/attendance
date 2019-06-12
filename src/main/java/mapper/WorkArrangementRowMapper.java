@@ -15,7 +15,7 @@ public class WorkArrangementRowMapper implements RowMapper<WorkArrangement> {
 		WorkArrangement workarrangement = new WorkArrangement();
 		
 		workarrangement.setEmployeeId(rs.getInt("employee_id"));
-		workarrangement.setWork_arrange_id(rs.getInt("work_arrange_id"));
+		workarrangement.setWorkArrangeId(rs.getInt("work_arrange_id"));
 		
 		workarrangement.setEndTime(rs.getTimestamp("end_time"));
 		workarrangement.setStartTime(rs.getTimestamp("start_time"));
