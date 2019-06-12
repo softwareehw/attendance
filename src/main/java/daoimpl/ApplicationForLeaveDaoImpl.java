@@ -24,9 +24,9 @@ public class ApplicationForLeaveDaoImpl implements ApplicationForLeaveDao {
 	public int addApplicationForLeave(ApplicationForLeave applicationForLeave) {
 		// TODO Auto-generated method stub
 		String sql = "insert into application_for_leave(state,start_time,end_time,applicated_person,is_report_back,leave_reason) values(?,?,?,?,?,?)";
-		return jdbcTemplate.update(sql,applicationForLeave.getState(),applicationForLeave.getStartTime(),
+		return jdbcTemplate.update(sql,0,applicationForLeave.getStartTime(),
 				applicationForLeave.getEndTime(),applicationForLeave.getApplicatdPerson(),
-				applicationForLeave.isReportBack(),applicationForLeave.getLeaveReason());
+				0,applicationForLeave.getLeaveReason());
 	}
 	
 	

@@ -56,7 +56,7 @@ public class WorkArrangementController {
 	/**
 	 * 删除指定工作安排
 	 */
-	@RequestMapping(value="/{workArrangeId}",method=RequestMethod.DELETE)
+	@RequestMapping(value="/delete/{workArrangeId}",method=RequestMethod.GET)
 	public String deleteWAById(@PathVariable int workArrangeId){
 		String ans = workArrangementService.deleteByWAId(workArrangeId);
 		return ans;

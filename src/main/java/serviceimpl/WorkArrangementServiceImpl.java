@@ -46,7 +46,7 @@ public class WorkArrangementServiceImpl implements WorkArrangementService {
 			JSONArray json1  =new JSONArray(l);
 			return json1.toString();
 		}else{
-			json.put("error_message", "没有这个员工");
+			json.put("error_message", "没有这个员工的工作安排");
 			json.put("state", "0");
 			return json.toString();
 		}
