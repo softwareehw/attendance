@@ -110,7 +110,11 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 	
 	//全员加班
 	@Override
-	public Boolean announceEW(Calendar start, Calendar end) {
+	public String announceEW(ApplicationForEW date) {
+		Calendar start = Calendar.getInstance();
+		Calendar end = Calendar.getInstance();
+		start.setTime(date.getStartTime());
+		start.setTime(date.getEndTime());
 		//全员遍历提取出每个员工id
 		String sql="SELECT employee_id FROM employee";
 		List<Integer> employeeId=new ArrayList<Integer>();
@@ -161,7 +165,7 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 			//提取加班申请ApplicationForEW的信息并存储
 			sql="SELECT start_time,end_time FROM application_for_ew WHERE "
 					+ "to_days(start_time)=to_days(\""+datet+"\") AND "
-							+ "applicated_person="+i+" AND state=1";
+							+ "applicated_person="+i+" AND ew_state=1";
 			jdbcTemplate.query(sql, new RowMapper<ApplicationForEW>() {
 
 				@Override
@@ -176,23 +180,23 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 			}
 			);	
 			
-			//提取请假申请ApplicationForLeave的信息并存储
-			sql="SELECT start_time,end_time FROM application_for_leave WHERE "
-					+ "to_days(start_time)=to_days(\""+datet+"\") AND "
-					+ "applicated_person="+i+" AND state=1";
-			jdbcTemplate.query(sql, new RowMapper<ApplicationForLeave>() {
-
-				@Override
-				public ApplicationForLeave mapRow(ResultSet rs, int rowNum) throws SQLException {
-					// TODO Auto-generated method stub
-					Timestamp t = rs.getTimestamp("start_time");
-					Timestamp tt = rs.getTimestamp("end_time");
-					Range ru=new Range(t.getTime(),tt.getTime());
-					banTime.add(ru);
-					return null;
-			}
-			}
-			);	
+//			//提取请假申请ApplicationForLeave的信息并存储
+//			sql="SELECT start_time,end_time FROM application_for_leave WHERE "
+//					+ "to_days(start_time)=to_days(\""+datet+"\") AND "
+//					+ "applicated_person="+i+" AND state=1";
+//			jdbcTemplate.query(sql, new RowMapper<ApplicationForLeave>() {
+//
+//				@Override
+//				public ApplicationForLeave mapRow(ResultSet rs, int rowNum) throws SQLException {
+//					// TODO Auto-generated method stub
+//					Timestamp t = rs.getTimestamp("start_time");
+//					Timestamp tt = rs.getTimestamp("end_time");
+//					Range ru=new Range(t.getTime(),tt.getTime());
+//					banTime.add(ru);
+//					return null;
+//			}
+//			}
+//			);	
 
 			//对banTime按照left从小到大的顺序排列。
 			Collections.sort(banTime, new Comparator<Range>() {
@@ -259,13 +263,14 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 				String timeend=e.get(e.YEAR)+"-"+mm+"-"+e.get(e.DAY_OF_MONTH)+" "
 						+ e.get(e.HOUR_OF_DAY)+":"+e.get(e.MINUTE)+":"+e.get(e.SECOND); //有问题！
 				
-				sql="INSERT INTO application_for_ew (applicated_person,start_time,end_time,state,applicated_id) values("+i+",\""+timestart+"\",\""+timeend+"\",1,0)";
+				sql="INSERT INTO application_for_ew (applicated_id,start_time,end_time,ew_state,ratify_id,ew_reason) values("+i+",\""+timestart+"\",\""+timeend+"\",1,"+date.getRatifyId()+",\""+date.getEwReason+"\")";
 				jdbcTemplate.update(sql);
 			}
 			
 		}
 		return null;
 	}
+	
 	@Override
 	public List<ApplicationForEW> getUncheckApplicationForEW(int sectorId) {
 		// TODO Auto-generated method stub
@@ -292,23 +297,6 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 			
 		});
 		
-	}
-	@Override
-	public int addAllApplicationForEW(ApplicationForEW date) {
-		// TODO Auto-generated method stub
-		int sum = 0;
-		String sql = "select employee_id from employee";
-		
-		List<Employee>  flag = jdbcTemplate.query(sql,new EmployeeRowMapper() {
-			
-		});
-		
-		for(int i = 0;i < flag.size();i++) {
-			String sql1 = "insert into application_for_ew(applicated_person,date,state) value(?,?,?)";
-			int result = jdbcTemplate.update(sql1,new Object[] {flag.get(i),date.getStartTime(),1});
-			sum = sum + result;
-		}
-		return sum;
 	}
 
 }
