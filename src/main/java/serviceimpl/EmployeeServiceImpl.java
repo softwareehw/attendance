@@ -90,15 +90,24 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public String addEmployee(Employee employee) {
 		// TODO Auto-generated method stub
+		String sql = "select * from employee where sector_id = ? and is_manager = ?";
+		List<Employee> result = jdbcTemplate.query(sql,new Object[] {employee.getSectorId(),true}, new EmployeeRowMapper() {
+			
+		});
 		JSONObject json = new JSONObject();
-		int i = employeeDao.addEmployee(employee);
-		if(i!=1){
+		if(result.size()==0) {
+			employeeDao.addEmployee(employee);
+			json.put("status", 1);
+		}else if(result.size()==1&&!employee.isManager()) {
+			employeeDao.addEmployee(employee);
+			json.put("status", 1);
+		}else {
 			json.put("status", 0);
 			json.put("error_message", "添加失败");
 			return json.toString();
-		}else{
-			json.put("status", 1);
 		}
+		
+		
 		//如果成功，返回
 		return json.toString();
 		
@@ -187,8 +196,18 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 	@Override
 	public int updateEmployee(Employee e) {
-		// TODO Auto-generated method stub
-		return employeeDao.updateEmployee(e);
+
+		String sql = "select * from employee where sector_id = ? and is_manager = true";
+		List<Employee> list = jdbcTemplate.query(sql, new Object[] {e.getSectorId()},new EmployeeRowMapper() );
+	
+		if(list.size()==1&&e.isManager()) {
+			employeeDao.updateEmployee(e);
+			String sql1 = "update employee set is_manager = false where employee_id = ?";
+			return jdbcTemplate.update(sql1,list.get(0).getEmployeeId());
+		}else {
+			return employeeDao.updateEmployee(e);
+		}
+		
 	}
 
 	@Override
