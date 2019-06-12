@@ -47,4 +47,6 @@ public interface ApplicationForLeaveDao {
 	 */
 	public List<ApplicationForLeave> findLeaveByLId(int leaveId);
 	
+	public int CancelCancelLeaveByLeaveId(int leaveId);
+	
 }

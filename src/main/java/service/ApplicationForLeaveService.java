@@ -2,9 +2,12 @@ package service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import bean.ApplicationForLeave;
 import bean.Employee;
 
+@Service
 public interface ApplicationForLeaveService {
 
 	/**
