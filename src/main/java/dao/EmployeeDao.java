@@ -64,7 +64,6 @@ public interface EmployeeDao {
 	 *
 	 */
 	
-	public int addEmployee(Employee employee);
 	
 	/**
 	 *@param  员工Id
@@ -112,6 +111,8 @@ public interface EmployeeDao {
 //	public List<AttendanceRecord> attendanceFindById (int userId);
 	
 	public List<Employee> findEmployeeByUserId(int userId);
+
+	public int addEmployee(Employee employee, int id);
 	
 //	/**
 //	 *@param   请假类

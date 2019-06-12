@@ -169,7 +169,7 @@ public class ManagerServiceImpl implements ManagerService{
 	public String addUser(User user) {
 		// TODO Auto-generated method stub
 		JSONObject json = new JSONObject();
-		int i = userDao.addUser(user);
+		int i = userDao.addUser();
 		if(i!=1){
 			json.put("status", 0);
 			json.put("error_message", "添加失败");

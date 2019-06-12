@@ -15,6 +15,7 @@ import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
@@ -35,7 +36,7 @@ import face.search.FaceSearch;
 import service.EmployeeService;
 
 //部署到服务器上的时候请一定使用 @CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true") 才能和前端正常交互
-@CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true")
+//@CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true")
 @RestController
 @RequestMapping("/api/v1/employees")
 public class EmployeeController {
@@ -68,7 +69,7 @@ public class EmployeeController {
 		return employeeService.deleteApplication(applicatedId);
 	}
 	
-	@RequestMapping(value="/change",method=RequestMethod.POST)
+	@RequestMapping(value="",method=RequestMethod.PUT)
 	public String updateEmployee( HttpServletRequest request,@RequestBody Employee e){
      
 	    logger.info("修改员工信息");
@@ -128,13 +129,13 @@ public class EmployeeController {
     	return employeeService.applicationForLeaveFindById(applicaedPerson);
     }
 	
-	@RequestMapping("/employeeAdd")
+	@RequestMapping(value="", method=RequestMethod.POST)
     public String addEmployee(@RequestBody Employee employee){
 		logger.info("向数据库添加员工");
     	return employeeService.addEmployee(employee);
     }
 	
-	@RequestMapping("/deleteemployee/{employeeId}")
+	@DeleteMapping("/{employeeId}")
     public String deleteEmployeeById(@PathVariable int employeeId){
 		logger.info("从数据库中根据员工id="+employeeId+",删除相应Employee信息");
     	return employeeService.deleteEmployee(employeeId);
