@@ -32,5 +32,7 @@ public interface WorkArrangementService {
 	public String deleteByWAId(int workArrangeId);
 	
 	public String modifyByWAId(WorkArrangement workArrangement);
+	
+	public int findNormalWorkTime(int employeeId);
 
 }

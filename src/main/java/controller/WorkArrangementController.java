@@ -81,5 +81,15 @@ public class WorkArrangementController {
 		String ans = workArrangementService.modifyByWAId(workArrangement);
 		return ans;
 	}		
+	
+	
+	
+	
+	@RequestMapping(value="/sumtime/{employeeId}",method=RequestMethod.PUT)
+	public String GetSumTimeByEId(@PathVariable int employeeId){
+		
+		
+				return ans;
+	}	
 
 }

@@ -26,5 +26,6 @@ public interface WorkArrangementDao {
 	public int deleteByWAId(int workArrangementId);
 	
 	public int ModifyByWAId(WorkArrangement workArrangement);
+	
 
 }

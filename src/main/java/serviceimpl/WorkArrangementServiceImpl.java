@@ -108,9 +108,7 @@ public class WorkArrangementServiceImpl implements WorkArrangementService {
         int month = cale.get(Calendar.MONTH) + 1;
 
 		for (WorkArrangement workArrangement : l) {
-			if(workArrangement.getStartTime().getMonth()==month){
-				
-			}
+
 		}
 		
 		
