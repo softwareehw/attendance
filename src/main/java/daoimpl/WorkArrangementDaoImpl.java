@@ -27,8 +27,10 @@ public class WorkArrangementDaoImpl implements WorkArrangementDao {
 
 	@Override
 	public List<WorkArrangement> findWorkArrangementByEId(int employeeId) {
-		String sql = "SELECT * FROM WORK_ARRANGEMENT WHERE EMPLOYEE_ID="+employeeId ;
-		List<WorkArrangement> l = jdbcTemplate.query(sql, new WorkArrangementRowMapper());
+		String sql = "select * from work_arrangement where employee_id =  ?" ;
+		List<WorkArrangement> l = jdbcTemplate.query(sql, new Object[] {employeeId} ,new WorkArrangementRowMapper() {
+			
+		});
 		return l;
 	}
 
