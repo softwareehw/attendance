@@ -147,4 +147,6 @@ public interface EmployeeService {
 	 */
 	
 	public String updateEmployeeInfoApplicationForEW( int applicatedId);
+	
+	public String findAttendanceRecordBySectorId(int sectorId);
 }
