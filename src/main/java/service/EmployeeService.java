@@ -7,6 +7,7 @@ import bean.ApplicationForEW;
 import bean.ApplicationForLeave;
 import bean.AttendanceRecord;
 import bean.Employee;
+import bean.User;
 /**
  *@author 29226
  *@注释   员工接口
@@ -147,4 +148,8 @@ public interface EmployeeService {
 	 */
 	
 	public String updateEmployeeInfoApplicationForEW( int applicatedId);
+	
+	public String findAttendanceRecordBySectorId(int sectorId);
+	
+	public String judgeDegree(User user);
 }

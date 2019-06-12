@@ -12,8 +12,14 @@ public class ApplicationForEW {
 	
 	private Date startTime;
 	private Date endTime;
-	
+	private String ewReason;
 
+	public String getEwReason() {
+		return ewReason;
+	}
+	public void setEwReason(String ewReason) {
+		this.ewReason = ewReason;
+	}
 	public int getApplicatedId() {
 		return applicatedId;
 	}

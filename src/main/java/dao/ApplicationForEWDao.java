@@ -41,8 +41,13 @@ public interface ApplicationForEWDao {
 	public int addApplicateEW(ApplicationForEW applica);
 	
 	
-	
-	public Boolean announceEW(Calendar start, Calendar end);
+	/**
+	 * 发布全员加班
+	 *@param
+	 *@return
+	 *
+	 */
+	public String announceEW(ApplicationForEW date);
 	
 	/**
 	 *@param   部门ID
@@ -66,12 +71,8 @@ public interface ApplicationForEWDao {
 	 */
 	public List<ApplicationForEW> updateEmployeeInfoApplicationForEW(int applicated);
 	
-	/**
-	 * 发布全员加班
-	 *@param
-	 *@return
-	 *
-	 */
+	
+
 
 	public int addAllApplicationForEW(ApplicationForEW date);
 	
@@ -79,4 +80,5 @@ public interface ApplicationForEWDao {
 	
 	
 	public int RatifyEW(ApplicationForEW applicationForEW);
+
 }

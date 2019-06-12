@@ -31,7 +31,9 @@ public class ApplicationForEWController {
 	@Autowired
 	private ManagerService managerService;
 	@Autowired
+
 	private ApplicationForEWService applicationForEWService;
+
 	
 	//申请加班
 	@RequestMapping("/employees/{employeeId}")
@@ -61,7 +63,7 @@ public class ApplicationForEWController {
 	//发布全员加班
 	@RequestMapping("")
 	public String addAllApplicationForEW(@RequestBody ApplicationForEW date) {
-		return managerService.addAllApplicationForEW(date);
+		return managerService.announceEW(date);
 	}
 	
 	

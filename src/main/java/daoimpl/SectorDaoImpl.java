@@ -73,4 +73,15 @@ public class SectorDaoImpl implements SectorDao {
 		});
 	}
 
+
+	@Override
+	public int findAllEmployeeBySectorId(int sectorId) {
+		// TODO Auto-generated method stub
+		String sql = "select * from employee where sector_id = ?";
+		List<Employee> list = jdbcTemplate.query(sql, new Object[] {sectorId},new EmployeeRowMapper() {
+			
+		});
+		return list.size();
+	}
+
 }

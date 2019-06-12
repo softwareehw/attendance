@@ -231,8 +231,8 @@ public class EmployeeController {
 	
 	
 	//人脸更新
-	@PostMapping(value="/ai/{id}/photo/update" , consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
-	public boolean update(@RequestParam("image") MultipartFile image,@PathVariable int id) throws Exception {
+	@PostMapping(value="/ai/photo/update" , consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
+	public boolean update(@RequestParam("image") MultipartFile image,@RequestParam("id") int id) throws Exception {
 		try {
 			logger.info("接受图片");
 			//保存文件

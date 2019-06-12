@@ -24,7 +24,7 @@ import face.search.FaceSearch;
 import service.EmployeeService;
 
 //部署到服务器上的时候请一定使用 @CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true") 才能和前端正常交互
-@CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true")
+@CrossOrigin(origins = "*", maxAge = 3600,allowCredentials="true")
 @RestController
 @RequestMapping("/api/v1/ai")
 public class AiController {
@@ -48,8 +48,6 @@ public class AiController {
 	//上班打卡识别
 	@PostMapping(value="/attendance",consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
 	public String identifyP(@RequestParam("image") MultipartFile image) throws Exception{
-		
-		
 			logger.info("接受图片");
 			logger.info("开始识别");
 			//return FaceSearch.search(path);
@@ -75,8 +73,9 @@ public class AiController {
 	}
 	
 	//录入照片
-	@PostMapping(value="/photos/employees/{employeeId}" , consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
-	public String add(@RequestParam("image") MultipartFile image,@PathVariable int employeeId) throws Exception {
+
+	@PostMapping(value="/photos/employees" , consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
+	public String add(@RequestParam("image") MultipartFile image,@RequestParam("employeeId") int employeeId) throws Exception {
 		try {
 			logger.info("接受图片");
 			//保存文件
@@ -97,6 +96,9 @@ public class AiController {
             return ans.toString();
 			
 		}
+		
+
+	
 	}
 	
 

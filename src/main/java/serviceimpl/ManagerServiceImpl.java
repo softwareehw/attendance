@@ -61,9 +61,8 @@ public class ManagerServiceImpl implements ManagerService{
 	}
 
 	@Override
-	public Boolean announceEW(Calendar start, Calendar end) {
-		
-		return applicationForEWDao.announceEW(start,end);
+	public String announceEW(ApplicationForEW date) {
+		return applicationForEWDao.announceEW(date);
 	}
 
 	@Override
@@ -116,23 +115,6 @@ public class ManagerServiceImpl implements ManagerService{
 		ans.put("state", 0);
 		ans.put("errormessage", "没有这个员工");
 		return ans.toString();
-	}
-
-	@Override
-	public String addAllApplicationForEW(ApplicationForEW date) {
-		// TODO Auto-generated method stub
-		JSONObject ans = new JSONObject();
-		if(applicationForEWDao.addAllApplicationForEW(date) >= 0) {
-			
-			ans.put("state", "1");
-			ans.put("message", "发布成功");
-			return ans.toString();
-		}else {
-			
-		ans.put("state", "0");
-		ans.put("error_message", "发布失败,请重新发布");
-		return ans.toString();
-		}
 	}
 
 	@Override

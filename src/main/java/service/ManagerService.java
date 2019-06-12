@@ -21,7 +21,7 @@ public interface ManagerService{
 	public Boolean setIsMasterById(int id, boolean isM);
 	
 	//发布全员加班动员
-	public Boolean announceEW(Calendar start,Calendar end);
+	public String announceEW(ApplicationForEW date);
 	
 	//存在问题 手机号码 一旦超过范围使用L我就插不进去了
 	//修改某个员工的信息
@@ -52,14 +52,6 @@ public interface ManagerService{
 	 *
 	 */
 	public String getEmployeeInfoApplicationForEW(int employeeId);
-	
-	/**      
-	 *      发布全员加班
-	 *@param
-	 *@return 
-	 *
-	 */
-	public String addAllApplicationForEW(ApplicationForEW date);
 	
 	
 	public String ModifyManager(Manager m);

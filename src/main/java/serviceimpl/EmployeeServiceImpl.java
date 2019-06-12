@@ -19,6 +19,7 @@ import bean.ApplicationForEW;
 import bean.ApplicationForLeave;
 import bean.AttendanceRecord;
 import bean.Employee;
+import bean.User;
 import dao.ApplicationForEWDao;
 import dao.ApplicationForLeaveDao;
 import dao.AttendanceRecordDao;
@@ -27,6 +28,7 @@ import dao.SectorDao;
 import dao.UserDao;
 import mapper.AttendanceRecordRowMapper;
 import mapper.EmployeeRowMapper;
+import mapper.UserRowMapper;
 import service.EmployeeService;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -273,6 +275,36 @@ public class EmployeeServiceImpl implements EmployeeService {
 	public String getUncheckApplicationForEW(int sectorId) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	@Override
+	public String findAttendanceRecordBySectorId(int sectorId) {
+		// TODO Auto-generated method stub
+		JSONObject ans = new JSONObject();
+		List<AttendanceRecord> list = attendanceRecordDao.findAttendanceRecordBySectorId(sectorId);
+		JSONArray jay = new JSONArray(list);
+		if(!list.isEmpty()) {
+			return jay.toString();
+		}else {
+			
+			ans.put("state", 0);
+			ans.put("errormessage", "没有这个部门或没有打卡记录");
+			return ans.toString();
+		}
+		
+	}
+
+	@Override
+	public String judgeDegree(User user) {
+		// TODO Auto-generated method stub
+		String sql = "select * from user where id= ? and password = ?";
+		List<User> list = jdbcTemplate.query(sql, new Object[] {user.getId(),user.getPassword()},new UserRowMapper() {
+			
+		});
+		if(!list.isEmpty()) {
+		return employeeDao.judgeDegree(user);
+		}
+		return "false";
 	}
 
 

@@ -45,4 +45,14 @@ public class AttendanceRecordDaoImpl implements AttendanceRecordDao {
 		return jdbcTemplate.update(sql,new Date(),1,userId,0);
 	}
 
+	@Override
+	public List<AttendanceRecord> findAttendanceRecordBySectorId(int sectorId) {
+		// TODO Auto-generated method stub
+		String sql = "select * from attendance_record where employeeid in(select employee_id from employee where sector_id = ?)";
+		return jdbcTemplate.query(sql, new Object[] {sectorId},new AttendanceRecordRowMapper() {
+			
+		});
+		
+	}
+
 }

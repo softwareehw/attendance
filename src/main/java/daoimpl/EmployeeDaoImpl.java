@@ -7,6 +7,7 @@ import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 
+import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -17,10 +18,12 @@ import bean.ApplicationForLeave;
 import bean.AttendanceRecord;
 import bean.Employee;
 import bean.Manager;
+import bean.User;
 import dao.EmployeeDao;
 import mapper.ApplicationForEWRowMapper;
 import mapper.ApplicationForLeaveRowMapper;
 import mapper.EmployeeRowMapper;
+import mapper.UserRowMapper;
 import mapper.AttendanceRecordRowMapper;
 
 @Repository
@@ -115,7 +118,7 @@ public class EmployeeDaoImpl implements EmployeeDao,Serializable {
 //			String timett=s.get(s.YEAR)+"-"+mm+"-"+s.get(s.DAY_OF_MONTH)+" "
 //					+ s.get(s.HOUR_OF_DAY)+":"+s.get(s.MINUTE)+":"+s.get(s.SECOND);
 //			System.out.println(timett);
-			String sql="insert into employee(employee_id,sector_id,is_manager,name,age,salary,sex,phone_number,enroll_time,user_id) value(?,?,?,?,?,?,?,?,?)";
+			String sql="insert into employee(employee_id,sector_id,is_manager,name,age,salary,sex,phone_number,enroll_time,user_id) value(?,?,?,?,?,?,?,?,?,?)";
 			
 			return jdbcTemplate.update(sql, employee.getEmployeeId(),employee.getSectorId(),employee.isManager(),employee.getName(),employee.getAge(),employee.getSalary(),employee.isSex(),employee.getPhoneNumber(),new Date(),id);
 			
@@ -230,6 +233,37 @@ public class EmployeeDaoImpl implements EmployeeDao,Serializable {
 				" where user_id = ?";
 		return jdbcTemplate.update(sql,new Object[] {e.getSectorId(),e.isManager(),e.getName(),e.getAge()
 				,e.getSalary(),e.isSex(),e.getPhoneNumber(),e.getUserId()});
+	}
+
+	@Override
+	public String judgeDegree(User user) {
+		// TODO Auto-generated method stub
+		String sql = "select * from employee where user_id = ? and is_manager = ?";
+		List<Employee> list = jdbcTemplate.query(sql, new Object[] {user.getId(),true},new EmployeeRowMapper() {
+			
+		});
+		String sql2 =  "select * from employee where user_id = ? and is_manager = ?";
+		List<Employee> list2 = jdbcTemplate.query(sql2, new Object[] {user.getId(),false},new EmployeeRowMapper() {
+			
+		});
+		String sql1 = "select * from manager where user_id = ?";
+        List<User> list1 = jdbcTemplate.query(sql1, new Object[] {user.getId()},new UserRowMapper() {
+			
+		});
+        
+        JSONObject ans = new JSONObject();
+        if(list.size()==1) {
+        	ans.put("degree", 2);
+        	ans.put("employeeId", list.get(0).getEmployeeId());
+        	return ans.toString();
+        }else if(list2.size()==1) {
+        	ans.put("degree", 1);
+        	ans.put("employeeId", list2.get(0).getEmployeeId());
+        	return ans.toString();
+        }
+        ans.put("degree", 3);
+    	ans.put("employeeId", 0);
+    	return ans.toString();
 	}
 
 
