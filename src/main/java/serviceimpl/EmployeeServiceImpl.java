@@ -19,6 +19,7 @@ import bean.ApplicationForEW;
 import bean.ApplicationForLeave;
 import bean.AttendanceRecord;
 import bean.Employee;
+import bean.User;
 import dao.ApplicationForEWDao;
 import dao.ApplicationForLeaveDao;
 import dao.AttendanceRecordDao;
@@ -27,6 +28,7 @@ import dao.SectorDao;
 import dao.UserDao;
 import mapper.AttendanceRecordRowMapper;
 import mapper.EmployeeRowMapper;
+import mapper.UserRowMapper;
 import service.EmployeeService;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.PreparedStatementCreator;
@@ -290,6 +292,19 @@ public class EmployeeServiceImpl implements EmployeeService {
 			return ans.toString();
 		}
 		
+	}
+
+	@Override
+	public String judgeDegree(User user) {
+		// TODO Auto-generated method stub
+		String sql = "select * from user where id= ? and password = ?";
+		List<User> list = jdbcTemplate.query(sql, new Object[] {user.getId(),user.getPassword()},new UserRowMapper() {
+			
+		});
+		if(!list.isEmpty()) {
+		return employeeDao.judgeDegree(user);
+		}
+		return "false";
 	}
 
 
