@@ -118,4 +118,13 @@ public class ApplicationForLeaveDaoImpl implements ApplicationForLeaveDao {
 		return i;
 	}
 
+
+
+	@Override
+	public int RatifyLeave(ApplicationForLeave applicationForLeave) {
+		String sql = "update application_for_leave set state=? where leave_id="+applicationForLeave.getLeaveId();
+		int i= jdbcTemplate.update(sql,new Object[]{applicationForLeave.getState()});
+		return i;
+	}
+
 }
