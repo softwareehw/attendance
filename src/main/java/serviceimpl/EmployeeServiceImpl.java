@@ -297,6 +297,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public String judgeDegree(User user) {
 		// TODO Auto-generated method stub
+		JSONObject ans = new JSONObject();
 		String sql = "select * from user where id= ? and password = ?";
 		List<User> list = jdbcTemplate.query(sql, new Object[] {user.getId(),user.getPassword()},new UserRowMapper() {
 			
@@ -304,7 +305,9 @@ public class EmployeeServiceImpl implements EmployeeService {
 		if(!list.isEmpty()) {
 		return employeeDao.judgeDegree(user);
 		}
-		return "false";
+		ans.put("degree", 3);
+    	ans.put("employeeId", 0);
+    	return ans.toString();
 	}
 
 

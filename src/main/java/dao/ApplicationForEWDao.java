@@ -74,7 +74,7 @@ public interface ApplicationForEWDao {
 	
 
 
-	public int addAllApplicationForEW(ApplicationForEW date);
+	
 	
 	
 	
