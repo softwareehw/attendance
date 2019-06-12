@@ -24,6 +24,7 @@ public class ApplicationForEWRowMapper implements RowMapper<ApplicationForEW> {
 		int ewState = rs.getInt("ew_state");
 		int ewId = rs.getInt("ew_id");
 		int ratifyId = rs.getInt("ratify_id");
+		String ewReason = rs.getString("ew_reason");
 		
 		
 		ApplicationForEW applicationForEW = new ApplicationForEW();

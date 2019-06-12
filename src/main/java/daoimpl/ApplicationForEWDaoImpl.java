@@ -77,6 +77,7 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 		
 	}
 
+	//根据id删除申请加班表
 	@Override
 	public int deleteApplicationForEW(int applicatedId) {
 		// TODO Auto-generated method stub
@@ -85,6 +86,7 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 	
 	}
 
+	//查看某申请人全部申请加班
 	@Override
 	public List<ApplicationForEW> findById(int applicatedPerson) {
 		// TODO Auto-generated method stub
@@ -97,13 +99,14 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 		});
 	}
 
+	//申请加班
 	@Override
 	public int addApplicateEW(ApplicationForEW applica) {
 		// TODO Auto-generated method stub
-		String sql = "insert into application_for_ew(applicated_id,start_time,end_time,ew_state,ratify_id) "
+		String sql = "insert into application_for_ew(applicated_id,start_time,end_time,ew_state,ew_reason) "
 				+ "values(?,?,?,?)";
 		return jdbcTemplate.update(sql,applica.getApplicatedId(),applica.getStartTime(),applica.getEndTime(),
-				0,applica.getRatifyId());
+				0,applica.getEwReason());
 		  
 	}
 
@@ -266,6 +269,8 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 		}
 		return null;
 	}
+	
+	//得到某部门所有未批的申请加班表
 	@Override
 	public List<ApplicationForEW> getUncheckApplicationForEW(int sectorId) {
 		// TODO Auto-generated method stub
@@ -275,6 +280,8 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 			
 		});
 	}
+	
+	
 	@Override
 	public List<ApplicationForEW> getEmployeeInfoApplicationForEW(int employeeId) {
 		// TODO Auto-generated method stub
@@ -284,6 +291,8 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 		});
 		
 	}
+	
+	//某人未批的加班表
 	@Override
 	public List<ApplicationForEW> updateEmployeeInfoApplicationForEW( int applicatedId) {
 		// TODO Auto-generated method stub
@@ -293,22 +302,8 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 		});
 		
 	}
-	@Override
-	public int addAllApplicationForEW(ApplicationForEW date) {
-		// TODO Auto-generated method stub
-		int sum = 0;
-		String sql = "select employee_id from employee";
-		
-		List<Employee>  flag = jdbcTemplate.query(sql,new EmployeeRowMapper() {
-			
-		});
-		
-		for(int i = 0;i < flag.size();i++) {
-			String sql1 = "insert into application_for_ew(applicated_person,date,state) value(?,?,?)";
-			int result = jdbcTemplate.update(sql1,new Object[] {flag.get(i),date.getStartTime(),1});
-			sum = sum + result;
-		}
-		return sum;
-	}
+	
+	
+
 
 }

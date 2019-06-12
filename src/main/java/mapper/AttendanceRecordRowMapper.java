@@ -19,8 +19,8 @@ public class AttendanceRecordRowMapper implements RowMapper<AttendanceRecord> {
 	public AttendanceRecord mapRow(ResultSet rs, int rowNum) throws SQLException {
 		// TODO Auto-generated method stub
 		
-		Date startTime = rs.getDate("start_time");
-		Date endTime = rs.getDate("end_time");
+		Date startTime = rs.getTimestamp("start_time");
+		Date endTime = rs.getTimestamp("end_time");
 		int employeeId = rs.getInt("employeeid");
 		int isComplete = rs.getInt("is_complete");
 		
