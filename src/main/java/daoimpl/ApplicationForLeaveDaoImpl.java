@@ -123,8 +123,8 @@ public class ApplicationForLeaveDaoImpl implements ApplicationForLeaveDao {
 
 	@Override
 	public int RatifyLeave(ApplicationForLeave applicationForLeave) {
-		String sql = "update application_for_leave set state=? where leave_id="+applicationForLeave.getLeaveId();
-		int i= jdbcTemplate.update(sql,new Object[]{applicationForLeave.getState()});
+		String sql = "update application_for_leave set state=?,ratified_person=? where leave_id="+applicationForLeave.getLeaveId();
+		int i= jdbcTemplate.update(sql,new Object[]{applicationForLeave.getState(),applicationForLeave.getRatifiedPerson()});
 		return i;
 	}
 

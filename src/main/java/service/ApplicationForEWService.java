@@ -37,4 +37,8 @@ public interface ApplicationForEWService {
 	 *
 	 */
 	public String getUncheckApplicationForEW(int sectorId);
+	
+	
+	
+	public String RatifyEW(ApplicationForEW applicationForEW);
 }

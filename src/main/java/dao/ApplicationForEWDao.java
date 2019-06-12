@@ -73,4 +73,12 @@ public interface ApplicationForEWDao {
 	
 	
 
+
+	public int addAllApplicationForEW(ApplicationForEW date);
+	
+	
+	
+	
+	public int RatifyEW(ApplicationForEW applicationForEW);
+
 }

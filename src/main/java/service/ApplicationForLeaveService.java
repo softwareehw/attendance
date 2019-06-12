@@ -36,4 +36,7 @@ public interface ApplicationForLeaveService {
 	 * 员工销假
 	 */
 	public String CancelLeave(int leaveId);
+	
+	
+	public String RatifyLeave(ApplicationForLeave applicationForLeave);
 }

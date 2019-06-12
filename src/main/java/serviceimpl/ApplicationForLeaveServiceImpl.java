@@ -92,6 +92,20 @@ public class ApplicationForLeaveServiceImpl implements ApplicationForLeaveServic
 		json.put("state", 1);
 		return  json.toString();
 	}
+
+	@Override
+	public String RatifyLeave(ApplicationForLeave applicationForLeave) {
+		int i=applicationForLeavedao.RatifyLeave(applicationForLeave);
+		JSONObject json = new JSONObject();
+		if(i==0){
+			json.put("error_message", "审批失败");
+			json.put("state", 0);
+		}else{
+			json.put("state", 1);
+		}
+		
+		return json.toString();
+	}
 	
 
 }
