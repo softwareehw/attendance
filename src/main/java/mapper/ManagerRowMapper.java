@@ -18,6 +18,7 @@ public class ManagerRowMapper implements RowMapper<Manager>{
         manager.setSalary(rs.getInt("salary"));
         manager.setPhoneNumber(rs.getInt("phone_number"));
         manager.setEnrollTime(rs.getDate("enroll_time"));
+        manager.setUserId(rs.getInt("user_id"));
         
         return manager;
     }

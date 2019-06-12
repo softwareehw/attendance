@@ -239,17 +239,13 @@ public class EmployeeDaoImpl implements EmployeeDao,Serializable {
 	public String judgeDegree(User user) {
 		// TODO Auto-generated method stub
 		String sql = "select * from employee where user_id = ? and is_manager = ?";
-		List<Employee> list = jdbcTemplate.query(sql, new Object[] {user.getId(),true},new EmployeeRowMapper() {
-			
-		});
+		List<Employee> list = jdbcTemplate.query(sql, new Object[] {user.getId(),true},new EmployeeRowMapper());
+		
 		String sql2 =  "select * from employee where user_id = ? and is_manager = ?";
-		List<Employee> list2 = jdbcTemplate.query(sql2, new Object[] {user.getId(),false},new EmployeeRowMapper() {
-			
-		});
+		List<Employee> list2 = jdbcTemplate.query(sql2, new Object[] {user.getId(),false},new EmployeeRowMapper());
+		
 		String sql1 = "select * from manager where user_id = ?";
-        List<User> list1 = jdbcTemplate.query(sql1, new Object[] {user.getId()},new UserRowMapper() {
-			
-		});
+        List<User> list1 = jdbcTemplate.query(sql1, new Object[] {user.getId()},new UserRowMapper() );
         
         JSONObject ans = new JSONObject();
         if(list.size()==1) {
@@ -261,9 +257,9 @@ public class EmployeeDaoImpl implements EmployeeDao,Serializable {
         	ans.put("employeeId", list2.get(0).getEmployeeId());
         	return ans.toString();
         }
-        ans.put("degree", 3);
-    	ans.put("employeeId", 0);
-    	return ans.toString();
+        {
+        return null;
+        }
 	}
 
 
