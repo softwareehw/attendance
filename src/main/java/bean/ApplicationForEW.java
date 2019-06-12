@@ -1,6 +1,8 @@
 package bean;
 
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 //加班申请
 public class ApplicationForEW {
 	
@@ -10,7 +12,9 @@ public class ApplicationForEW {
 	private int ewId;
 	private int ratifyId;
 	
+	@JsonFormat( pattern="yyyy-MM-dd HH:mm:ss")
 	private Date startTime;
+	@JsonFormat( pattern="yyyy-MM-dd HH:mm:ss")
 	private Date endTime;
 	private String ewReason;
 
