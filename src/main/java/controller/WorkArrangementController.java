@@ -55,7 +55,7 @@ public class WorkArrangementController {
 	/**
 	 * 删除指定工作安排
 	 */
-	@RequestMapping(value="/{workArrangeId}",method=RequestMethod.DELETE)
+	@RequestMapping(value="/delete/{workArrangeId}",method=RequestMethod.GET)
 	public String deleteWAById(@PathVariable int workArrangeId){
 		String ans = workArrangementService.deleteByWAId(workArrangeId);
 		return ans;
@@ -66,6 +66,18 @@ public class WorkArrangementController {
 	 */
 	@RequestMapping(value="/{workArrangeId}",method=RequestMethod.PUT)
 	public String modifyWAById(@RequestBody WorkArrangement workArrangement,@PathVariable int workArrangeId){
+		String ans = workArrangementService.modifyByWAId(workArrangement);
+		return ans;
+	}		
+	
+	
+	
+	
+	/**
+	 * 审批请假
+	 */
+	@RequestMapping(value="/ratify",method=RequestMethod.PUT)
+	public String RatifyWAById(@RequestBody WorkArrangement workArrangement){
 		String ans = workArrangementService.modifyByWAId(workArrangement);
 		return ans;
 	}		

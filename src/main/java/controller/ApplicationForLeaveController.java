@@ -40,7 +40,7 @@ public class ApplicationForLeaveController {
 	/**
 	 * 添加一个请假申请
 	 */
-	@RequestMapping(value="/{employeeId}",method=RequestMethod.POST)
+	@RequestMapping(value="",method=RequestMethod.POST)
 	public String AddLeave(@RequestBody ApplicationForLeave applicationForLeave){
 		
 		return applicationForLeaveService.addApplicationForLeave(applicationForLeave);

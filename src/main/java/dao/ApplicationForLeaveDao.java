@@ -49,4 +49,7 @@ public interface ApplicationForLeaveDao {
 	
 	public int CancelCancelLeaveByLeaveId(int leaveId);
 	
+	public int RatifyLeave(ApplicationForLeave applicationForLeave);
+	
+	
 }
