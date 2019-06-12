@@ -115,9 +115,9 @@ public class EmployeeDaoImpl implements EmployeeDao,Serializable {
 //			String timett=s.get(s.YEAR)+"-"+mm+"-"+s.get(s.DAY_OF_MONTH)+" "
 //					+ s.get(s.HOUR_OF_DAY)+":"+s.get(s.MINUTE)+":"+s.get(s.SECOND);
 //			System.out.println(timett);
-			String sql="insert into employee(sector_id,is_manager,name,age,salary,sex,phone_number,enroll_time,user_id) value(?,?,?,?,?,?,?,?,?)";
+			String sql="insert into employee(employee_id,sector_id,is_manager,name,age,salary,sex,phone_number,enroll_time,user_id) value(?,?,?,?,?,?,?,?,?)";
 			
-			return jdbcTemplate.update(sql, employee.getSectorId(),employee.isManager(),employee.getName(),employee.getAge(),employee.getSalary(),employee.isSex(),employee.getPhoneNumber(),new Date(),id);
+			return jdbcTemplate.update(sql, employee.getEmployeeId(),employee.getSectorId(),employee.isManager(),employee.getName(),employee.getAge(),employee.getSalary(),employee.isSex(),employee.getPhoneNumber(),new Date(),id);
 			
 	}
     
@@ -125,8 +125,18 @@ public class EmployeeDaoImpl implements EmployeeDao,Serializable {
 	@Override
 	public int deleteEmployee(int employeeId) {
 		// TODO Auto-generated method stub
-		String sql = "delete from employee where employee_id = ?";
-		return jdbcTemplate.update(sql,employeeId);
+		String sql1 = "delete  from application_for_leave where applicated_person = ?";
+		String sql2 = "delete  from work_arrangement where employee_id = ?";
+		String sql3 = "delete  from application_for_ew where applicated_id = ?";
+		String sql4 = "delete  from attendance_record where employeeid = ?";
+		
+	
+		jdbcTemplate.update(sql1,employeeId);
+		jdbcTemplate.update(sql2,employeeId);
+		jdbcTemplate.update(sql3,employeeId);
+		jdbcTemplate.update(sql4,employeeId);
+		String sql5 = "delete from employee where employee_id = ?";
+		return jdbcTemplate.update(sql5,employeeId);
 	}
 
 

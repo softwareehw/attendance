@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50022
 File Encoding         : 65001
 
-Date: 2019-06-12 21:10:38
+Date: 2019-06-12 22:20:59
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -56,7 +56,6 @@ CREATE TABLE `application_for_leave` (
   PRIMARY KEY  (`leave_id`),
   KEY `fdsa` (`applicated_person`),
   KEY `das` (`ratified_person`),
-  CONSTRAINT `das` FOREIGN KEY (`ratified_person`) REFERENCES `employee` (`employee_id`),
   CONSTRAINT `fdsa` FOREIGN KEY (`applicated_person`) REFERENCES `employee` (`employee_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
@@ -80,7 +79,6 @@ CREATE TABLE `attendance_record` (
 -- ----------------------------
 -- Records of attendance_record
 -- ----------------------------
-INSERT INTO `attendance_record` VALUES ('2', '2019-06-20 14:24:47', '2019-06-04 19:18:09', '0');
 INSERT INTO `attendance_record` VALUES ('12', '2019-06-04 09:00:07', '2019-06-04 09:02:49', '1');
 INSERT INTO `attendance_record` VALUES ('12', '2019-06-04 09:03:37', '2019-06-04 09:04:02', '1');
 INSERT INTO `attendance_record` VALUES ('12', '2019-06-08 21:39:26', '2019-06-08 21:39:30', '1');
@@ -117,15 +115,11 @@ CREATE TABLE `employee` (
 -- Records of employee
 -- ----------------------------
 INSERT INTO `employee` VALUES ('1', '123', '0', '??', '35', '5000', '1', '78984', '2019-05-06 16:04:51', '1000');
-INSERT INTO `employee` VALUES ('2', '124', '1', '志昂', '28', '3000', '0', '123456', '2018-08-24 16:24:55', '1001');
-INSERT INTO `employee` VALUES ('4', '126', '1', '??', '26', '3333', '1', '1234567', '1970-01-01 08:00:00', '1002');
 INSERT INTO `employee` VALUES ('5', '127', '1', '张和', '26', '3000', '1', '1234567', '1970-01-01 08:00:00', '1003');
 INSERT INTO `employee` VALUES ('7', '126', '0', '蔡徐坤', '26', '2550', '1', '456789', '2019-06-06 09:22:45', '1004');
 INSERT INTO `employee` VALUES ('8', '125', '0', 'pidan', '17', '1234', '1', '1565', '2019-05-29 16:05:03', '1005');
 INSERT INTO `employee` VALUES ('12', '127', '0', 'duff', '25', '4567', '0', '848613', '2019-06-04 14:25:47', '1006');
 INSERT INTO `employee` VALUES ('16', '123', '0', 'dakjs', '0', '0', '0', '0', '2019-06-12 16:29:23', '1027');
-INSERT INTO `employee` VALUES ('17', '125', '0', 'dsads', '35', '5000', '1', '78984', '2019-06-12 17:16:44', '1028');
-INSERT INTO `employee` VALUES ('18', '123', '0', 'fsdh', '0', '0', '0', '0', '2019-06-12 20:57:50', '1030');
 
 -- ----------------------------
 -- Table structure for manager
@@ -236,8 +230,6 @@ CREATE TABLE `work_arrangement` (
 -- ----------------------------
 -- Records of work_arrangement
 -- ----------------------------
-INSERT INTO `work_arrangement` VALUES ('2', '4', '1', '2019-06-27 00:02:22', '2019-06-28 00:02:26');
-INSERT INTO `work_arrangement` VALUES ('2', '4', '2', '2019-06-28 00:03:07', '2019-06-29 00:03:14');
 INSERT INTO `work_arrangement` VALUES ('1', '1', '3', '2019-06-05 04:44:38', '2019-06-12 07:44:45');
 INSERT INTO `work_arrangement` VALUES ('1', '1', '4', '2019-06-05 04:44:38', '2019-06-12 07:44:45');
 INSERT INTO `work_arrangement` VALUES ('1', '1', '5', '2019-06-05 04:44:38', '2019-06-12 07:44:45');
