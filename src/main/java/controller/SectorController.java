@@ -2,6 +2,7 @@ package controller;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -69,5 +70,10 @@ public class SectorController {
     public String deleteSector(@PathVariable int sectorId){
 		
 		return sectorService.DeleteSector(sectorId);
+	}
+	
+	@GetMapping("/all/{sectorId}")
+	public String findAllEmployeeBySectorId(@PathVariable int sectorId) {
+		return sectorService.findAllEmployeeBySectorId(sectorId);
 	}
 }

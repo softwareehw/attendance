@@ -76,7 +76,7 @@ public class AiController {
 	
 	//录入照片
 	@PostMapping(value="/photos/employees/{employeeId}" , consumes=MediaType.MULTIPART_FORM_DATA_VALUE)
-	public String add(@RequestParam("image") MultipartFile image,@PathVariable int employeeId) throws Exception {
+	public String add(@RequestParam("image") MultipartFile image,@RequestParam("employeeId") int employeeId) throws Exception {
 		try {
 			logger.info("接受图片");
 			//保存文件
@@ -97,6 +97,9 @@ public class AiController {
             return ans.toString();
 			
 		}
+		
+
+	
 	}
 	
 

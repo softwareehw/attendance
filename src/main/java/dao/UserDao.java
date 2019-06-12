@@ -13,5 +13,7 @@ public interface UserDao {
 	int ModifyUser(User user);
 	
 	public int addUser();
+	
+	
 
 }
