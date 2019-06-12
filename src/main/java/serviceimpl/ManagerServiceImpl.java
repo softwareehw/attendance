@@ -185,7 +185,7 @@ public class ManagerServiceImpl implements ManagerService{
 	@Override
 	public String findApplicationForleaveBySectorId(int sectorId) {
 		// TODO Auto-generated method stub
-		List<ApplicationForLeave> list = appplicationForLeaveDao.findApplicationForleaveBySectorId(sectorId);
+		List<ApplicationForLeave> list = appplicationForLeaveDao.findUnratifiedApplicationForleaveBySectorId(sectorId);
 		JSONObject ans = new JSONObject();
 		if(list.isEmpty()) {
 			ans.put("state", 0);
