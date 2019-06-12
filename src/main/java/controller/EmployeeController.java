@@ -136,7 +136,7 @@ public class EmployeeController {
     	return employeeService.addEmployee(employee);
     }
 	
-	@DeleteMapping("/{employeeId}")
+	@RequestMapping(value="/delete/{employeeId}")
     public String deleteEmployeeById(@PathVariable int employeeId){
 		logger.info("从数据库中根据员工id="+employeeId+",删除相应Employee信息");
     	return employeeService.deleteEmployee(employeeId);
