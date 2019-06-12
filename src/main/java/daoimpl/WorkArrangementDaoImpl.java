@@ -19,9 +19,10 @@ public class WorkArrangementDaoImpl implements WorkArrangementDao {
 
 	@Override
 	public int AddWorkArrangement(WorkArrangement wa) {
-		String sql = "INSERT INTO WORK_ARRANGEMENT(employee_id,arrange_person,"
-				+ "start_time,end_time) VALUES(?,?,?,?)";
-		int i = jdbcTemplate.update(sql,new Object[]{wa.getEmployeeId(),wa.getArrangePerson(),wa.getStartTime(),wa.getEndTime()});
+		String sql = "insert into work_arrangement(employee_id,arrange_person,"
+				+ "start_time,end_time) value(?,?,?,?)";
+		int i = jdbcTemplate.update(sql,new Object[]{wa.getEmployeeId(),wa.getArrangePerson(),wa.getStartTime(),wa.getEndTime()}	
+		);
 		return i;
 	}
 
