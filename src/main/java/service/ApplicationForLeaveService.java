@@ -15,11 +15,11 @@ public interface ApplicationForLeaveService {
 	public int addApplicationForLeave (ApplicationForLeave applicationForLeave);
 	
 	/**
+	 * 查找
 	 *@param    请假员工ID
 	 *@return   所有请假表
 	 *
 	 */
-	
 	public List<ApplicationForLeave> applicationForLeaveFindById (int applicatedPerson);
 	
 	/**

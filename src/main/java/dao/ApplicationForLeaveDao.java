@@ -2,8 +2,11 @@ package dao;
 
 import java.util.List;
 
+import org.springframework.stereotype.Repository;
+
 import bean.ApplicationForLeave;
 
+@Repository
 public interface ApplicationForLeaveDao {
 
 	/**
@@ -39,5 +42,5 @@ public interface ApplicationForLeaveDao {
 	
 	
 	//根据部门id查处所有未审核的请假表
-	public List<ApplicationForLeave> findApplicationForleaveBySectorId(int sectorId);
+	public List<ApplicationForLeave> findUnratifiedApplicationForleaveBySectorId(int sectorId);
 }

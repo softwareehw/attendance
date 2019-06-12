@@ -72,7 +72,7 @@ public class ApplicationForLeaveDaoImpl implements ApplicationForLeaveDao {
 	}
 
 	@Override
-	public List<ApplicationForLeave> findApplicationForleaveBySectorId(int sectorId) {
+	public List<ApplicationForLeave> findUnratifiedApplicationForleaveBySectorId(int sectorId) {
 		// TODO Auto-generated method stub
 		String sql = "SELECT * FROM application_for_leave WHERE applicated_person IN(select employee_id from employee WHERE sector_id = ?) and state = 0";
 		return (List<ApplicationForLeave>) jdbcTemplate.query(sql, new Object[] {sectorId},new ApplicationForLeaveRowMapper() {
