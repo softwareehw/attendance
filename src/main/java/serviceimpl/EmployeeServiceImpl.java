@@ -226,12 +226,16 @@ public class EmployeeServiceImpl implements EmployeeService {
 
 		String sql = "select * from employee where sector_id = ? and is_manager = true";
 		List<Employee> list = jdbcTemplate.query(sql, new Object[] {e.getSectorId()},new EmployeeRowMapper() );
-	
+		
+		System.out.println(e.isManager());
+		System.out.println(1231111111);
 		if(list.size()==1&&e.isManager()) {
+			System.out.println(123);
 			employeeDao.updateEmployee(e);
 			String sql1 = "update employee set is_manager = false where employee_id = ?";
 			return jdbcTemplate.update(sql1,list.get(0).getEmployeeId());
 		}else {
+			System.out.println(1234);
 			return employeeDao.updateEmployee(e);
 		}
 		

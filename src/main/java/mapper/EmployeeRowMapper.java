@@ -33,7 +33,7 @@ public class EmployeeRowMapper implements RowMapper<Employee> {
 		Employee employee = new Employee();
 		employee.setEmployeeId(employeeId);
 		employee.setAge(age);
-		employee.setManager(isManager);
+		employee.setisManager(isManager);
 		employee.setName(name);
 		employee.setPhoneNumber(phoneNumber);
 		employee.setSalary(salary);

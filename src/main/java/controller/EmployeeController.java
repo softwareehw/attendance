@@ -70,12 +70,13 @@ public class EmployeeController {
 	}
 	
 	@RequestMapping(value="",method=RequestMethod.PUT)
-	public String updateEmployee( HttpServletRequest request,@RequestBody Employee e){
-     
+	public String updateEmployee(@RequestBody Employee e){
+		
 	    logger.info("修改员工信息");
 		JSONObject ans=new JSONObject();
-		ans.put("state", 1);
+			
 		if(employeeService.updateEmployee(e)==1) {
+			ans.put("state", 1);
 			return ans.toString();
 		}
 		else {
