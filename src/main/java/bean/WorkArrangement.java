@@ -10,7 +10,7 @@ public class WorkArrangement {
 	//安排人
 	private int arrangePerson;
 	//工作安排id
-	private int work_arrange_id;
+	private int workArrangeId;
 	
 	@JsonFormat( pattern="yyyy-MM-dd HH:mm:ss")
 	private Date startTime;
@@ -31,11 +31,12 @@ public class WorkArrangement {
 	public void setArrangePerson(int arrangePerson) {
 		this.arrangePerson = arrangePerson;
 	}
-	public int getWork_arrange_id() {
-		return work_arrange_id;
+
+	public int getWorkArrangeId() {
+		return workArrangeId;
 	}
-	public void setWork_arrange_id(int work_arrange_id) {
-		this.work_arrange_id = work_arrange_id;
+	public void setWorkArrangeId(int workArrangeId) {
+		this.workArrangeId = workArrangeId;
 	}
 	public Date getStartTime() {
 		return startTime;

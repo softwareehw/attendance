@@ -191,7 +191,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public List<ApplicationForLeave> applicationForLeaveFindById(int applicatedPerson) {
 		// TODO Auto-generated method stub
-		return applicationForLeaveDao.applicationForLeaveFindById(applicatedPerson);
+		return applicationForLeaveDao.findApplicationForLeaveById(applicatedPerson);
 	}
 
 	@Override

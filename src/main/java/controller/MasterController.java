@@ -24,34 +24,8 @@ public class MasterController {
 	
 	@Autowired
 	ApplicationForLeaveService applicationForLeaveService;
+
 	
-//	@RequestMapping("/certificatecancal")
-//	public String certificateCancal(){
-//		
-//		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
-//		HttpSession session = request.getSession();
-//		
-//		Master m=(Master)session.getAttribute("master");
-//		
-//		int num = masterService.批准销假;
-//		
-//		if(num==1) return "Successful certificate";
-//		else return  "/error";
-//	}
-	
-	@RequestMapping("/test")
-	public String Test(){
-		return "you are master";
-	}
-	
-	@RequestMapping("/findAllLeavePerson")
-	public List<ApplicationForLeave> findAllLeavePerson(){
-		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
-		HttpSession session = request.getSession();
-		
-		Employee master = (Employee) session.getAttribute("master");
-		
-		return applicationForLeaveService.findAllLeavePerson(master);
-	}
+
 
 }

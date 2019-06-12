@@ -52,5 +52,23 @@ public class WorkArrangementController {
 		String ans = workArrangementService.AddWAInSector(sectorId, wa);
 		return ans;
 	}
+	
+	/**
+	 * 删除指定工作安排
+	 */
+	@RequestMapping(value="/{workArrangeId}",method=RequestMethod.DELETE)
+	public String deleteWAById(@PathVariable int workArrangeId){
+		String ans = workArrangementService.deleteByWAId(workArrangeId);
+		return ans;
+	}	
+	
+	/**
+	 * 修改工作安排
+	 */
+	@RequestMapping(value="/{workArrangeId}",method=RequestMethod.PUT)
+	public String modifyWAById(@RequestBody WorkArrangement workArrangement,@PathVariable int workArrangeId){
+		String ans = workArrangementService.modifyByWAId(workArrangement);
+		return ans;
+	}		
 
 }

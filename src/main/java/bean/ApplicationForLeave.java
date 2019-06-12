@@ -1,14 +1,18 @@
 package bean;
 
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 //请假
 public class ApplicationForLeave {
 	
 	//是否批准
 	private boolean state ;
 	//开始时间
+	@JsonFormat( pattern="yyyy-MM-dd HH:mm:ss")
 	private Date startTime; 
 	//结束时间
+	@JsonFormat( pattern="yyyy-MM-dd HH:mm:ss")
 	private Date endTime;
 	//申请人id
 	private int applicatdPerson;

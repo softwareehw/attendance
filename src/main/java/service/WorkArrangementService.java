@@ -27,5 +27,10 @@ public interface WorkArrangementService {
 	 * @return
 	 */
 	public String AddWAInSector(int sectorId,WorkArrangement workArrangement);
+	
+	
+	public String deleteByWAId(int workArrangeId);
+	
+	public String modifyByWAId(WorkArrangement workArrangement);
 
 }
