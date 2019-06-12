@@ -1,5 +1,6 @@
 package controller;
 
+import java.io.File;
 import java.io.FileOutputStream;
 import java.util.ArrayList;
 import java.util.Date;
@@ -34,9 +35,10 @@ import bean.Employee;
 import face.search.FaceInteraction;
 import face.search.FaceSearch;
 import service.EmployeeService;
+import service.ExcelService;
 
 //部署到服务器上的时候请一定使用 @CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true") 才能和前端正常交互
-@CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true")
+//@CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true")
 @RestController
 @RequestMapping("/api/v1/employees")
 public class EmployeeController {
@@ -44,6 +46,9 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService employeeService;
+	
+	@Autowired
+	private ExcelService excelService;
 	
 //	@RequestMapping("/add")
 //	public int addAppicateForEW(@RequestBody ApplicationForEW e) {
@@ -258,6 +263,15 @@ public class EmployeeController {
 	@GetMapping(value="/ai/{id}/photo/delete")
 	public boolean delete(@PathVariable int id) {
 		return FaceInteraction.delete(id);
+	}
+	
+	@RequestMapping(value="/batchadd", method=RequestMethod.POST)
+	public String BatchAddEmployee(@RequestParam("file") MultipartFile file){
+		String fileName = file.getOriginalFilename();
+        String filePath = "/Users/itinypocket/workspace/temp/"+fileName;
+
+		String s = excelService.AddEmployeeUserByExcel(filePath);
+		return s;
 	}
 	
 	

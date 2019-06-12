@@ -71,6 +71,13 @@ public class ApplicationForLeaveController {
 	}
 	
 	
+	
+	@RequestMapping(value="/ratify",method=RequestMethod.POST)
+	public String RatifyLeave(@RequestBody ApplicationForLeave applicationForLeave){
+		String s=applicationForLeaveService.RatifyLeave(applicationForLeave);
+		return s;
+	}
+	
 				
 	
 	

@@ -311,4 +311,11 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 		return sum;
 	}
 
+	@Override
+	public int RatifyEW(ApplicationForEW applicationForEW) {
+		String sql = "update application_for_ew set ew_state=?, ratify_id=? where ew_id=?";
+		int i = jdbcTemplate.update(sql,new Object[]{applicationForEW.getEwState(),applicationForEW.getRatifyId(),applicationForEW.getEwId()});
+		return i;
+	}
+
 }

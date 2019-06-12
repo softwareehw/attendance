@@ -16,11 +16,12 @@ import org.springframework.web.bind.annotation.RestController;
 
 import bean.ApplicationForEW;
 import bean.Employee;
+import service.ApplicationForEWService;
 import service.EmployeeService;
 import service.ManagerService;
 
 //部署到服务器上的时候请一定使用 @CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true") 才能和前端正常交互
-@CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true")
+//@CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true")
 @RestController
 @RequestMapping("/api/v1/EWs")
 public class ApplicationForEWController {
@@ -29,6 +30,8 @@ public class ApplicationForEWController {
 	private EmployeeService employeeService;
 	@Autowired
 	private ManagerService managerService;
+	@Autowired
+	private ApplicationForEWService applicationForEWService;
 	
 	//申请加班
 	@RequestMapping("/employees/{employeeId}")
@@ -60,4 +63,12 @@ public class ApplicationForEWController {
 	public String addAllApplicationForEW(@RequestBody ApplicationForEW date) {
 		return managerService.addAllApplicationForEW(date);
 	}
+	
+	
+	@RequestMapping(value="/ratify",method=RequestMethod.POST)
+	public String RatifyEW(@RequestBody ApplicationForEW applicationForEW) {
+		return applicationForEWService.RatifyEW(applicationForEW);
+	}
+	
+	
 }
