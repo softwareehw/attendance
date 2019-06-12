@@ -9,6 +9,7 @@ import bean.ApplicationForEW;
 import bean.ApplicationForLeave;
 import bean.AttendanceRecord;
 import bean.Employee;
+import bean.User;
 
 @Repository
 public interface EmployeeDao {
@@ -128,5 +129,7 @@ public interface EmployeeDao {
 //	 */
 //	
 //	public List<ApplicationForLeave> applicationForLeaveFindById (int applicatedPerson);
+	
+	public String judgeDegree(User user);
 	
 }

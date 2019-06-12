@@ -2,6 +2,8 @@ package dao;
 
 import java.util.List;
 
+import org.springframework.web.bind.annotation.PathVariable;
+
 import bean.Employee;
 import bean.Sector;
 
@@ -40,4 +42,6 @@ public interface SectorDao {
 	 */
 	
 	public List<Employee> employeeInfoBySectorId(int sectorId);
+	
+	public int findAllEmployeeBySectorId( int sectorId);
 }

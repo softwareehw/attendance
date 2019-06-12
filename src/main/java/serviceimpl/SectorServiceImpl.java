@@ -7,6 +7,7 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import bean.Employee;
 import bean.Sector;
 import dao.SectorDao;
 import service.SectorService;
@@ -17,6 +18,7 @@ public class SectorServiceImpl implements SectorService {
 	@Autowired
 	SectorDao sectorDao;
 
+
 	@Override
 	public Boolean setIsMasterById(int id, boolean isM) {
 		// TODO Auto-generated method stub
@@ -26,6 +28,7 @@ public class SectorServiceImpl implements SectorService {
 	@Override
 	public String findAllSector() {
 		List<Sector> l = sectorDao.getAllSector();
+		
 		if(l.isEmpty()){
 			JSONObject ans= new JSONObject();
 			ans.put("state", 0);
@@ -85,6 +88,20 @@ public class SectorServiceImpl implements SectorService {
 		}
 		return json.toString();
 		
+	}
+
+	@Override
+	public String findAllEmployeeBySectorId(int sectorId) {
+		// TODO Auto-generated method stub
+		JSONObject json = new JSONObject();
+		int i =  sectorDao.findAllEmployeeBySectorId(sectorId);
+		if(i==0){
+			json.put("state", 0);
+			json.put("error_message", "查询失败");
+		}else{
+			json.put("state", i);
+		}
+		return json.toString();
 	}
 
 }

@@ -20,11 +20,12 @@ import bean.User;
 import dao.EmployeeDao;
 import dao.ManagerDao;
 import dao.UserDao;
+import service.EmployeeService;
 
 //部署到服务器上的时候请一定使用 @CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true") 才能和前端正常交互
-@CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true")
+//@CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true")
 @RestController
-@RequestMapping("/login")
+@RequestMapping("/api/v1/login")
 public class LoginController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(LoginController.class);
@@ -35,10 +36,18 @@ public class LoginController {
 	private EmployeeDao employeeDao;
 	@Autowired
 	private UserDao userDao;
+	@Autowired
+	private EmployeeService employeeService;
+	
+	
+	
 
 
 	
-	@PostMapping("/login")
+	@PostMapping("")
+	public String judgeDegree(@RequestBody User user) {
+		return employeeService.judgeDegree(user);
+	}
 //    public String login(@RequestBody User user ) {
 //		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
 //		HttpSession session = request.getSession();

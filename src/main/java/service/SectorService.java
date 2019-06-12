@@ -3,6 +3,7 @@ package service;
 import java.util.List;
 
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.PathVariable;
 
 import bean.Sector;
 
@@ -25,4 +26,6 @@ public interface SectorService {
 	public String ModifySector(Sector s);
 	
 	public String DeleteSector(int sectorId);
+	
+	public String findAllEmployeeBySectorId( int sectorId);
 }
