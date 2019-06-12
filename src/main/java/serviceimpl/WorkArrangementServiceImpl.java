@@ -1,5 +1,8 @@
 package serviceimpl;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -95,6 +98,23 @@ public class WorkArrangementServiceImpl implements WorkArrangementService {
 			json.put("error_message", "修改失败");
 		}
 		return json.toString();
+	}
+
+	@Override
+	public int findNormalWorkTime(int employeeId) {
+		List<WorkArrangement> l = workarrangementDao.findWorkArrangementByEId(employeeId);
+		// 获取当月第一天和最后一天  
+		Calendar cale = null;
+        int month = cale.get(Calendar.MONTH) + 1;
+
+		for (WorkArrangement workArrangement : l) {
+			if(workArrangement.getStartTime().getMonth()==month)
+		}
+		
+		
+		
+		
+		return 0;
 	}
 
 }
