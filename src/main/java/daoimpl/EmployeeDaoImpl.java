@@ -115,7 +115,7 @@ public class EmployeeDaoImpl implements EmployeeDao,Serializable {
 //			String timett=s.get(s.YEAR)+"-"+mm+"-"+s.get(s.DAY_OF_MONTH)+" "
 //					+ s.get(s.HOUR_OF_DAY)+":"+s.get(s.MINUTE)+":"+s.get(s.SECOND);
 //			System.out.println(timett);
-			String sql="insert into employee(employee_id,sector_id,is_manager,name,age,salary,sex,phone_number,enroll_time,user_id) value(?,?,?,?,?,?,?,?,?)";
+			String sql="insert into employee(employee_id,sector_id,is_manager,name,age,salary,sex,phone_number,enroll_time,user_id) value(?,?,?,?,?,?,?,?,?,?)";
 			
 			return jdbcTemplate.update(sql, employee.getEmployeeId(),employee.getSectorId(),employee.isManager(),employee.getName(),employee.getAge(),employee.getSalary(),employee.isSex(),employee.getPhoneNumber(),new Date(),id);
 			
