@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RestController;
 import bean.WorkArrangement;
 import service.WorkArrangementService;
 
-@CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true")
+//@CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true")
 @RestController
 @RequestMapping("/api/v1/workA")
 public class WorkArrangementController {
@@ -52,5 +52,23 @@ public class WorkArrangementController {
 		String ans = workArrangementService.AddWAInSector(sectorId, wa);
 		return ans;
 	}
+	
+	/**
+	 * 删除指定工作安排
+	 */
+	@RequestMapping(value="/{workArrangeId}",method=RequestMethod.DELETE)
+	public String deleteWAById(@PathVariable int workArrangeId){
+		String ans = workArrangementService.deleteByWAId(workArrangeId);
+		return ans;
+	}	
+	
+	/**
+	 * 修改工作安排
+	 */
+	@RequestMapping(value="/{workArrangeId}",method=RequestMethod.PUT)
+	public String modifyWAById(@RequestBody WorkArrangement workArrangement,@PathVariable int workArrangeId){
+		String ans = workArrangementService.modifyByWAId(workArrangement);
+		return ans;
+	}		
 
 }

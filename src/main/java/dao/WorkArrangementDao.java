@@ -23,6 +23,8 @@ public interface WorkArrangementDao {
 	 */
 	public List<WorkArrangement> findWorkArrangementByEId(int employeeId);
 	
+	public int deleteByWAId(int workArrangementId);
 	
+	public int ModifyByWAId(WorkArrangement workArrangement);
 
 }

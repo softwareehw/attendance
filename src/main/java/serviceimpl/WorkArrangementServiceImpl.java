@@ -71,4 +71,30 @@ public class WorkArrangementServiceImpl implements WorkArrangementService {
 		return json.toString();
 	}
 
+	@Override
+	public String deleteByWAId(int workArrangeId) {
+		int i = workarrangementDao.deleteByWAId(workArrangeId);
+		JSONObject json = new JSONObject();
+		if(i==1){
+			json.put("state", 1);
+		}else{
+			json.put("state", 0);
+			json.put("error_message", "删除失败");
+		}
+		return json.toString();
+	}
+
+	@Override
+	public String modifyByWAId(WorkArrangement workArrangement) {
+		int i = workarrangementDao.ModifyByWAId(workArrangement);
+		JSONObject json = new JSONObject();
+		if(i==1){
+			json.put("state", 1);
+		}else{
+			json.put("state", 0);
+			json.put("error_message", "修改失败");
+		}
+		return json.toString();
+	}
+
 }
