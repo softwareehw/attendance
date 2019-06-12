@@ -1,14 +1,18 @@
 package bean;
 
 import java.util.Date;
+
+import com.fasterxml.jackson.annotation.JsonFormat;
 //请假
 public class ApplicationForLeave {
 	
 	//是否批准
-	private boolean state ;
+	private int state ;   //0 申请   1 批准   驳回
 	//开始时间
+	@JsonFormat( pattern="yyyy-MM-dd HH:mm:ss")
 	private Date startTime; 
 	//结束时间
+	@JsonFormat( pattern="yyyy-MM-dd HH:mm:ss")
 	private Date endTime;
 	//申请人id
 	private int applicatdPerson;
@@ -33,14 +37,6 @@ public class ApplicationForLeave {
 
 	public void setLeaveType(boolean leaveType) {
 		this.leaveType = leaveType;
-	}
-
-	public boolean isState() {
-		return state;
-	}
-
-	public void setState(boolean state) {
-		this.state = state;
 	}
 
 	public Date getStartTime() {
@@ -114,6 +110,16 @@ public class ApplicationForLeave {
 	public void setRejectReason(String rejectReason) {
 		this.rejectReason = rejectReason;
 	}
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+	
+	
 	
 	
 	

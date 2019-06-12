@@ -50,7 +50,6 @@ public class SectorController {
 	 */
 	@RequestMapping(value="",method=RequestMethod.POST)
     public String AddSector(@RequestBody Sector s){
-		
 		return sectorService.AddSector(s);
 	}
 	

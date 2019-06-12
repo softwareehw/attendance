@@ -61,9 +61,8 @@ public class ManagerServiceImpl implements ManagerService{
 	}
 
 	@Override
-	public Boolean announceEW(Calendar start, Calendar end) {
-		
-		return applicationForEWDao.announceEW(start,end);
+	public String announceEW(ApplicationForEW date) {
+		return applicationForEWDao.announceEW(date);
 	}
 
 	@Override
@@ -119,23 +118,6 @@ public class ManagerServiceImpl implements ManagerService{
 	}
 
 	@Override
-	public String addAllApplicationForEW(ApplicationForEW date) {
-		// TODO Auto-generated method stub
-		JSONObject ans = new JSONObject();
-		if(applicationForEWDao.addAllApplicationForEW(date) >= 0) {
-			
-			ans.put("state", "1");
-			ans.put("message", "发布成功");
-			return ans.toString();
-		}else {
-			
-		ans.put("state", "0");
-		ans.put("error_message", "发布失败,请重新发布");
-		return ans.toString();
-		}
-	}
-
-	@Override
 	public String ModifyManager(Manager m) {
 		JSONObject json = new JSONObject();
 		int i = managerDao.ModifyManager(m);
@@ -185,7 +167,7 @@ public class ManagerServiceImpl implements ManagerService{
 	@Override
 	public String findApplicationForleaveBySectorId(int sectorId) {
 		// TODO Auto-generated method stub
-		List<ApplicationForLeave> list = appplicationForLeaveDao.findApplicationForleaveBySectorId(sectorId);
+		List<ApplicationForLeave> list = appplicationForLeaveDao.findUnratifiedApplicationForleaveBySectorId(sectorId);
 		JSONObject ans = new JSONObject();
 		if(list.isEmpty()) {
 			ans.put("state", 0);

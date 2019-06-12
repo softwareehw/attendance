@@ -46,7 +46,7 @@ public class WorkArrangementServiceImpl implements WorkArrangementService {
 			JSONArray json1  =new JSONArray(l);
 			return json1.toString();
 		}else{
-			json.put("error_message", "没有这个员工");
+			json.put("error_message", "没有这个员工的工作安排");
 			json.put("state", "0");
 			return json.toString();
 		}
@@ -67,6 +67,32 @@ public class WorkArrangementServiceImpl implements WorkArrangementService {
 			}else{
 				json.put(String.valueOf(employee.getEmployeeId()), "success");
 			}
+		}
+		return json.toString();
+	}
+
+	@Override
+	public String deleteByWAId(int workArrangeId) {
+		int i = workarrangementDao.deleteByWAId(workArrangeId);
+		JSONObject json = new JSONObject();
+		if(i==1){
+			json.put("state", 1);
+		}else{
+			json.put("state", 0);
+			json.put("error_message", "删除失败");
+		}
+		return json.toString();
+	}
+
+	@Override
+	public String modifyByWAId(WorkArrangement workArrangement) {
+		int i = workarrangementDao.ModifyByWAId(workArrangement);
+		JSONObject json = new JSONObject();
+		if(i==1){
+			json.put("state", 1);
+		}else{
+			json.put("state", 0);
+			json.put("error_message", "修改失败");
 		}
 		return json.toString();
 	}

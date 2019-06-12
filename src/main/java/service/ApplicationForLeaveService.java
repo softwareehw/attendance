@@ -2,9 +2,12 @@ package service;
 
 import java.util.List;
 
+import org.springframework.stereotype.Service;
+
 import bean.ApplicationForLeave;
 import bean.Employee;
 
+@Service
 public interface ApplicationForLeaveService {
 
 	/**
@@ -12,25 +15,25 @@ public interface ApplicationForLeaveService {
 	 *@return  修改行数
 	 *
 	 */
-	public int addApplicationForLeave (ApplicationForLeave applicationForLeave);
+	public String addApplicationForLeave (ApplicationForLeave applicationForLeave);
 	
 	/**
+	 * 查找
 	 *@param    请假员工ID
 	 *@return   所有请假表
 	 *
 	 */
+	public String findApplicationForLeaveById (int applicatedPerson);
 	
-	public List<ApplicationForLeave> applicationForLeaveFindById (int applicatedPerson);
+
 	
 	/**
-	 *@param  员工ID
-	 *@return 请假申请表
-	 *
+	 * 找到该部门所有未批准的请假记录
 	 */
+	public String findUnratifiedApplicationForleaveBySectorId(int sectorId);
 	
-	public int applicateLeave(int Employee);
-	
-	public List<ApplicationForLeave> findAllLeavePerson(Employee master);
-	
-	
+	/**
+	 * 员工销假
+	 */
+	public String CancelLeave(int leaveId);
 }
