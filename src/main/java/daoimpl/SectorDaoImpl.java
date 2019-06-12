@@ -32,9 +32,9 @@ public class SectorDaoImpl implements SectorDao {
 
 	@Override
 	public List<Sector> FindSectorById(int i) {
-		String sql = "SELECT * FROM SECTOR WHERE SECTOR_ID = "+i;
+		String sql = "select * from sector where sector_id =  ?";
 		
-		return (List<Sector>)jdbcTemplate.query(sql, new SectorRowMapper(){});
+		return (List<Sector>)jdbcTemplate.query(sql, new Object[] {i},new SectorRowMapper(){});
 	}
 
 
