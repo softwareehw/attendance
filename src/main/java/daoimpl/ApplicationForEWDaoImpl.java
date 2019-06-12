@@ -104,7 +104,7 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 	public int addApplicateEW(ApplicationForEW applica) {
 		// TODO Auto-generated method stub
 		String sql = "insert into application_for_ew(applicated_id,start_time,end_time,ew_state,ew_reason) "
-				+ "values(?,?,?,?)";
+				+ "values(?,?,?,?,?)";
 		return jdbcTemplate.update(sql,applica.getApplicatedId(),applica.getStartTime(),applica.getEndTime(),
 				0,applica.getEwReason());
 		  
