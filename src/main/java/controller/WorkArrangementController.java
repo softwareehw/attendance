@@ -70,5 +70,17 @@ public class WorkArrangementController {
 		String ans = workArrangementService.modifyByWAId(workArrangement);
 		return ans;
 	}		
+	
+	
+	
+	
+	/**
+	 * 审批请假
+	 */
+	@RequestMapping(value="/ratify",method=RequestMethod.PUT)
+	public String RatifyWAById(@RequestBody WorkArrangement workArrangement){
+		String ans = workArrangementService.modifyByWAId(workArrangement);
+		return ans;
+	}		
 
 }
