@@ -105,7 +105,7 @@ public class EmployeeDaoImpl implements EmployeeDao,Serializable {
 
 	//添加员工
 	@Override
-	public int addEmployee(Employee employee) {
+	public int addEmployee(Employee employee,int id) {
 	
 //			Calendar s=Calendar.getInstance();
 //			s.setTime(e.getEnrollTime());
@@ -115,9 +115,9 @@ public class EmployeeDaoImpl implements EmployeeDao,Serializable {
 //			String timett=s.get(s.YEAR)+"-"+mm+"-"+s.get(s.DAY_OF_MONTH)+" "
 //					+ s.get(s.HOUR_OF_DAY)+":"+s.get(s.MINUTE)+":"+s.get(s.SECOND);
 //			System.out.println(timett);
-			String sql="insert into employee(sector_id,is_manager,name,age,salary,sex,phone_number,enroll_time) values(?,?,?,?,?,?,?,?)";
+			String sql="insert into employee(sector_id,is_manager,name,age,salary,sex,phone_number,enroll_time,user_id) value(?,?,?,?,?,?,?,?,?)";
 			
-			return jdbcTemplate.update(sql, employee.getSectorId(),employee.isManager(),employee.getName(),employee.getAge(),employee.getSalary(),employee.isSex(),employee.getPhoneNumber(),employee.getEnrollTime());
+			return jdbcTemplate.update(sql, employee.getSectorId(),employee.isManager(),employee.getName(),employee.getAge(),employee.getSalary(),employee.isSex(),employee.getPhoneNumber(),new Date(),id);
 			
 	}
     
@@ -221,6 +221,7 @@ public class EmployeeDaoImpl implements EmployeeDao,Serializable {
 		return jdbcTemplate.update(sql,new Object[] {e.getSectorId(),e.isManager(),e.getName(),e.getAge()
 				,e.getSalary(),e.isSex(),e.getPhoneNumber(),e.getEnrollTime(),e.getEmployeeId()});
 	}
+
 
 
 

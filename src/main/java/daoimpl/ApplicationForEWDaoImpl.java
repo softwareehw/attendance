@@ -107,6 +107,8 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 		  
 	}
 
+	
+	//全员加班
 	@Override
 	public Boolean announceEW(Calendar start, Calendar end) {
 		//全员遍历提取出每个员工id

@@ -1,5 +1,9 @@
 package serviceimpl;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
+import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
 
 import java.util.Date;
@@ -20,10 +24,14 @@ import dao.ApplicationForLeaveDao;
 import dao.AttendanceRecordDao;
 import dao.EmployeeDao;
 import dao.SectorDao;
+import dao.UserDao;
 import mapper.AttendanceRecordRowMapper;
 import mapper.EmployeeRowMapper;
 import service.EmployeeService;
 import org.springframework.jdbc.core.JdbcTemplate;
+import org.springframework.jdbc.core.PreparedStatementCreator;
+import org.springframework.jdbc.support.GeneratedKeyHolder;
+import org.springframework.jdbc.support.KeyHolder;
 @Service
 public class EmployeeServiceImpl implements EmployeeService {
 	
@@ -39,6 +47,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 	private AttendanceRecordDao attendanceRecordDao;
 	@Autowired
 	private SectorDao sectorDao;
+	@Autowired
+	private UserDao userDao;
 
 
 	@Override
@@ -90,26 +100,42 @@ public class EmployeeServiceImpl implements EmployeeService {
 	@Override
 	public String addEmployee(Employee employee) {
 		// TODO Auto-generated method stub
-		String sql = "select * from employee where sector_id = ? and is_manager = ?";
-		List<Employee> result = jdbcTemplate.query(sql,new Object[] {employee.getSectorId(),true}, new EmployeeRowMapper() {
-			
-		});
-		JSONObject json = new JSONObject();
-		if(result.size()==0) {
-			employeeDao.addEmployee(employee);
-			json.put("status", 1);
-		}else if(result.size()==1&&!employee.isManager()) {
-			employeeDao.addEmployee(employee);
-			json.put("status", 1);
-		}else {
-			json.put("status", 0);
-			json.put("error_message", "添加失败");
-			return json.toString();
-		}
+
+        KeyHolder keyHolder = new GeneratedKeyHolder();
+        PreparedStatementCreator preparedStatementCreator = con -> {
+            PreparedStatement ps = con.prepareStatement("insert into user(password,degree) values(12356,0)", Statement.RETURN_GENERATED_KEYS);
+            return ps;
+        };
+
+        jdbcTemplate.update(preparedStatementCreator, keyHolder);
+
+        int id =  (int) keyHolder.getKey().longValue();
+        employeeDao.addEmployee(employee,id);
+        JSONObject json = new JSONObject();
+        json.put("id", id);
+        return json.toString();
+
 		
-		
-		//如果成功，返回
-		return json.toString();
+//		String sql = "select * from employee where sector_id = ? and is_manager = ?";
+//		List<Employee> result = jdbcTemplate.query(sql,new Object[] {employee.getSectorId(),true}, new EmployeeRowMapper() {
+//			
+//		});
+//		JSONObject json = new JSONObject();
+//		if(result.size()==0) {
+//			employeeDao.addEmployee(employee,id);
+//			json.put("status", 1);
+//		}else if(result.size()==1&&!employee.isManager()) {
+//			employeeDao.addEmployee(employee,id);
+//			json.put("status", 1);
+//		}else {
+//			json.put("status", 0);
+//			json.put("error_message", "添加失败");
+//			return json.toString();
+//		}
+//		
+//		
+//		//如果成功，返回
+//		return json.toString();
 		
 		
 	}
@@ -194,6 +220,7 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return applicationForLeaveDao.findApplicationForLeaveById(applicatedPerson);
 	}
 
+	//修改员工
 	@Override
 	public int updateEmployee(Employee e) {
 
