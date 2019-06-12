@@ -28,6 +28,16 @@ public class ApplicationForLeave {
 	private String leaveReason;
 	
 	private String rejectReason;
+	
+	private boolean leaveType;
+
+	public boolean isLeaveType() {
+		return leaveType;
+	}
+
+	public void setLeaveType(boolean leaveType) {
+		this.leaveType = leaveType;
+	}
 
 	public boolean isState() {
 		return state;

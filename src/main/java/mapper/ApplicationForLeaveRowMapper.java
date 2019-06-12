@@ -36,6 +36,8 @@ public class ApplicationForLeaveRowMapper implements RowMapper<ApplicationForLea
 	    String leaveReason = rs.getString("leave_reason");
 	    
 	    String rejectReason = rs.getString("reject_reason");
+	    
+	    boolean leaveType = rs.getBoolean("leave_type");
 	
 		
 		ApplicationForLeave applicationForLeave = new ApplicationForLeave();
@@ -49,6 +51,7 @@ public class ApplicationForLeaveRowMapper implements RowMapper<ApplicationForLea
 		applicationForLeave.setReportBack(isReportBack);
 		applicationForLeave.setLeaveReason(leaveReason);
 		applicationForLeave.setRejectReason(rejectReason);
+		applicationForLeave.setLeaveType(leaveType);
 		
 		return applicationForLeave;
 	}

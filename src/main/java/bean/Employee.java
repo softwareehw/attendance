@@ -36,7 +36,7 @@ public class Employee {
 	public boolean isManager() {
 		return isManager;
 	}
-	public void setManager(boolean isManager) {
+	public void setisManager(boolean isManager) {
 		this.isManager = isManager;
 	}
 	public Master getMaster() {

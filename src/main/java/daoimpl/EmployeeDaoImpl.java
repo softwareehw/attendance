@@ -183,7 +183,7 @@ public class EmployeeDaoImpl implements EmployeeDao,Serializable {
 				Employee employee = new Employee();
 				employee.setEmployeeId(rs.getInt("employee_id"));
 				employee.setSectorId(rs.getInt("sector_id"));
-				employee.setManager(rs.getBoolean("is_manager"));
+				employee.setisManager(rs.getBoolean("is_manager"));
 				employee.setName(rs.getString("name"));
 				employee.setAge(rs.getInt("age"));
 				employee.setSalary(rs.getInt("salary"));
@@ -216,10 +216,10 @@ public class EmployeeDaoImpl implements EmployeeDao,Serializable {
 	@Override
 	public int updateEmployee(Employee e) {
 		// TODO Auto-generated method stub
-		String sql = "update employee set sector_id= ?,is_manager= ?,name= ?,age=?,salary=?,sex=?,phone_number=?,enroll_time=?" + 
-				" where employee_id = ?";
+		String sql = "update employee set sector_id= ?,is_manager= ?,name= ?,age=?,salary=?,sex=?,phone_number=?" + 
+				" where user_id = ?";
 		return jdbcTemplate.update(sql,new Object[] {e.getSectorId(),e.isManager(),e.getName(),e.getAge()
-				,e.getSalary(),e.isSex(),e.getPhoneNumber(),e.getEnrollTime(),e.getEmployeeId()});
+				,e.getSalary(),e.isSex(),e.getPhoneNumber(),e.getUserId()});
 	}
 
 
