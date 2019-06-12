@@ -1,5 +1,6 @@
 package serviceimpl;
 
+import java.util.Date;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -73,26 +74,24 @@ public class ApplicationForLeaveServiceImpl implements ApplicationForLeaveServic
 	@Override
 	public String CancelLeave(int leaveId) {
 		int i = applicationForLeavedao.CancelLeaveByLeaveId(leaveId);
+		JSONObject json = new JSONObject();
+		//首先更改销假时间
+		//然后判断销假时间和请假的结束时间哪一个大
+		//如果请假结束时间大，就再把返回状态改成1
 		
+		ApplicationForLeave applicationForLeave = applicationForLeavedao.findLeaveByLId(leaveId).get(0);
+		Date reportBackTime= applicationForLeave.getReportBackTime();
+		Date endTime = applicationForLeave.getEndTime();
 		
-		
-		
-		
-		
-		
-		
-		
-		if(i==1){
-			JSONObject json = new JSONObject();
-			json.put("state", 1);
-		}else{
-			JSONObject json = new JSONObject();
+		if(reportBackTime.after(endTime)){
+			applicationForLeavedao.CancelCancelLeaveByLeaveId(leaveId);
 			json.put("state", 0);
-			
+			json.put("error_message", "销假时间太晚");
 		}
-		return null;
+		
+		json.put("state", 1);
+		return  json.toString();
 	}
-
-
+	
 
 }

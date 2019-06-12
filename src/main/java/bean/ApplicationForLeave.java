@@ -7,7 +7,7 @@ import com.fasterxml.jackson.annotation.JsonFormat;
 public class ApplicationForLeave {
 	
 	//是否批准
-	private boolean state ;
+	private int state ;   //0 申请   1 批准   驳回
 	//开始时间
 	@JsonFormat( pattern="yyyy-MM-dd HH:mm:ss")
 	private Date startTime; 
@@ -28,14 +28,6 @@ public class ApplicationForLeave {
 	private String leaveReason;
 	
 	private String rejectReason;
-
-	public boolean isState() {
-		return state;
-	}
-
-	public void setState(boolean state) {
-		this.state = state;
-	}
 
 	public Date getStartTime() {
 		return startTime;
@@ -108,6 +100,16 @@ public class ApplicationForLeave {
 	public void setRejectReason(String rejectReason) {
 		this.rejectReason = rejectReason;
 	}
+
+	public int getState() {
+		return state;
+	}
+
+	public void setState(int state) {
+		this.state = state;
+	}
+	
+	
 	
 	
 	

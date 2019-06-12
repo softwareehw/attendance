@@ -19,11 +19,11 @@ public class ApplicationForLeaveRowMapper implements RowMapper<ApplicationForLea
 		// TODO Auto-generated method stub
 		int leaveId = rs.getInt("leave_id");
 		
-	    boolean state = rs.getBoolean("state");
+	    int state = rs.getInt("state");
 		//开始时间
-		Date startTime = rs.getDate("start_time"); 
+		Date startTime = rs.getTimestamp("start_time");
 		//结束时间
-		Date endTime = rs.getDate("end_time");
+		Date endTime = rs.getTimestamp("end_time");
 		//申请人id
 		int applicatdPerson = rs.getInt("applicated_person");
 		//批准人id
