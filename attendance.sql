@@ -10,7 +10,7 @@ Target Server Type    : MYSQL
 Target Server Version : 50022
 File Encoding         : 65001
 
-Date: 2019-06-11 19:40:13
+Date: 2019-06-12 21:10:38
 */
 
 SET FOREIGN_KEY_CHECKS=0;
@@ -52,6 +52,7 @@ CREATE TABLE `application_for_leave` (
   `report_back_time` datetime default NULL,
   `leave_reason` varchar(255) NOT NULL,
   `reject_reason` varchar(255) default NULL,
+  `leave_type` int(11) NOT NULL,
   PRIMARY KEY  (`leave_id`),
   KEY `fdsa` (`applicated_person`),
   KEY `das` (`ratified_person`),
@@ -95,10 +96,10 @@ INSERT INTO `attendance_record` VALUES ('12', '2019-06-11 19:26:33', '2019-06-11
 -- ----------------------------
 DROP TABLE IF EXISTS `employee`;
 CREATE TABLE `employee` (
-  `employee_id` int(20) NOT NULL,
+  `employee_id` int(20) NOT NULL auto_increment,
   `sector_id` int(20) NOT NULL,
   `is_manager` tinyint(2) NOT NULL,
-  `name` varchar(20) NOT NULL,
+  `name` varchar(20) default NULL,
   `age` int(20) NOT NULL,
   `salary` decimal(20,0) NOT NULL,
   `sex` tinyint(20) NOT NULL,
@@ -106,7 +107,7 @@ CREATE TABLE `employee` (
   `enroll_time` datetime NOT NULL,
   `user_id` int(20) NOT NULL,
   PRIMARY KEY  (`employee_id`),
-  KEY `saascas` (`user_id`),
+  UNIQUE KEY `saascas` USING BTREE (`user_id`),
   KEY `em` USING BTREE (`sector_id`),
   CONSTRAINT `saas` FOREIGN KEY (`sector_id`) REFERENCES `sector` (`sector_id`),
   CONSTRAINT `saascas` FOREIGN KEY (`user_id`) REFERENCES `user` (`id`)
@@ -115,14 +116,16 @@ CREATE TABLE `employee` (
 -- ----------------------------
 -- Records of employee
 -- ----------------------------
-INSERT INTO `employee` VALUES ('1', '123', '1', '张天', '25', '2000', '0', '1234567891', '2019-05-06 16:04:51', '1000');
+INSERT INTO `employee` VALUES ('1', '123', '0', '??', '35', '5000', '1', '78984', '2019-05-06 16:04:51', '1000');
 INSERT INTO `employee` VALUES ('2', '124', '1', '志昂', '28', '3000', '0', '123456', '2018-08-24 16:24:55', '1001');
 INSERT INTO `employee` VALUES ('4', '126', '1', '??', '26', '3333', '1', '1234567', '1970-01-01 08:00:00', '1002');
 INSERT INTO `employee` VALUES ('5', '127', '1', '张和', '26', '3000', '1', '1234567', '1970-01-01 08:00:00', '1003');
 INSERT INTO `employee` VALUES ('7', '126', '0', '蔡徐坤', '26', '2550', '1', '456789', '2019-06-06 09:22:45', '1004');
-INSERT INTO `employee` VALUES ('8', '125', '1', 'pidan', '17', '1234', '1', '1565', '2019-05-29 16:05:03', '1005');
+INSERT INTO `employee` VALUES ('8', '125', '0', 'pidan', '17', '1234', '1', '1565', '2019-05-29 16:05:03', '1005');
 INSERT INTO `employee` VALUES ('12', '127', '0', 'duff', '25', '4567', '0', '848613', '2019-06-04 14:25:47', '1006');
-INSERT INTO `employee` VALUES ('15', '124', '0', '弗雷克斯', '29', '1234', '1', '564987', '2019-01-09 09:36:20', '1003');
+INSERT INTO `employee` VALUES ('16', '123', '0', 'dakjs', '0', '0', '0', '0', '2019-06-12 16:29:23', '1027');
+INSERT INTO `employee` VALUES ('17', '125', '0', 'dsads', '35', '5000', '1', '78984', '2019-06-12 17:16:44', '1028');
+INSERT INTO `employee` VALUES ('18', '123', '0', 'fsdh', '0', '0', '0', '0', '2019-06-12 20:57:50', '1030');
 
 -- ----------------------------
 -- Table structure for manager
@@ -189,6 +192,29 @@ INSERT INTO `user` VALUES ('1004', '4', '0');
 INSERT INTO `user` VALUES ('1005', '5', '0');
 INSERT INTO `user` VALUES ('1006', '6', '0');
 INSERT INTO `user` VALUES ('1007', '7', '0');
+INSERT INTO `user` VALUES ('1008', '123456', '0');
+INSERT INTO `user` VALUES ('1009', '123456', '0');
+INSERT INTO `user` VALUES ('1010', '123456', '0');
+INSERT INTO `user` VALUES ('1011', '123456', '0');
+INSERT INTO `user` VALUES ('1012', '12356', '0');
+INSERT INTO `user` VALUES ('1013', '12356', '0');
+INSERT INTO `user` VALUES ('1014', '12356', '0');
+INSERT INTO `user` VALUES ('1015', '12356', '0');
+INSERT INTO `user` VALUES ('1016', '12356', '0');
+INSERT INTO `user` VALUES ('1017', '12356', '0');
+INSERT INTO `user` VALUES ('1018', '12356', '0');
+INSERT INTO `user` VALUES ('1019', '12356', '0');
+INSERT INTO `user` VALUES ('1020', '12356', '0');
+INSERT INTO `user` VALUES ('1021', '12356', '0');
+INSERT INTO `user` VALUES ('1022', '12356', '0');
+INSERT INTO `user` VALUES ('1023', '12356', '0');
+INSERT INTO `user` VALUES ('1024', '12356', '0');
+INSERT INTO `user` VALUES ('1025', '12356', '0');
+INSERT INTO `user` VALUES ('1026', '12356', '0');
+INSERT INTO `user` VALUES ('1027', '12356', '0');
+INSERT INTO `user` VALUES ('1028', '12356', '0');
+INSERT INTO `user` VALUES ('1029', '12356', '0');
+INSERT INTO `user` VALUES ('1030', '12356', '0');
 
 -- ----------------------------
 -- Table structure for work_arrangement
@@ -210,3 +236,12 @@ CREATE TABLE `work_arrangement` (
 -- ----------------------------
 -- Records of work_arrangement
 -- ----------------------------
+INSERT INTO `work_arrangement` VALUES ('2', '4', '1', '2019-06-27 00:02:22', '2019-06-28 00:02:26');
+INSERT INTO `work_arrangement` VALUES ('2', '4', '2', '2019-06-28 00:03:07', '2019-06-29 00:03:14');
+INSERT INTO `work_arrangement` VALUES ('1', '1', '3', '2019-06-05 04:44:38', '2019-06-12 07:44:45');
+INSERT INTO `work_arrangement` VALUES ('1', '1', '4', '2019-06-05 04:44:38', '2019-06-12 07:44:45');
+INSERT INTO `work_arrangement` VALUES ('1', '1', '5', '2019-06-05 04:44:38', '2019-06-12 07:44:45');
+INSERT INTO `work_arrangement` VALUES ('1', '1', '6', '2019-06-05 04:44:38', '2019-06-12 07:44:45');
+INSERT INTO `work_arrangement` VALUES ('1', '1', '7', '2019-06-05 04:44:38', '2019-06-12 07:44:45');
+INSERT INTO `work_arrangement` VALUES ('1', '1', '8', '2019-06-05 04:44:38', '2019-06-12 07:44:45');
+INSERT INTO `work_arrangement` VALUES ('1', '1', '9', '2019-06-05 04:44:38', '2019-06-12 07:44:45');
