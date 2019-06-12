@@ -28,4 +28,7 @@ public interface AttendanceRecordDao {
 	 */
 	
 	public int attendanceDown (int userId);
+	
+	
+	public List<AttendanceRecord> findAttendanceRecordBySectorId(int sectorId);
 }

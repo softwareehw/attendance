@@ -275,6 +275,23 @@ public class EmployeeServiceImpl implements EmployeeService {
 		return null;
 	}
 
+	@Override
+	public String findAttendanceRecordBySectorId(int sectorId) {
+		// TODO Auto-generated method stub
+		JSONObject ans = new JSONObject();
+		List<AttendanceRecord> list = attendanceRecordDao.findAttendanceRecordBySectorId(sectorId);
+		JSONArray jay = new JSONArray(list);
+		if(!list.isEmpty()) {
+			return jay.toString();
+		}else {
+			
+			ans.put("state", 0);
+			ans.put("errormessage", "没有这个部门或没有打卡记录");
+			return ans.toString();
+		}
+		
+	}
+
 
 
 }
