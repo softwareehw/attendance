@@ -316,4 +316,10 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 		return i;
 	}
 
+	@Override
+	public int addAllApplicationForEW(ApplicationForEW date) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }
