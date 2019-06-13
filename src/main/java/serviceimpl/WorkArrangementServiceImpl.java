@@ -102,19 +102,10 @@ public class WorkArrangementServiceImpl implements WorkArrangementService {
 
 	@Override
 	public int findNormalWorkTime(int employeeId) {
-		List<WorkArrangement> l = workarrangementDao.findWorkArrangementByEId(employeeId);
-		// 获取当月第一天和最后一天  
-		Calendar cale = null;
-        int month = cale.get(Calendar.MONTH) + 1;
 
-		for (WorkArrangement workArrangement : l) {
-
-		}
-		
-		
-		
-		
 		return 0;
 	}
+
+
 
 }

@@ -89,7 +89,7 @@ public class WorkArrangementController {
 	public String GetSumTimeByEId(@PathVariable int employeeId){
 		
 		
-				return ans;
+				return "";
 	}	
 
 }

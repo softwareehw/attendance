@@ -88,12 +88,12 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 
 	//查看某申请人全部申请加班
 	@Override
-	public List<ApplicationForEW> findById(int applicatedPerson) {
+	public List<ApplicationForEW> findById(int applicatedId) {
 		// TODO Auto-generated method stub
 		
 		String ApplicatedPerson="";
-		ApplicatedPerson=String.valueOf(applicatedPerson);
-		String sql="SELECT * FROM application_for_ew WHERE applicated_person="+ApplicatedPerson;
+		ApplicatedPerson=String.valueOf(applicatedId);
+		String sql="SELECT * FROM application_for_ew WHERE applicated_id="+applicatedId;
 		return (List<ApplicationForEW>) jdbcTemplate.query(sql, new ApplicationForEWRowMapper() {
 			
 		});
@@ -104,7 +104,7 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 	public int addApplicateEW(ApplicationForEW applica) {
 		// TODO Auto-generated method stub
 		String sql = "insert into application_for_ew(applicated_id,start_time,end_time,ew_state,ew_reason) "
-				+ "values(?,?,?,?)";
+				+ "values(?,?,?,?,?)";
 		return jdbcTemplate.update(sql,applica.getApplicatedId(),applica.getStartTime(),applica.getEndTime(),
 				0,applica.getEwReason());
 		  
@@ -314,6 +314,12 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 		String sql = "update application_for_ew set ew_state=?, ratify_id=? where ew_id=?";
 		int i = jdbcTemplate.update(sql,new Object[]{applicationForEW.getEwState(),applicationForEW.getRatifyId(),applicationForEW.getEwId()});
 		return i;
+	}
+
+	@Override
+	public int addAllApplicationForEW(ApplicationForEW date) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }

@@ -305,8 +305,8 @@ public class EmployeeServiceImpl implements EmployeeService {
 		if(!list.isEmpty()) {
 		return employeeDao.judgeDegree(user);
 		}
-		ans.put("degree", 3);
-    	ans.put("employeeId", 0);
+		ans.put("error", 0);
+    	
     	return ans.toString();
 	}
 
