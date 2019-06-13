@@ -290,7 +290,7 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 	@Override
 	public List<ApplicationForEW> getEmployeeInfoApplicationForEW(int employeeId) {
 		// TODO Auto-generated method stub
-		String sql = "select * from application_for_ew where applicated_person = ?";
+		String sql = "select * from application_for_ew where applicated_id = ?";
         return (List<ApplicationForEW>)jdbcTemplate.query(sql, new Object[] {employeeId},new ApplicationForEWRowMapper() {
 			
 		});
@@ -316,10 +316,6 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 		return i;
 	}
 
-	@Override
-	public int addAllApplicationForEW(ApplicationForEW date) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
+
 
 }
