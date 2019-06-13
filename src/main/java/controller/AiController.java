@@ -78,15 +78,10 @@ public class AiController {
 	public String add(@RequestParam("image") MultipartFile image,@RequestParam("employeeId") int employeeId) throws Exception {
 		try {
 			logger.info("接受图片");
-			//保存文件
-			FileOutputStream fos=new FileOutputStream("target/"+image.getOriginalFilename());
-			IOUtils.copy(image.getInputStream(), fos);
-			fos.close();
-			String path="target/"+image.getOriginalFilename();
 			//录入图片
 			logger.info("录入图片");
 			
-			return FaceInteraction.add(path, employeeId);
+			return FaceInteraction.add(image, employeeId);
 		}
 		catch (Exception e){
 			e.printStackTrace();
