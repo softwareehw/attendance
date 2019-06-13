@@ -81,4 +81,6 @@ public interface ApplicationForEWDao {
 	
 	public int RatifyEW(ApplicationForEW applicationForEW);
 
+	List<ApplicationForEW> updateUNEmployeeInfoApplicationForEW(int applicatedId);
+
 }

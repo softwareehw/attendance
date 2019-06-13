@@ -41,4 +41,6 @@ public interface ApplicationForEWService {
 	
 	
 	public String RatifyEW(ApplicationForEW applicationForEW);
+	
+	public String getEW(int applicatedId);
 }
