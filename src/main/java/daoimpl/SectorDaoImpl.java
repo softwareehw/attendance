@@ -40,7 +40,7 @@ public class SectorDaoImpl implements SectorDao {
 
 	@Override
 	public int AddSector(Sector s) {
-		String sql = "INSERT INTO SECTOR (sector_id,sector_name,sector_people_number,sector_description) VALUE(?,?,?,?)";
+		String sql = "INSERT INTO sector (sector_id,sector_name,sector_people_number,sector_description) VALUE(?,?,?,?)";
 		int i = jdbcTemplate.update(sql,s.getSectorId(),s.getSectorName(),s.getSectorPeopleNumber(),s.getSectorDescription());
 		return i;
 	}

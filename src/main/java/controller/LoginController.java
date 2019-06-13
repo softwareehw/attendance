@@ -56,7 +56,6 @@ public class LoginController {
 		HttpSession session = request.getSession();
 
 		JSONObject ans=new JSONObject();
-		ans.put("status", 0);
 		
     	if(userDao.searchUserByIdAndPasswd(user).isEmpty()) return ans.toString();
     	else {
@@ -68,18 +67,19 @@ public class LoginController {
         	if(employeeDao.findEmployeeByUserId(loginuser.getId()).isEmpty()) {
         		Manager manager = managerDao.findManagerByUserId(loginuser.getId()).get(0);
         		session.setAttribute("manager", manager);
-        		ans.put("Manager", new JSONObject(manager));
-        		ans.put("status", 1);
+        		
+        		ans.put("degree", 55);
+        		ans.put("employeeId", 9999);
         	}else {
         		Employee employee = employeeDao.findEmployeeByUserId(loginuser.getId()).get(0);
         		if(employee.isManager()!=false){
             		session.setAttribute("master", employee);
-            		ans.put("Master", new JSONObject(employee));
-            		ans.put("status", 2);
+            		ans.put("employeeId", employee.getEmployeeId());
+            		ans.put("degree", 2);
             	}else{
             		session.setAttribute("employee", employee);
-            		ans.put("employee", new JSONObject(employee));
-            		ans.put("status", 3);
+            		ans.put("employeeId", employee.getEmployeeId());
+            		ans.put("degree", 1);
             	}
         	}
         		
