@@ -27,7 +27,7 @@ public class UserDaoImpl implements UserDao {
 		int id = user.getId();
 		String passward = user.getPassword();
 		
-		String sql = "SELECT * FROM user WHERE ID="+id+" AND PASSWARD="+passward;
+		String sql = "SELECT * FROM user WHERE ID="+id+" AND PASSWORD="+passward;
 		
         return (List<User>) jdbcTemplate.query(sql, new RowMapper<User>(){
 
@@ -36,7 +36,7 @@ public class UserDaoImpl implements UserDao {
             	User user = new User();
             	
             	user.setId(rs.getInt("id"));
-            	user.setPassword(rs.getString("passward"));
+            	user.setPassword(rs.getString("password"));
                 
                 return user;
             }

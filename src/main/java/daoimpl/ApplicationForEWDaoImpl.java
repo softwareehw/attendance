@@ -231,7 +231,7 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 				String timeend=e.get(e.YEAR)+"-"+mm+"-"+e.get(e.DAY_OF_MONTH)+" "
 						+ e.get(e.HOUR_OF_DAY)+":"+e.get(e.MINUTE)+":"+e.get(e.SECOND);
 				
-				sql="INSERT INTO application_for_ew (applicated_id,start_time,end_time,ew_state,ratify_id,ew_reason) values("+i+",\""+timestart+"\",\""+timeend+"\",1,"+date.getRatifyId()+",\""+date.getEwReason+"\")";
+				sql="INSERT INTO application_for_ew (applicated_id,start_time,end_time,ew_state,ratify_id,ew_reason) values("+i+",\""+timestart+"\",\""+timeend+"\",1,"+date.getRatifyId()+",\""+date.getEwReason()+"\")";
 				jdbcTemplate.update(sql);
 				
 			}
@@ -249,7 +249,7 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 					String timeend=e.get(e.YEAR)+"-"+mm+"-"+e.get(e.DAY_OF_MONTH)+" "
 							+ e.get(e.HOUR_OF_DAY)+":"+e.get(e.MINUTE)+":"+e.get(e.SECOND);
 					
-					sql="INSERT INTO application_for_ew (applicated_id,start_time,end_time,ew_state,ratify_id,ew_reason) values("+i+",\""+timestart+"\",\""+timeend+"\",1,"+date.getRatifyId()+",\""+date.getEwReason+"\")";
+					sql="INSERT INTO application_for_ew (applicated_id,start_time,end_time,ew_state,ratify_id,ew_reason) values("+i+",\""+timestart+"\",\""+timeend+"\",1,"+date.getRatifyId()+",\""+date.getEwReason()+"\")";
 					jdbcTemplate.update(sql);
 
 				}
@@ -266,7 +266,7 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 				String timeend=e.get(e.YEAR)+"-"+mm+"-"+e.get(e.DAY_OF_MONTH)+" "
 						+ e.get(e.HOUR_OF_DAY)+":"+e.get(e.MINUTE)+":"+e.get(e.SECOND); //有问题！
 				
-				sql="INSERT INTO application_for_ew (applicated_id,start_time,end_time,ew_state,ratify_id,ew_reason) values("+i+",\""+timestart+"\",\""+timeend+"\",1,"+date.getRatifyId()+",\""+date.getEwReason+"\")";
+				sql="INSERT INTO application_for_ew (applicated_id,start_time,end_time,ew_state,ratify_id,ew_reason) values("+i+",\""+timestart+"\",\""+timeend+"\",1,"+date.getRatifyId()+",\""+date.getEwReason()+"\")";
 				jdbcTemplate.update(sql);
 			}
 			
@@ -314,6 +314,12 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 		String sql = "update application_for_ew set ew_state=?, ratify_id=? where ew_id=?";
 		int i = jdbcTemplate.update(sql,new Object[]{applicationForEW.getEwState(),applicationForEW.getRatifyId(),applicationForEW.getEwId()});
 		return i;
+	}
+
+	@Override
+	public int addAllApplicationForEW(ApplicationForEW date) {
+		// TODO Auto-generated method stub
+		return 0;
 	}
 
 }
