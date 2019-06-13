@@ -302,11 +302,11 @@ public class EmployeeServiceImpl implements EmployeeService {
 		List<User> list = jdbcTemplate.query(sql, new Object[] {user.getId(),user.getPassword()},new UserRowMapper() {
 			
 		});
-		if(list.isEmpty()) {
+		if(!list.isEmpty()) {
 		return employeeDao.judgeDegree(user);
 		}
-		ans.put("degree", 3);
-    	ans.put("employeeId", 0);
+		ans.put("error", 0);
+    	
     	return ans.toString();
 	}
 

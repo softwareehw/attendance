@@ -235,6 +235,7 @@ public class EmployeeDaoImpl implements EmployeeDao,Serializable {
 				,e.getSalary(),e.isSex(),e.getPhoneNumber(),e.getUserId()});
 	}
 
+	
 	@Override
 	public String judgeDegree(User user) {
 		// TODO Auto-generated method stub
@@ -251,15 +252,18 @@ public class EmployeeDaoImpl implements EmployeeDao,Serializable {
         if(list.size()==1) {
         	ans.put("degree", 2);
         	ans.put("employeeId", list.get(0).getEmployeeId());
-        	return ans.toString();
+        	
         }else if(list2.size()==1) {
         	ans.put("degree", 1);
         	ans.put("employeeId", list2.get(0).getEmployeeId());
-        	return ans.toString();
-        }
+        	
+        }else if(list1.size()==1)
         {
-        return null;
+        	ans.put("degree", 3);
+        	ans.put("employeeId", 0);
+        	
         }
+		return ans.toString();
 	}
 
 
