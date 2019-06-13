@@ -168,7 +168,7 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 			//提取加班申请ApplicationForEW的信息并存储
 			sql="SELECT start_time,end_time FROM application_for_ew WHERE "
 					+ "to_days(start_time)=to_days(\""+datet+"\") AND "
-							+ "applicated_person="+i+" AND ew_state=1";
+							+ "applicated_id="+i+" AND ew_state=1";
 			jdbcTemplate.query(sql, new RowMapper<ApplicationForEW>() {
 
 				@Override
@@ -301,7 +301,18 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 	@Override
 	public List<ApplicationForEW> updateEmployeeInfoApplicationForEW( int applicatedId) {
 		// TODO Auto-generated method stub
-		String sql = "select * from application_for_ew where applicated_id = ? and state = 0";
+		String sql = "select * from application_for_ew where applicated_id = ? and ew_state = 0";
+		return (List<ApplicationForEW>)jdbcTemplate.query(sql, new Object[] {applicatedId},new ApplicationForEWRowMapper() {
+			
+		});
+		
+	}
+	
+	//已批记录
+	@Override
+	public List<ApplicationForEW> updateUNEmployeeInfoApplicationForEW( int applicatedId) {
+		// TODO Auto-generated method stub
+		String sql = "select * from application_for_ew where applicated_id = ? and ew_state = 1";
 		return (List<ApplicationForEW>)jdbcTemplate.query(sql, new Object[] {applicatedId},new ApplicationForEWRowMapper() {
 			
 		});

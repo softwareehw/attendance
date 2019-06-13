@@ -2,6 +2,7 @@ package serviceimpl;
 
 import java.util.List;
 
+import org.json.JSONArray;
 import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -59,4 +60,24 @@ public class ApplicationForEWServiceImpl implements ApplicationForEWService {
 		return json.toString();
 	}
 
-}
+	@Override
+	public String getEW(int applicatedId) {
+		// TODO Auto-generated method stub
+		JSONObject json = new JSONObject();
+		
+		List<ApplicationForEW> l = applicationForEWDao.updateUNEmployeeInfoApplicationForEW(applicatedId);
+		JSONArray jay = new JSONArray(l);
+		if(l.isEmpty()){
+			json.put("state", 0);
+			return json.toString();
+		}else{
+			
+		
+			return jay.toString();
+		}
+		
+	}
+		
+	}
+
+
