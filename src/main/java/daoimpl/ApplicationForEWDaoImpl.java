@@ -88,12 +88,12 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 
 	//查看某申请人全部申请加班
 	@Override
-	public List<ApplicationForEW> findById(int applicatedPerson) {
+	public List<ApplicationForEW> findById(int applicatedId) {
 		// TODO Auto-generated method stub
 		
 		String ApplicatedPerson="";
-		ApplicatedPerson=String.valueOf(applicatedPerson);
-		String sql="SELECT * FROM application_for_ew WHERE applicated_person="+ApplicatedPerson;
+		ApplicatedPerson=String.valueOf(applicatedId);
+		String sql="SELECT * FROM application_for_ew WHERE applicated_id="+applicatedId;
 		return (List<ApplicationForEW>) jdbcTemplate.query(sql, new ApplicationForEWRowMapper() {
 			
 		});
