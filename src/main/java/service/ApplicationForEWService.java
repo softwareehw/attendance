@@ -43,4 +43,12 @@ public interface ApplicationForEWService {
 	public String RatifyEW(ApplicationForEW applicationForEW);
 	
 	public String getEW(int applicatedId);
+	
+	//获取每个部门当天加班人数
+	public String applicatedNumberBySectorId (int sectorId);
+
+	
+	//获取当天公司加班人数
+	public String applicatedNumberAll();
+
 }

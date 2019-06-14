@@ -72,5 +72,13 @@ public class ApplicationForEWController {
 		return applicationForEWService.RatifyEW(applicationForEW);
 	}
 	
+	@RequestMapping(value="/applicateEWNum/{sectorId}",method=RequestMethod.GET)
+	public String applicatedNumberBySectorId(@PathVariable int sectorId) {
+		return applicationForEWService.applicatedNumberBySectorId(sectorId);
+	}
 	
+	@RequestMapping(value="/applicateEWNumAll",method=RequestMethod.GET)
+	public String applicatedNumberAll() {
+		return applicationForEWService.applicatedNumberAll();
+	}
 }

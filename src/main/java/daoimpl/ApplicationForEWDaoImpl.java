@@ -3,6 +3,7 @@ package daoimpl;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Timestamp;
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
 import java.util.Collections;
@@ -328,5 +329,37 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 	}
 
 
+	//获取每个部门某天加班人数
+	@Override
+	public int applicatedNumberBySectorId(int sectorId) {
+		// TODO Auto-generated method stub
+		Date date = new Date();
+		SimpleDateFormat dxf = new SimpleDateFormat("yyyyMMdd");
+		String sql = "SELECT * from application_for_ew WHERE applicated_id in "
+				+ "(select employee_id FROM employee WHERE sector_id = ?) "
+				+ "and (? >= start_time and ? <= end_time) and ew_state = 1";
+		List<ApplicationForEW> list = jdbcTemplate.query(sql, new Object[] {sectorId,dxf.format(date),dxf.format(date)},new ApplicationForEWRowMapper() {
+			
+		});
+		return list.size();
+	}
+
+	//获取公司当天加班人数
+	@Override
+	public int applicatedNumberAll() {
+		// TODO Auto-generated method stub
+		Date date = new Date();
+		SimpleDateFormat dxf = new SimpleDateFormat("yyyyMMdd");
+		String sql = "SELECT * from application_for_ew  "
+				+ "where (? >= start_time and  ? <= end_time) and ew_state = 1";
+		List<ApplicationForEW> list = jdbcTemplate.query(sql, new Object[] {dxf.format(date),dxf.format(date)},new ApplicationForEWRowMapper() {
+
+		});
+		System.out.println(dxf.format(date));
+		System.out.println(list);
+		return list.size();
+	}
+
+	
 
 }

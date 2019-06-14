@@ -50,6 +50,12 @@ public interface ApplicationForLeaveDao {
 	public int CancelCancelLeaveByLeaveId(int leaveId);
 	
 	public int RatifyLeave(ApplicationForLeave applicationForLeave);
+
+    //获取当天每个部门请假人数
+	public int applicationNumberBySectorId(int sectorId);
+
+    //获取当天公司请假人数
+	public int applicationNumberAll();
 	
 	
 }

@@ -39,4 +39,11 @@ public interface ApplicationForLeaveService {
 	
 	
 	public String RatifyLeave(ApplicationForLeave applicationForLeave);
+	
+	//获取每个部门当天加班人数
+	public String applicatetionNumberBySectorId (int sectorId);
+
+	
+	//获取当天公司加班人数
+	public String applicatetionNumberAll();
 }

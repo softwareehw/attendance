@@ -127,5 +127,29 @@ public class ApplicationForLeaveDaoImpl implements ApplicationForLeaveDao {
 		int i= jdbcTemplate.update(sql,new Object[]{applicationForLeave.getState(),applicationForLeave.getRatifiedPerson()});
 		return i;
 	}
+	
+	@Override
+	public int applicationNumberBySectorId(int sectorId) {
+		// TODO Auto-generated method stub
+		String sql = "SELECT * from application_for_leave WHERE applicated_person in "
+				+ "(select employee_id FROM employee WHERE sector_id = ?) "
+				+ "and (? >= start_time and ? <= end_time) and ew_state = 1";
+		List<ApplicationForLeave> list = jdbcTemplate.query(sql, new Object[] {sectorId,new Date(),new Date()},new ApplicationForLeaveRowMapper() {
+			
+		});
+		return list.size();
+	}
+
+	@Override
+	public int applicationNumberAll() {
+		// TODO Auto-generated method stub
+		String sql = "SELECT * from application_for_leave WHERE   "
+				+ " (? >= start_time and ? <= end_time) and ew_state = 1";
+		List<ApplicationForLeave> list = jdbcTemplate.query(sql, new Object[] {new Date(),new Date()},new ApplicationForLeaveRowMapper() {
+			
+		});
+		return list.size();
+		
+	}
 
 }

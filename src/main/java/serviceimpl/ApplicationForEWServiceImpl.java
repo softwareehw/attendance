@@ -77,6 +77,25 @@ public class ApplicationForEWServiceImpl implements ApplicationForEWService {
 		}
 		
 	}
+
+	@Override
+	public String applicatedNumberBySectorId(int sectorId) {
+		// TODO Auto-generated method stub
+		JSONObject ans = new JSONObject();
+		int i = applicationForEWDao.applicatedNumberBySectorId(sectorId);
+		ans.put("state", i);
+		return ans.toString();
+	}
+
+	@Override
+	public String applicatedNumberAll() {
+		// TODO Auto-generated method stub
+		JSONObject ans = new JSONObject();
+		int i = applicationForEWDao.applicatedNumberAll();
+		ans.put("state", i);
+		return ans.toString();
+		
+	}
 		
 	}
 
