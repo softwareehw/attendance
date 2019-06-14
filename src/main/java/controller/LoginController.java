@@ -10,6 +10,7 @@ import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.web.context.request.RequestContextHolder;
@@ -48,41 +49,43 @@ public class LoginController {
 	public String judgeDegree(@RequestBody User user) {
 		return employeeService.judgeDegree(user);
 	}
-//    public String login(@RequestBody User user ) {
-//		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
-//		HttpSession session = request.getSession();
-//
-//		JSONObject ans=new JSONObject();
-//		ans.put("status", 0);
-//		
-//    	if(userDao.searchUserByIdAndPasswd(user).isEmpty()) return ans.toString();
-//    	else {
-//    		User loginuser = userDao.searchUserByIdAndPasswd(user).get(0);
-//    		
-//    		session.setAttribute("user", loginuser);
-//        	
-//       
-//        	if(employeeDao.findEmployeeByUserId(loginuser.getId()).isEmpty()) {
-//        		Manager manager = managerDao.findManagerByUserId(loginuser.getId()).get(0);
-//        		session.setAttribute("manager", manager);
-//        		ans.put("Manager", new JSONObject(manager));
-//        		ans.put("status", 1);
-//        	}else {
-//        		Employee employee = employeeDao.findEmployeeByUserId(loginuser.getId()).get(0);
-//        		if(employee.isManager()!=false){
-//            		session.setAttribute("master", employee);
-//            		ans.put("Master", new JSONObject(employee));
-//            		ans.put("status", 2);
-//            	}else{
-//            		session.setAttribute("employee", employee);
-//            		ans.put("employee", new JSONObject(employee));
-//            		ans.put("status", 3);
-//            	}
-//        	}
-//        		
-//        }	
-//        return ans.toString();
-//    }
+	
+	@RequestMapping(value="/login",method=RequestMethod.POST)
+    public String login(@RequestBody User user ) {
+		HttpServletRequest request = ((ServletRequestAttributes)RequestContextHolder.getRequestAttributes()).getRequest();
+		HttpSession session = request.getSession();
+
+		JSONObject ans=new JSONObject();
+		
+    	if(userDao.searchUserByIdAndPasswd(user).isEmpty()) return ans.toString();
+    	else {
+    		User loginuser = userDao.searchUserByIdAndPasswd(user).get(0);
+    		
+    		session.setAttribute("user", loginuser);
+        	
+       
+        	if(employeeDao.findEmployeeByUserId(loginuser.getId()).isEmpty()) {
+        		Manager manager = managerDao.findManagerByUserId(loginuser.getId()).get(0);
+        		session.setAttribute("manager", manager);
+        		
+        		ans.put("degree", 55);
+        		ans.put("employeeId", 9999);
+        	}else {
+        		Employee employee = employeeDao.findEmployeeByUserId(loginuser.getId()).get(0);
+        		if(employee.isManager()!=false){
+            		session.setAttribute("master", employee);
+            		ans.put("employeeId", employee.getEmployeeId());
+            		ans.put("degree", 2);
+            	}else{
+            		session.setAttribute("employee", employee);
+            		ans.put("employeeId", employee.getEmployeeId());
+            		ans.put("degree", 1);
+            	}
+        	}
+        		
+        }	
+        return ans.toString();
+    }
 	
 	
 	@RequestMapping("/error")

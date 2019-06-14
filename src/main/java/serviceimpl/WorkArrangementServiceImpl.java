@@ -1,5 +1,8 @@
 package serviceimpl;
 
+import java.text.SimpleDateFormat;
+import java.util.Calendar;
+import java.util.Date;
 import java.util.List;
 
 import org.json.JSONArray;
@@ -96,5 +99,13 @@ public class WorkArrangementServiceImpl implements WorkArrangementService {
 		}
 		return json.toString();
 	}
+
+	@Override
+	public int findNormalWorkTime(int employeeId) {
+
+		return 0;
+	}
+
+
 
 }
