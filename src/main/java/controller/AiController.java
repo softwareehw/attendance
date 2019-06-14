@@ -26,7 +26,7 @@ import service.EmployeeService;
 //部署到服务器上的时候请一定使用 @CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true") 才能和前端正常交互
 @CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true")
 @RestController
-@RequestMapping("/api/v1/clock")
+@RequestMapping("/api/v1/ai")
 public class AiController {
 	
 	private static final Logger logger = LoggerFactory.getLogger(EmployeeController.class);
