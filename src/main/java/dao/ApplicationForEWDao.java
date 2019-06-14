@@ -73,8 +73,10 @@ public interface ApplicationForEWDao {
 	
 	
 
-
+    //获取公司当天加班人数
+	public int applicatedNumberAll();
 	
+
 	
 	
 	
@@ -82,5 +84,9 @@ public interface ApplicationForEWDao {
 	public int RatifyEW(ApplicationForEW applicationForEW);
 
 	List<ApplicationForEW> updateUNEmployeeInfoApplicationForEW(int applicatedId);
+	
+	//统计当天每个部门加班人数
+	
+	public int applicatedNumberBySectorId (int sectorId);
 
 }

@@ -106,6 +106,24 @@ public class ApplicationForLeaveServiceImpl implements ApplicationForLeaveServic
 		
 		return json.toString();
 	}
+
+	@Override
+	public String applicatetionNumberBySectorId(int sectorId) {
+		// TODO Auto-generated method stub
+		JSONObject ans = new JSONObject();
+		int i = applicationForLeavedao.applicationNumberBySectorId(sectorId);
+		ans.put("state", i);
+		return ans.toString();
+	}
+
+	@Override
+	public String applicatetionNumberAll() {
+		// TODO Auto-generated method stub
+		JSONObject ans = new JSONObject();
+		int i = applicationForLeavedao.applicationNumberAll();
+		ans.put("state", i);
+		return ans.toString();
+	}
 	
 
 }
