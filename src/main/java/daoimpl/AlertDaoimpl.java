@@ -23,8 +23,8 @@ public class AlertDaoimpl implements AlertDao {
 	public int addAlert(int employeeId,int state) {
 		// TODO Auto-generated method stub
 		String sql = "insert into alert(employee_id,state) value(?,?)";
-		String sql1 = "select sector_id from employee where employee_id = ?";
-		String sql2 = "select employee_id from employee where sector_id = ? and is_manager = 1";
+		String sql1 = "select * from employee where employee_id = ?";
+		String sql2 = "select * from employee where sector_id = ? and is_manager = 1";
 		
 		List<Employee> list = jdbcTemplate.query(sql1, new Object[] {employeeId},new EmployeeRowMapper(){
 			
@@ -43,7 +43,7 @@ public class AlertDaoimpl implements AlertDao {
 	public int deleteAlert(int employeeId) {
 		// TODO Auto-generated method stub
 		
-		String sql = "delete * from alert where employee_id = ?";
+		String sql = "delete  from alert where employee_id = ?";
 		
 		return jdbcTemplate.update(sql,new Object[] {employeeId});
 	}
@@ -51,7 +51,7 @@ public class AlertDaoimpl implements AlertDao {
 	@Override
 	public List<Alert> findAlert(int employeeId) {
 		// TODO Auto-generated method stub
-		String sql = "select state from alert where employee_id = ?";
+		String sql = "select * from alert where employee_id = ?";
 		List<Alert> list = jdbcTemplate.query(sql, new Object[] {employeeId},new AlertRowMapper() {
 			
 		});
