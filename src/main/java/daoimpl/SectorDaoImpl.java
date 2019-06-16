@@ -48,7 +48,7 @@ public class SectorDaoImpl implements SectorDao {
 
 	@Override
 	public int ModifySector(Sector s) {
-		String sql = "UPDATE SECTOR SET SECTOR_NAME=?,SECTOR_PEOPLE_NUMBER=?,SECTOR_DESCRIPTION=? WHERE SECTOR_ID= "+s.getSectorId();
+		String sql = "UPDATE sector SET sector_name=?,sector_people_number=?,sector_description=? WHERE sector_id= "+s.getSectorId();
 		int i = jdbcTemplate.update(sql,new Object[]{s.getSectorName(),s.getSectorPeopleNumber(),s.getSectorDescription()});
 		
 		return i;
@@ -57,7 +57,7 @@ public class SectorDaoImpl implements SectorDao {
 
 	@Override
 	public int DeleteSector(int sectorId) {
-		String sql = "DELETE FROM SECTOR WHERE SECTOR_ID=?";
+		String sql = "DELETE FROM sector WHERE sector_id=?";
 		int i = jdbcTemplate.update(sql,new Object[]{sectorId});
 		return i;
 	}

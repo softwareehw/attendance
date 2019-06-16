@@ -279,7 +279,7 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 	@Override
 	public List<ApplicationForEW> getUncheckApplicationForEW(int sectorId) {
 		// TODO Auto-generated method stub
-		String sql = "select * from application_for_ew where sectorid = ?";
+		String sql = "select * from application_for_ew where sector_id = ?";
 		
 		return (List<ApplicationForEW>)jdbcTemplate.query(sql, new Object[] {sectorId},new ApplicationForEWRowMapper() {
 			
