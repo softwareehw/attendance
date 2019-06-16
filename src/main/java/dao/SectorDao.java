@@ -44,4 +44,7 @@ public interface SectorDao {
 	public List<Employee> employeeInfoBySectorId(int sectorId);
 	
 	public int findAllEmployeeBySectorId( int sectorId);
+	
+	
+	public int findPeopleNum(int sectorId);
 }

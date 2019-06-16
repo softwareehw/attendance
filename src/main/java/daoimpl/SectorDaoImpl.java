@@ -84,4 +84,13 @@ public class SectorDaoImpl implements SectorDao {
 		return list.size();
 	}
 
+
+	@Override
+	public int findPeopleNum(int sectorId) {
+		String sql ="select count(*) from employee where sector_id=?";
+		int i=jdbcTemplate.queryForObject(sql,Integer.class, sectorId);
+		
+		return i;
+	}
+
 }
