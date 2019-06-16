@@ -104,4 +104,30 @@ public class SectorServiceImpl implements SectorService {
 		return json.toString();
 	}
 
+	@Override
+	public String findPeopleNumInSector(int sectorId) {
+		JSONObject json = new JSONObject();
+		int ans = sectorDao.findPeopleNum(sectorId);
+		json.put("PeopleNumber", ans);
+		return json.toString();
+	}
+
+	@Override
+	public String findPeopleNumInConpany() {
+		List<Sector> l = sectorDao.getAllSector();
+		JSONObject json = new JSONObject();
+		int total=0;
+		for (Sector sector : l) {
+			int ans = sectorDao.findPeopleNum(sector.getSectorId());
+			total+=ans;
+		}
+		json.put("PeopleNumber", total);
+		return json.toString();
+	}
+	
+	
+	
+	
+	
+
 }
