@@ -10,10 +10,25 @@ Target Server Type    : MYSQL
 Target Server Version : 50022
 File Encoding         : 65001
 
-Date: 2019-06-12 22:20:59
+Date: 2019-06-16 16:45:32
 */
 
 SET FOREIGN_KEY_CHECKS=0;
+
+-- ----------------------------
+-- Table structure for alert
+-- ----------------------------
+DROP TABLE IF EXISTS `alert`;
+CREATE TABLE `alert` (
+  `employee_id` int(20) NOT NULL,
+  `state` int(1) NOT NULL,
+  `alert_id` int(20) NOT NULL auto_increment,
+  PRIMARY KEY  (`alert_id`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of alert
+-- ----------------------------
 
 -- ----------------------------
 -- Table structure for application_for_ew
@@ -25,17 +40,19 @@ CREATE TABLE `application_for_ew` (
   `end_time` datetime NOT NULL,
   `ew_state` int(11) NOT NULL,
   `ew_id` int(20) NOT NULL auto_increment,
-  `ratify_id` int(20) NOT NULL,
+  `ratify_id` int(20) default NULL,
+  `ew_reason` varchar(255) NOT NULL,
   PRIMARY KEY  (`ew_id`),
   KEY `asf` (`applicated_id`),
   KEY `asd` (`ratify_id`),
-  CONSTRAINT `asd` FOREIGN KEY (`ratify_id`) REFERENCES `employee` (`employee_id`),
   CONSTRAINT `asf` FOREIGN KEY (`applicated_id`) REFERENCES `employee` (`employee_id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of application_for_ew
 -- ----------------------------
+INSERT INTO `application_for_ew` VALUES ('1', '2019-06-13 10:46:22', '2019-06-14 08:46:30', '1', '1', null, 'hghjghd');
+INSERT INTO `application_for_ew` VALUES ('1', '2019-06-17 08:48:08', '2019-06-19 08:48:20', '0', '2', null, ' gh');
 
 -- ----------------------------
 -- Table structure for application_for_leave
@@ -43,12 +60,12 @@ CREATE TABLE `application_for_ew` (
 DROP TABLE IF EXISTS `application_for_leave`;
 CREATE TABLE `application_for_leave` (
   `leave_id` int(20) NOT NULL auto_increment,
-  `state` int(1) NOT NULL,
+  `state` int(1) default NULL,
   `start_time` datetime NOT NULL,
   `end_time` datetime NOT NULL,
   `applicated_person` int(11) NOT NULL,
-  `ratified_person` int(11) NOT NULL,
-  `is_report_back` tinyint(4) NOT NULL,
+  `ratified_person` int(11) default NULL,
+  `is_report_back` tinyint(4) default NULL,
   `report_back_time` datetime default NULL,
   `leave_reason` varchar(255) NOT NULL,
   `reject_reason` varchar(255) default NULL,
@@ -88,6 +105,7 @@ INSERT INTO `attendance_record` VALUES ('12', '2019-06-11 19:26:24', '2019-06-11
 INSERT INTO `attendance_record` VALUES ('12', '2019-06-11 19:26:27', '2019-06-11 19:26:28', '1');
 INSERT INTO `attendance_record` VALUES ('12', '2019-06-11 19:26:29', '2019-06-11 19:26:31', '1');
 INSERT INTO `attendance_record` VALUES ('12', '2019-06-11 19:26:33', '2019-06-11 19:26:35', '1');
+INSERT INTO `attendance_record` VALUES ('15', '2019-06-14 11:37:09', null, '0');
 
 -- ----------------------------
 -- Table structure for employee
@@ -119,6 +137,7 @@ INSERT INTO `employee` VALUES ('5', '127', '1', '张和', '26', '3000', '1', '12
 INSERT INTO `employee` VALUES ('7', '126', '0', '蔡徐坤', '26', '2550', '1', '456789', '2019-06-06 09:22:45', '1004');
 INSERT INTO `employee` VALUES ('8', '125', '0', 'pidan', '17', '1234', '1', '1565', '2019-05-29 16:05:03', '1005');
 INSERT INTO `employee` VALUES ('12', '127', '0', 'duff', '25', '4567', '0', '848613', '2019-06-04 14:25:47', '1006');
+INSERT INTO `employee` VALUES ('15', '124', '0', '健康和', '456', '9845', '1', '89456', '2019-06-04 11:36:46', '1008');
 INSERT INTO `employee` VALUES ('16', '123', '0', 'dakjs', '0', '0', '0', '0', '2019-06-12 16:29:23', '1027');
 
 -- ----------------------------
@@ -187,28 +206,7 @@ INSERT INTO `user` VALUES ('1005', '5', '0');
 INSERT INTO `user` VALUES ('1006', '6', '0');
 INSERT INTO `user` VALUES ('1007', '7', '0');
 INSERT INTO `user` VALUES ('1008', '123456', '0');
-INSERT INTO `user` VALUES ('1009', '123456', '0');
-INSERT INTO `user` VALUES ('1010', '123456', '0');
-INSERT INTO `user` VALUES ('1011', '123456', '0');
-INSERT INTO `user` VALUES ('1012', '12356', '0');
-INSERT INTO `user` VALUES ('1013', '12356', '0');
-INSERT INTO `user` VALUES ('1014', '12356', '0');
-INSERT INTO `user` VALUES ('1015', '12356', '0');
-INSERT INTO `user` VALUES ('1016', '12356', '0');
-INSERT INTO `user` VALUES ('1017', '12356', '0');
-INSERT INTO `user` VALUES ('1018', '12356', '0');
-INSERT INTO `user` VALUES ('1019', '12356', '0');
-INSERT INTO `user` VALUES ('1020', '12356', '0');
-INSERT INTO `user` VALUES ('1021', '12356', '0');
-INSERT INTO `user` VALUES ('1022', '12356', '0');
-INSERT INTO `user` VALUES ('1023', '12356', '0');
-INSERT INTO `user` VALUES ('1024', '12356', '0');
-INSERT INTO `user` VALUES ('1025', '12356', '0');
-INSERT INTO `user` VALUES ('1026', '12356', '0');
 INSERT INTO `user` VALUES ('1027', '12356', '0');
-INSERT INTO `user` VALUES ('1028', '12356', '0');
-INSERT INTO `user` VALUES ('1029', '12356', '0');
-INSERT INTO `user` VALUES ('1030', '12356', '0');
 
 -- ----------------------------
 -- Table structure for work_arrangement
