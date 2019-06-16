@@ -20,6 +20,7 @@ import bean.ApplicationForEW;
 import bean.ApplicationForLeave;
 import bean.Employee;
 import bean.WorkArrangement;
+import dao.AlertDao;
 import dao.ApplicationForEWDao;
 import mapper.ApplicationForEWRowMapper;
 import mapper.EmployeeRowMapper;
@@ -42,6 +43,8 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 	
 	@Autowired
     private JdbcTemplate jdbcTemplate;
+	@Autowired
+	private AlertDao alertDao;
 	
 	public List<Range> reduceIntersection(List<Range> l, long s , long e){
 		//答案集合
@@ -106,6 +109,8 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 		// TODO Auto-generated method stub
 		String sql = "insert into application_for_ew(applicated_id,start_time,end_time,ew_state,ew_reason) "
 				+ "values(?,?,?,?,?)";
+		alertDao.addAlert(applica.getApplicatedId(), 0);
+		
 		return jdbcTemplate.update(sql,applica.getApplicatedId(),applica.getStartTime(),applica.getEndTime(),
 				0,applica.getEwReason());
 		  

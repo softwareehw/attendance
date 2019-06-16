@@ -9,6 +9,7 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.stereotype.Repository;
 
 import bean.ApplicationForLeave;
+import dao.AlertDao;
 import dao.ApplicationForLeaveDao;
 import mapper.ApplicationForLeaveRowMapper;
 
@@ -17,6 +18,8 @@ public class ApplicationForLeaveDaoImpl implements ApplicationForLeaveDao {
 
 	@Autowired
     private JdbcTemplate jdbcTemplate;
+	@Autowired
+	private AlertDao alertDao;
 	
 	
 	//插入请假记录
@@ -25,6 +28,7 @@ public class ApplicationForLeaveDaoImpl implements ApplicationForLeaveDao {
 		// TODO Auto-generated method stub
 		String sql = "insert into application_for_leave"
 				+ "(state,start_time,end_time,applicated_person,is_report_back,leave_reason,leave_type) values(?,?,?,?,?,?,?)";
+		alertDao.addAlert(applicationForLeave.getApplicatdPerson(),1);
 		return jdbcTemplate.update(sql,0,applicationForLeave.getStartTime(),
 				applicationForLeave.getEndTime(),applicationForLeave.getApplicatdPerson(),
 				0,applicationForLeave.getLeaveReason(),applicationForLeave.isLeaveType());

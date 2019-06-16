@@ -8,6 +8,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import bean.ApplicationForEW;
+import dao.AlertDao;
 import dao.ApplicationForEWDao;
 import service.ApplicationForEWService;
 
@@ -16,6 +17,8 @@ public class ApplicationForEWServiceImpl implements ApplicationForEWService {
 	
 	@Autowired
 	ApplicationForEWDao applicationForEWDao;
+	@Autowired
+	private AlertDao alertDao;
 
 	@Override
 	public int applicateEW(ApplicationForEW applica) {
@@ -52,6 +55,7 @@ public class ApplicationForEWServiceImpl implements ApplicationForEWService {
 		JSONObject json = new JSONObject();
 		int i = applicationForEWDao.RatifyEW(applicationForEW);
 		if(i==1){
+			alertDao.addAlertEmployee(applicationForEW.getApplicatedId(), 3);
 			json.put("state", 1);
 		}else{
 			json.put("state", 0);
