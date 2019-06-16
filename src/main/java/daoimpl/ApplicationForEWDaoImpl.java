@@ -47,6 +47,9 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 		//答案集合
 		List<Range> list=new ArrayList<Range>();
 		int len=l.size();
+		if(len==0) {
+			list.add(new Range(s,e));
+		}
 		for(int i=0;i<len;i++) {
 			//ls->left le->right
 			//l.get(i).left  l.get(i).right
@@ -221,6 +224,21 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 			//利用提取出来的时间求哪些区间段的时间可以被创建已被批准的加班
 			List<Range> test=reduceIntersection(banTime , start.getTimeInMillis() , end.getTimeInMillis());
 			System.out.println(i);
+			
+			if(start.getTimeInMillis()==test.get(0).left&&end.getTimeInMillis()==test.get(0).right) {
+				Calendar e=Calendar.getInstance();
+				Calendar s=Calendar.getInstance();
+				s.setTimeInMillis(test.get(0).right);
+				e.setTimeInMillis(test.get(0).left);
+				int mm=s.get(start.MONTH)+1;
+				String timestart=s.get(start.YEAR)+"-"+mm+"-"+s.get(start.DAY_OF_MONTH)+" "
+						+ s.get(start.HOUR_OF_DAY)+":"+s.get(start.MINUTE)+":"+s.get(start.SECOND);
+				String timeend=e.get(e.YEAR)+"-"+mm+"-"+e.get(e.DAY_OF_MONTH)+" "
+						+ e.get(e.HOUR_OF_DAY)+":"+e.get(e.MINUTE)+":"+e.get(e.SECOND);
+				
+				sql="INSERT INTO application_for_ew (applicated_id,start_time,end_time,ew_state,ratify_id,ew_reason) values("+i+",\""+timestart+"\",\""+timeend+"\",1,"+date.getRatifyId()+",\""+date.getEwReason()+"\")";
+				jdbcTemplate.update(sql);
+			}
 			
 			if(start.getTimeInMillis()<test.get(0).left) {
 				//System.out.println(start.getTimeInMillis()+","+test.get(0).left);
