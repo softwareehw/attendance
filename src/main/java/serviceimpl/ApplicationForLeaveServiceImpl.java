@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import bean.ApplicationForLeave;
 import bean.Employee;
+import dao.AlertDao;
 import dao.ApplicationForLeaveDao;
 import service.ApplicationForLeaveService;
 
@@ -19,6 +20,8 @@ public class ApplicationForLeaveServiceImpl implements ApplicationForLeaveServic
 
 	@Autowired
 	ApplicationForLeaveDao applicationForLeavedao;
+    @Autowired
+    private AlertDao alertDao;
 	
 	/**
 	 * 
@@ -27,6 +30,7 @@ public class ApplicationForLeaveServiceImpl implements ApplicationForLeaveServic
 	@Override
 	public String addApplicationForLeave(ApplicationForLeave applicationForLeave) {
 		int i = applicationForLeavedao.addApplicationForLeave(applicationForLeave);
+	
 		JSONObject json =new JSONObject();
 		if(i==1){
 			json.put("state", 1);
@@ -96,12 +100,14 @@ public class ApplicationForLeaveServiceImpl implements ApplicationForLeaveServic
 	@Override
 	public String RatifyLeave(ApplicationForLeave applicationForLeave) {
 		int i=applicationForLeavedao.RatifyLeave(applicationForLeave);
+		
 		JSONObject json = new JSONObject();
 		if(i==0){
 			json.put("error_message", "审批失败");
 			json.put("state", 0);
 		}else{
 			json.put("state", 1);
+			alertDao.addAlertEmployee(applicationForLeave.getApplicatdPerson(), 3);
 		}
 		
 		return json.toString();
