@@ -303,11 +303,8 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 	@Override
 	public List<ApplicationForEW> getUncheckApplicationForEW(int sectorId) {
 		// TODO Auto-generated method stub
-		String sql = "select * from application_for_ew where sector_id = ?";
-		
-		return (List<ApplicationForEW>)jdbcTemplate.query(sql, new Object[] {sectorId},new ApplicationForEWRowMapper() {
-			
-		});
+		String sql = "select * from application_for_ew where applicated_id in (select employee_id from employee where sector_id=?)";
+		return (List<ApplicationForEW>)jdbcTemplate.query(sql, new Object[] {sectorId},new ApplicationForEWRowMapper() {});
 	}
 	
 	
@@ -326,9 +323,7 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 	public List<ApplicationForEW> updateEmployeeInfoApplicationForEW( int applicatedId) {
 		// TODO Auto-generated method stub
 		String sql = "select * from application_for_ew where applicated_id = ? and ew_state = 0";
-		return (List<ApplicationForEW>)jdbcTemplate.query(sql, new Object[] {applicatedId},new ApplicationForEWRowMapper() {
-			
-		});
+		return (List<ApplicationForEW>)jdbcTemplate.query(sql, new Object[] {applicatedId},new ApplicationForEWRowMapper() {});
 		
 	}
 	
