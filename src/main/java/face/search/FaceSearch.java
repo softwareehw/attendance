@@ -45,7 +45,7 @@ public class FaceSearch {
             map.put("liveness_control", "NORMAL");
 
             String param = GsonUtils.toJson(map);
-
+            
             // 注意这里仅为了简化编码每一次请求都去获取access_token，线上环境access_token有过期时间， 客户端可自行缓存，过期后重新获取。
             String accessToken = AuthService.getAuth();
 //            		"24.1b1d6c4ad2608dfbd7c4dbfb756c62e6.2592000.1561192392.282335-16322631\r\n" + 

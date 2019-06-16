@@ -8,18 +8,19 @@ import java.util.*;
 
 import org.json.JSONArray;
 import org.json.JSONObject;
+import org.springframework.web.multipart.MultipartFile;
 
 
 
 public class FaceInteraction {
 	  //录入照片入库
-	  public static String add(String path,int employee_id) {
+	  public static String add(MultipartFile image,int employee_id) {
 	        // 请求url
 	        String url = "https://aip.baidubce.com/rest/2.0/face/v3/faceset/user/add";
 	        byte[] bytes1 = null;
 			try {
 				//读取图片作为字符串返回
-				bytes1 = FileUtil.readFileByBytes(path);
+				bytes1 = image.getBytes();
 			} catch (IOException e1) {
 				// TODO Auto-generated catch block
 				e1.printStackTrace();

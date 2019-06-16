@@ -333,6 +333,7 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 		return i;
 	}
 
+
 	//获取每个部门某天加班人数
 	@Override
 	public int applicatedNumberBySectorId(int sectorId) {
@@ -365,4 +366,5 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 	}
 
 	
+
 }

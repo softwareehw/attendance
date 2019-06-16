@@ -18,9 +18,8 @@ public class ApplicationForEWRowMapper implements RowMapper<ApplicationForEW> {
 	public ApplicationForEW mapRow(ResultSet rs, int rowNum) throws SQLException {
 		// TODO Auto-generated method stub
 		int applicatedId = rs.getInt("applicated_id");
-		Date startTime = rs.getDate("start_time");
-		Date endTime = rs.getDate("end_time");
-	
+		Date startTime = rs.getTimestamp("start_time");
+		Date endTime = rs.getTimestamp("end_time");
 		int ewState = rs.getInt("ew_state");
 		int ewId = rs.getInt("ew_id");
 		int ratifyId = rs.getInt("ratify_id");
