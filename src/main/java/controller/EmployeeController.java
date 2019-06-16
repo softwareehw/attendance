@@ -32,6 +32,8 @@ import bean.ApplicationForEW;
 import bean.ApplicationForLeave;
 import bean.AttendanceRecord;
 import bean.Employee;
+import bean.Sector;
+import dao.ApplicationForLeaveDao;
 import dao.SectorDao;
 import face.search.FaceInteraction;
 import face.search.FaceSearch;
@@ -52,6 +54,8 @@ public class EmployeeController {
 	private SectorService sectorService;
 	@Autowired
 	private SectorDao sectorDao;
+	@Autowired
+	private ApplicationForLeaveDao applicationForLeaveDao;
 
 	
 	@Autowired
@@ -281,14 +285,32 @@ public class EmployeeController {
 		return s;
 	}
 	
-//	@RequestMapping(value="/peoplenum/{sectorId}", method=RequestMethod.GET)
-//	public String findWorkingPeopleBySectorId(@PathVariable int sectorId){
-//		int totalnumber = sectorDao.findPeopleNum(sectorId);
-//		int leave = leaveDao.
-//		
-//		
-//		return s;
-//	}
+	@RequestMapping(value="/peoplenum/{sectorId}", method=RequestMethod.GET)
+	public String findWorkingPeopleBySectorId(@PathVariable int sectorId){
+		int totalnumber = sectorDao.findPeopleNum(sectorId);
+		int leave = applicationForLeaveDao.applicationNumberBySectorId(sectorId);
+		JSONObject json = new JSONObject();
+		json.put("peoplenumber", totalnumber-leave);
+		
+		return json.toString();
+	}
+	
+	@RequestMapping(value="/peoplenum/all", method=RequestMethod.GET)
+	public String findWorkingPeople(){
+		List<Sector> l = sectorDao.getAllSector();
+		int totalnumber=0;
+		int leave=0;
+		for (Sector sector : l) {
+			totalnumber += sectorDao.findPeopleNum(sector.getSectorId());
+			leave += applicationForLeaveDao.applicationNumberBySectorId(sector.getSectorId());
+		}
+
+		
+		JSONObject json = new JSONObject();
+		json.put("peoplenumber", totalnumber-leave);
+		
+		return json.toString();
+	}
 	
 	
 }
