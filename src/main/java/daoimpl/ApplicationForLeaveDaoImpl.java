@@ -137,7 +137,7 @@ public class ApplicationForLeaveDaoImpl implements ApplicationForLeaveDao {
 		// TODO Auto-generated method stub
 		String sql = "SELECT * from application_for_leave WHERE applicated_person in "
 				+ "(select employee_id FROM employee WHERE sector_id = ?) "
-				+ "and (? >= start_time and ? <= end_time) and ew_state = 1";
+				+ "and (? >= start_time and ? <= end_time) and state = 1";
 		List<ApplicationForLeave> list = jdbcTemplate.query(sql, new Object[] {sectorId,new Date(),new Date()},new ApplicationForLeaveRowMapper() {
 			
 		});
@@ -147,8 +147,8 @@ public class ApplicationForLeaveDaoImpl implements ApplicationForLeaveDao {
 	@Override
 	public int applicationNumberAll() {
 		// TODO Auto-generated method stub
-		String sql = "SELECT * from application_for_leave WHERE   "
-				+ " (? >= start_time and ? <= end_time) and ew_state = 1";
+		String sql = "SELECT * from application_for_leave where   "
+				+ " (? >= start_time and ? <= end_time) and state = 1";
 		List<ApplicationForLeave> list = jdbcTemplate.query(sql, new Object[] {new Date(),new Date()},new ApplicationForLeaveRowMapper() {
 			
 		});
