@@ -106,8 +106,8 @@ public class ApplicationForLeaveServiceImpl implements ApplicationForLeaveServic
 			json.put("error_message", "审批失败");
 			json.put("state", 0);
 		}else{
-			json.put("state", 1);
 			alertDao.addAlertEmployee(applicationForLeave.getApplicatdPerson(), 3);
+			json.put("state", 1);
 		}
 		
 		return json.toString();

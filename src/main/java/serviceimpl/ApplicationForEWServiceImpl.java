@@ -55,8 +55,8 @@ public class ApplicationForEWServiceImpl implements ApplicationForEWService {
 		JSONObject json = new JSONObject();
 		int i = applicationForEWDao.RatifyEW(applicationForEW);
 		if(i==1){
-			alertDao.addAlertEmployee(applicationForEW.getApplicatedId(), 3);
 			json.put("state", 1);
+			alertDao.addAlertEmployee(applicationForEW.getApplicatedId(), 2);
 		}else{
 			json.put("state", 0);
 			json.put("error_message", "审核加班失败");

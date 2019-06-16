@@ -88,5 +88,7 @@ public interface ApplicationForEWDao {
 	//统计当天每个部门加班人数
 	
 	public int applicatedNumberBySectorId (int sectorId);
+	
+
 
 }
