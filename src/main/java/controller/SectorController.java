@@ -76,4 +76,16 @@ public class SectorController {
 	public String findAllEmployeeBySectorId(@PathVariable int sectorId) {
 		return sectorService.findAllEmployeeBySectorId(sectorId);
 	}
+	
+	@RequestMapping(value="/peoplenum/{sectorId}",method=RequestMethod.GET)
+    public String findSectorPeopleNumBySectorId(@PathVariable int sectorId){
+		return sectorService.findPeopleNumInSector(sectorId);
+	}
+	
+	@RequestMapping(value="/peoplenum/all",method=RequestMethod.GET)
+    public String findSectorPeopleNum(){
+		return sectorService.findPeopleNumInConpany();
+	}
+	
+	
 }

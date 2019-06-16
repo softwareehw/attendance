@@ -28,4 +28,8 @@ public interface SectorService {
 	public String DeleteSector(int sectorId);
 	
 	public String findAllEmployeeBySectorId( int sectorId);
+	
+	public String findPeopleNumInSector(int sectorId);
+	
+	public String findPeopleNumInConpany();
 }

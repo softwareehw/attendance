@@ -32,10 +32,14 @@ import bean.ApplicationForEW;
 import bean.ApplicationForLeave;
 import bean.AttendanceRecord;
 import bean.Employee;
+import bean.Sector;
+import dao.ApplicationForLeaveDao;
+import dao.SectorDao;
 import face.search.FaceInteraction;
 import face.search.FaceSearch;
 import service.EmployeeService;
 import service.ExcelService;
+import service.SectorService;
 
 //部署到服务器上的时候请一定使用 @CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true") 才能和前端正常交互
 @CrossOrigin(origins = "http://39.105.38.34", maxAge = 3600,allowCredentials="true")
@@ -46,6 +50,13 @@ public class EmployeeController {
 
 	@Autowired
 	private EmployeeService employeeService;
+	@Autowired
+	private SectorService sectorService;
+	@Autowired
+	private SectorDao sectorDao;
+	@Autowired
+	private ApplicationForLeaveDao applicationForLeaveDao;
+
 	
 	@Autowired
 	private ExcelService excelService;
@@ -272,6 +283,33 @@ public class EmployeeController {
 
 		String s = excelService.AddEmployeeUserByExcel(filePath);
 		return s;
+	}
+	
+	@RequestMapping(value="/peoplenum/{sectorId}", method=RequestMethod.GET)
+	public String findWorkingPeopleBySectorId(@PathVariable int sectorId){
+		int totalnumber = sectorDao.findPeopleNum(sectorId);
+		int leave = applicationForLeaveDao.applicationNumberBySectorId(sectorId);
+		JSONObject json = new JSONObject();
+		json.put("peoplenumber", totalnumber-leave);
+		
+		return json.toString();
+	}
+	
+	@RequestMapping(value="/peoplenum/all", method=RequestMethod.GET)
+	public String findWorkingPeople(){
+		List<Sector> l = sectorDao.getAllSector();
+		int totalnumber=0;
+		int leave=0;
+		for (Sector sector : l) {
+			totalnumber += sectorDao.findPeopleNum(sector.getSectorId());
+			leave += applicationForLeaveDao.applicationNumberBySectorId(sector.getSectorId());
+		}
+
+		
+		JSONObject json = new JSONObject();
+		json.put("peoplenumber", totalnumber-leave);
+		
+		return json.toString();
 	}
 	
 	
