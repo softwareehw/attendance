@@ -56,6 +56,9 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 		for(int i=0;i<len;i++) {
 			//ls->left le->right
 			//l.get(i).left  l.get(i).right
+			if(l.get(i).left==s&&l.get(i).right==e) {
+				return list;
+			}
 			if(l.get(i).left<=s&&l.get(i).right>s) {
 				list.add(new Range(s,l.get(i).right));
 				//System.out.println(0);
@@ -126,7 +129,8 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 		Calendar start = Calendar.getInstance();
 		Calendar end = Calendar.getInstance();
 		start.setTime(date.getStartTime());
-		start.setTime(date.getEndTime());
+		end.setTime(date.getEndTime());
+		
 		//全员遍历提取出每个员工id
 		String sql="SELECT employee_id FROM employee";
 		List<Integer> employeeId=new ArrayList<Integer>();
@@ -230,17 +234,25 @@ public class ApplicationForEWDaoImpl implements ApplicationForEWDao {
 			List<Range> test=reduceIntersection(banTime , start.getTimeInMillis() , end.getTimeInMillis());
 			System.out.println(i);
 			
+			if(test.isEmpty()) {
+				return null;
+			}
 			if(start.getTimeInMillis()==test.get(0).left&&end.getTimeInMillis()==test.get(0).right) {
+				System.out.println("天无绝人之路");
 				Calendar e=Calendar.getInstance();
 				Calendar s=Calendar.getInstance();
-				s.setTimeInMillis(test.get(0).right);
-				e.setTimeInMillis(test.get(0).left);
+				s.setTimeInMillis(test.get(0).left);
+				e.setTimeInMillis(test.get(0).right);
 				int mm=s.get(start.MONTH)+1;
-				String timestart=s.get(start.YEAR)+"-"+mm+"-"+s.get(start.DAY_OF_MONTH)+" "
-						+ s.get(start.HOUR_OF_DAY)+":"+s.get(start.MINUTE)+":"+s.get(start.SECOND);
-				String timeend=e.get(e.YEAR)+"-"+mm+"-"+e.get(e.DAY_OF_MONTH)+" "
-						+ e.get(e.HOUR_OF_DAY)+":"+e.get(e.MINUTE)+":"+e.get(e.SECOND);
-				
+				int tt=s.get(start.DAY_OF_MONTH);
+				String timestart=s.get(s.YEAR)+"-"+mm+"-"+tt+" "
+						+ s.get(s.HOUR_OF_DAY)+":"+s.get(s.MINUTE)+":"+s.get(start.SECOND);
+				String timeend=s.get(start.YEAR)+"-"+mm+"-"+tt+" "
+						+ e.get(Calendar.HOUR_OF_DAY)+":"+e.get(Calendar.MINUTE)+":"+e.get(Calendar.SECOND);
+				System.out.println(s.toString());
+				System.out.println(e.toString());
+				System.out.println(timestart);
+				System.out.println(timeend);
 				sql="INSERT INTO application_for_ew (applicated_id,start_time,end_time,ew_state,ratify_id,ew_reason) values("+i+",\""+timestart+"\",\""+timeend+"\",1,"+date.getRatifyId()+",\""+date.getEwReason()+"\")";
 				jdbcTemplate.update(sql);
 			}

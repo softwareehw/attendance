@@ -12,9 +12,9 @@ public class ApplicationForEW {
 	private int ewId;
 	private int ratifyId;
 	
-	@JsonFormat( pattern="yyyy-MM-dd HH:mm:ss")
+	@JsonFormat( timezone = "GMT+8",pattern="yyyy-MM-dd HH:mm:ss")
 	private Date startTime;
-	@JsonFormat( pattern="yyyy-MM-dd HH:mm:ss")
+	@JsonFormat( timezone = "GMT+8",pattern="yyyy-MM-dd HH:mm:ss")
 	private Date endTime;
 	private String ewReason;
 
